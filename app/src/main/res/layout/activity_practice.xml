@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:material="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <include layout="@layout/practise_toolbar"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/practise_toolbar_height" />
+
+    <include layout="@layout/practice_bottombar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/practise_bottombar_height" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpaper"
+        android:layout_below="@+id/practise_toolbar"
+        android:layout_above="@+id/practise_bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/progress_wheel"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:alpha="0"
+        material:matProg_barColor="@color/colorPrimary"
+        material:matProg_progressIndeterminate="true"/>
+
+</RelativeLayout>

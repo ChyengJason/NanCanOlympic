@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/practise_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/practise_toolbar_height"
+    android:background="@color/colorPrimary">
+
+    <ImageButton
+        android:id="@+id/practise_title_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:src="@mipmap/core_title_bar_back_icon"
+        android:background="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+        <Button
+            android:id="@+id/dati_pattern_view"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/practise_toolbar_pattern_height"
+            android:paddingTop="@dimen/practise_toolbar_pattern_top_margin"
+            android:paddingBottom="@dimen/practise_toolbar_pattern_top_margin"
+            android:paddingRight="@dimen/practise_toolbar_pattern_margin"
+            android:paddingLeft="@dimen/practise_toolbar_pattern_margin"
+            android:clickable="true"
+            android:text="@string/dati_pattern"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/dati_pattern_left"/>
+        <Button
+            android:id="@+id/beiti_pattern_view"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/practise_toolbar_pattern_height"
+            android:paddingTop="@dimen/practise_toolbar_pattern_top_margin"
+            android:paddingBottom="@dimen/practise_toolbar_pattern_top_margin"
+            android:paddingLeft="@dimen/practise_toolbar_pattern_margin"
+            android:paddingRight="@dimen/practise_toolbar_pattern_margin"
+            android:clickable="true"
+            android:text="@string/beiti_pattern"
+            android:textColor="@color/white"
+            android:background="@drawable/dati_pattern_right"/>
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:src="@mipmap/practise_header_day"
+        android:background="@color/colorPrimary"/>
+
+</RelativeLayout>

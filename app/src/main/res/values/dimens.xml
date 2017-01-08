@@ -1,0 +1,26 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="small_margin">5dp</dimen>
+    <dimen name="middle_margin">10dp</dimen>
+    <dimen name="big_margin">15dp</dimen>
+    <dimen name="much_big_margin">25dp</dimen>
+    <dimen name="practise_toolbar_height">50dp</dimen>
+    <dimen name="practise_toolbar_pattern_margin">5dp</dimen>
+    <dimen name="practise_toolbar_pattern_height">25dp</dimen>
+    <dimen name="practise_toolbar_pattern_top_margin">2dp</dimen>
+    <dimen name="practise_bottombar_height">45dp</dimen>
+    <dimen name="practise_bottombar_pattern_left_pading">10dp</dimen>
+    <dimen name="practise_bottombar_pattern_right_pading">10dp</dimen>
+    <dimen name="practise_answer_item_divider">20dp</dimen>
+    <dimen name="practise_option_item_confirm_width">250dp</dimen>
+    <dimen name="practise_option_item_confirm_height">40dp</dimen>
+    <dimen name="practise_option_item_confirm_top_margin">50dp</dimen>
+    <!-- font -->
+    <dimen name="small_spacing">6sp</dimen>
+    <dimen name="small_font">12sp</dimen>
+    <dimen name="middle_font">16sp</dimen>
+    <dimen name="big_font">18sp</dimen>
+    <dimen name="answer_question_font">17sp</dimen>
+</resources>

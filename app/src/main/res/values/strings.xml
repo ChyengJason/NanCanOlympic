@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mr_Horse</string>
+    <string name="dati_pattern">答题模式</string>
+    <string name="beiti_pattern">背题模式</string>
+    <string name="colloect">收藏</string>
+    <string name="confirm">确认</string>
+</resources>
