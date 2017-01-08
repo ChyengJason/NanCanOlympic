@@ -143,4 +143,10 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     public void onClickBeitiPatternView(){
         answerPresenter.onClickBeitiPattern();
     }
+
+    @Override
+    public void changeAdapterPattern(PatternStatus status){
+        if(answerViewPaperAdapter!=null)
+            answerViewPaperAdapter.changePatternStatus(status);
+    }
 }

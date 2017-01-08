@@ -131,6 +131,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
             return;
         patternStatus=PatternStatus.DATI_PATTERN;
         mAnswerView.changeToDatiView();
+        mAnswerView.changeAdapterPattern(patternStatus);
     }
 
     public void onClickBeitiPattern() {
@@ -138,5 +139,6 @@ public class AnswerPresenterImpl implements AnswerPresenter{
             return;
         patternStatus=PatternStatus.BETI_PATTERN;
         mAnswerView.changeToBeitiView();
+        mAnswerView.changeAdapterPattern(patternStatus);
     }
 }

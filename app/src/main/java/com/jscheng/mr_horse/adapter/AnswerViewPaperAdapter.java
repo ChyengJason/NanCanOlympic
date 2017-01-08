@@ -31,7 +31,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
     private LinkedList<View> mViewCache = null;
     private LayoutInflater mLayoutInflater = null;
     private List<AnswerPageChangeListener> listenerList = null;
-    private List<Integer> mUserAnswerList;
+//    private List<Integer> mUserAnswerList;
 
     public AnswerViewPaperAdapter(Context context,List data,PatternStatus patternStatus){
         this.mContext = context;
@@ -39,7 +39,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
         this.mViewCache = new LinkedList<>();
         this.mLayoutInflater = LayoutInflater.from(mContext) ;
         this.listenerList = new ArrayList<>();
-        this.mUserAnswerList = new ArrayList<>();
+//        this.mUserAnswerList = new ArrayList<>();
         this.patternStatus = patternStatus;
     }
 
@@ -59,7 +59,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         SingleViewHolder viewHolder = null;
         View convertView = null;
-        QuestionModel model = mData.get(position);
+        final QuestionModel model = mData.get(position);
 
         if(mViewCache.size() == 0){
             convertView = this.mLayoutInflater.inflate(R.layout.pageview_item,
@@ -78,7 +78,8 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
             viewHolder = (SingleViewHolder)convertView.getTag();
         }
         viewHolder.textView.setText("("+model.getQuestionType().toString()+") "+model.getQuestion());
-        viewHolder.listView.setAdapter(new AnswerListViewAdapter(mContext,model));
+        final AnswerListViewAdapter listViewAdapter = new AnswerListViewAdapter(mContext,model);
+        viewHolder.listView.setAdapter(listViewAdapter);
 
         if (patternStatus == PatternStatus.DATI_PATTERN) {//答题模式
             ((AnswerListViewAdapter)viewHolder.listView.getAdapter()).hideAnswer();
@@ -88,7 +89,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
                 viewHolder.confirmBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        confirmAnswer(mUserAnswerList);
+                        confirmAnswer(listViewAdapter,model);
                     }
                 });
             }else{//单选模式、判断题
@@ -97,7 +98,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
 
         }else {//看题模式
             viewHolder.confirmBtn.setVisibility(View.GONE);
-            ((AnswerListViewAdapter)viewHolder.listView.getAdapter()).showAnswer();
+            ((AnswerListViewAdapter)viewHolder.listView.getAdapter()).showAnswer(false);
         }
 
         container.addView(convertView ,ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT );
@@ -116,7 +117,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
     @Override
     public int getItemPosition(Object object) {
         // TODO Auto-generated method stub
-        return super.getItemPosition(object);
+        return POSITION_NONE;
     }
 
     @Override
@@ -189,17 +190,30 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int optionPostion, long id) {
-            if(!questionModel.getUserAnswerList().contains(optionPostion)){
-                questionModel.getUserAnswerList().add(optionPostion);
+
+            if(questionModel.getDone())return;
+
+            if(questionModel.getUserAnswerList().contains(optionPostion)){
+                questionModel.getUserAnswerList().remove((Integer)(optionPostion));
             }else {
-                questionModel.getUserAnswerList().remove(optionPostion);
+                questionModel.getUserAnswerList().add(optionPostion);
             }
-            ((AnswerListViewAdapter)parent.getAdapter()).clickOption(optionPostion);
+            if(questionModel.getQuestionType()==QuestionType.MULTIPLE)
+                ((AnswerListViewAdapter)parent.getAdapter()).clickOption(optionPostion);
+            else {
+                confirmAnswer((AnswerListViewAdapter)parent.getAdapter(),questionModel);
+            }
         }
     }
 
-    private boolean confirmAnswer(List<Integer> answers){
-        return true;
+    private void confirmAnswer(AnswerListViewAdapter adapter,QuestionModel questionModel){
+        questionModel.setDone(true);
+        adapter.showAnswer(true);
+    }
+
+    public void changePatternStatus(PatternStatus status){
+        patternStatus = status;
+        this.notifyDataSetChanged();
     }
 
 }

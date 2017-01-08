@@ -15,4 +15,5 @@ public interface AnswerView extends MvpView {
     void changeToBeitiView();
     void changeToDatiView();
     void showError(String s);
+    void changeAdapterPattern(PatternStatus status);
 }

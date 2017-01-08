@@ -21,12 +21,14 @@ public class AnswerListViewAdapter extends BaseAdapter {
     private QuestionModel mQuestionModel;
     private LayoutInflater mLayoutInflater;
     private boolean isShowAnswer;
+    private boolean isShowUserAnswer;//是否显示用户答案
 
     public AnswerListViewAdapter(Context context, QuestionModel questionModel){
         this.mContext = context;
         this.mQuestionModel = questionModel;
         this.mLayoutInflater = LayoutInflater.from(context);
         this.isShowAnswer = false;
+        this.isShowUserAnswer = true;
     }
 
     @Override
@@ -45,7 +47,7 @@ public class AnswerListViewAdapter extends BaseAdapter {
     }
 
     public int getChooseDrawable(int position){
-        if(mQuestionModel!=null && mQuestionModel.getUserAnswerList().contains(position)){
+        if(mQuestionModel!=null && mQuestionModel.getUserAnswerList().contains(position) && isShowUserAnswer){
             switch (position) {
                 case 0:
                     return R.mipmap.practise_a_s_day;
@@ -87,7 +89,7 @@ public class AnswerListViewAdapter extends BaseAdapter {
         if(mQuestionModel.getAnswerList().contains(position)){
             return R.mipmap.practise_true_day;
         }
-        if(mQuestionModel.getDone() && !mQuestionModel.getAnswerList().contains(position)){
+        if(isShowUserAnswer && mQuestionModel.getDone() && !mQuestionModel.getAnswerList().contains(position) && mQuestionModel.getUserAnswerList().contains(position)){
             return R.mipmap.practise_false_day;
         }
         return getChooseDrawable(position);
@@ -116,8 +118,9 @@ public class AnswerListViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void showAnswer() {
+    public void showAnswer(boolean showUserAnswer) {
         this.isShowAnswer = true;
+        this.isShowUserAnswer = showUserAnswer;
         notifyDataSetChanged();
     }
 
