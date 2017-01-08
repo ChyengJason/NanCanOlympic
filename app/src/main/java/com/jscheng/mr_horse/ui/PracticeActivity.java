@@ -3,6 +3,8 @@ package com.jscheng.mr_horse.ui;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +35,7 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     @BindView(R.id.progress_wheel)
     ProgressWheel progressWheel;
 
+    private Handler changeViewHandler;
     private AnswerPresenter answerPresenter;
     private AnswerViewPaperAdapter answerViewPaperAdapter;
 
@@ -43,6 +46,12 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
         ButterKnife.bind(this);
         answerPresenter = new AnswerPresenterImpl(this);
         answerPresenter.attachView(this);
+        changeViewHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                answerViewPager.setCurrentItem(msg.what,true);
+            }
+        };
     }
 
     @Override
@@ -148,5 +157,10 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     public void changeAdapterPattern(PatternStatus status){
         if(answerViewPaperAdapter!=null)
             answerViewPaperAdapter.changePatternStatus(status);
+    }
+
+    @Override
+    public void changePaperView(int pageNum) {
+        changeViewHandler.sendEmptyMessageDelayed(pageNum,300);
     }
 }

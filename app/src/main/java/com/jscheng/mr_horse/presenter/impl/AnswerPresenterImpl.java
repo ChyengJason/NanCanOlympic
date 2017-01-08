@@ -27,14 +27,17 @@ import rx.schedulers.Schedulers;
  * Created by cheng on 17-1-7.
  */
 public class AnswerPresenterImpl implements AnswerPresenter{
-
+    private List<QuestionModel> QuestionModelList;
     private PatternStatus patternStatus;
     private AnswerView mAnswerView;
     private Context mContext;
+    private int pageNum;
 
     public AnswerPresenterImpl(Context context){
         this.mContext = context;
         this.patternStatus = PatternStatus.DATI_PATTERN;//默认是答题模式，测试使用背题模式
+        this.QuestionModelList = new ArrayList();
+        this.pageNum = 0;
     }
 
     @Override
@@ -78,12 +81,12 @@ public class AnswerPresenterImpl implements AnswerPresenter{
         }).map(new Func1<List<QuestionJsonModel>, List<QuestionModel>>() {
             @Override
             public List<QuestionModel> call(List<QuestionJsonModel> questionJsonModel) {
-                List<QuestionModel> list = new ArrayList();
+
 
                 for(QuestionJsonModel model : questionJsonModel){
-                    list.add(model.toQuestionModel());
+                    QuestionModelList.add(model.toQuestionModel());
                 }
-                return list;
+                return QuestionModelList;
             }
         }).subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程
                 .observeOn(AndroidSchedulers.mainThread()) // 指定 Subscriber 的回调发生在主线程
@@ -122,8 +125,20 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     }
 
     @Override
-    public void onPageSelected(int position, QuestionModel model) {
+    public void onPageSelected(int position) {
+        this.pageNum = position;
+    }
 
+    @Override
+    public void onAnswerRight(int postion) {
+        this.pageNum = postion;
+        if(QuestionModelList!=null &&!QuestionModelList.isEmpty()){
+            int pageCount = QuestionModelList.size();
+            if((pageNum+1)<pageCount){
+                pageNum++;
+                mAnswerView.changePaperView(pageNum);
+            }
+        }
     }
 
     public void onClickDatiPattern() {

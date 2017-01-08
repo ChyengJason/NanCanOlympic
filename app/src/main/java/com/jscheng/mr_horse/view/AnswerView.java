@@ -16,4 +16,5 @@ public interface AnswerView extends MvpView {
     void changeToDatiView();
     void showError(String s);
     void changeAdapterPattern(PatternStatus status);
+    void changePaperView(int pageNum);
 }

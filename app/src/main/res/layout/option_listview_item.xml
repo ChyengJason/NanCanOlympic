@@ -7,12 +7,17 @@
         android:id="@+id/answer_choose_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingTop="@dimen/middle_margin"
+        android:paddingBottom="@dimen/middle_margin"
         android:src="@mipmap/practise_a_n_day"/>
     <TextView
         android:id="@+id/option_text"
-        android:paddingTop="@dimen/small_margin"
         android:paddingLeft="@dimen/middle_margin"
         android:paddingRight="@dimen/middle_margin"
+        android:paddingTop="@dimen/middle_margin"
+        android:paddingBottom="@dimen/middle_margin"
+        android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/small_spacing"
