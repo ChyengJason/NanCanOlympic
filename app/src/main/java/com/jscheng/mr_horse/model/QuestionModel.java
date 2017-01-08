@@ -2,6 +2,7 @@ package com.jscheng.mr_horse.model;
 
 import android.content.Intent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class QuestionModel {
     private List<String> optionList;
     private List<Integer> answerList;
     private Boolean done;//是否做了
+    private List<Integer> userAnswerList;
 
     public QuestionModel(int questionNum,QuestionType questionType, String question, List<String> optionList, List<Integer> answerList){
         this.questionNum = questionNum;
@@ -24,6 +26,7 @@ public class QuestionModel {
         this.optionCount = optionList!=null?optionList.size():0;
         this.answerList = answerList;
         this.done = false;
+        this.userAnswerList = new ArrayList<>();
     }
 
     public String getQuestion() {
@@ -80,5 +83,13 @@ public class QuestionModel {
 
     public void setQuestionNum(int questionNum) {
         this.questionNum = questionNum;
+    }
+
+    public List<Integer> getUserAnswerList() {
+        return userAnswerList;
+    }
+
+    public void setUserAnswerList(List<Integer> userAnswerList) {
+        this.userAnswerList = userAnswerList;
     }
 }

@@ -81,7 +81,8 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
         viewHolder.listView.setAdapter(new AnswerListViewAdapter(mContext,model));
 
         if (patternStatus == PatternStatus.DATI_PATTERN) {//答题模式
-            viewHolder.listView.setOnItemClickListener(new OptionItemListener());
+            ((AnswerListViewAdapter)viewHolder.listView.getAdapter()).hideAnswer();
+            viewHolder.listView.setOnItemClickListener(new OptionItemListener(model));
             if(model.getQuestionType()==QuestionType.MULTIPLE){//多选模式
                 viewHolder.confirmBtn.setVisibility(View.VISIBLE);
                 viewHolder.confirmBtn.setOnClickListener(new View.OnClickListener() {
@@ -180,14 +181,20 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
     }
 
     private class OptionItemListener implements AdapterView.OnItemClickListener{
+        private QuestionModel questionModel;
+
+        public OptionItemListener(QuestionModel questionModel){
+            this.questionModel = questionModel;
+        }
 
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (getItemType(position)==QuestionType.SINGLE || getItemType(position)==QuestionType.JUDGE){
-
+        public void onItemClick(AdapterView<?> parent, View view, int optionPostion, long id) {
+            if(!questionModel.getUserAnswerList().contains(optionPostion)){
+                questionModel.getUserAnswerList().add(optionPostion);
             }else {
-
+                questionModel.getUserAnswerList().remove(optionPostion);
             }
+            ((AnswerListViewAdapter)parent.getAdapter()).clickOption(optionPostion);
         }
     }
 

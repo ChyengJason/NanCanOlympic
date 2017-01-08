@@ -120,31 +120,36 @@
 -keep class com.squareup.retrofit2.**{*;}
 -keep class io.reactivex.**{*;}
 -keep class com.pnikosis.**{*;}
-
+-keep class okio.**{*;}
+-keep class com.jakewharton.**{*;}
+-keep class com.orhanobut.**{*;}
+-keep class rx.**{*;}
 # Gson uses generic type information stored in a class file when working with fields. Proguard
 # removes such information by default, so configure it to keep all of it.
 -keepattributes Signature
 
 # Gson specific classes
--keep class sun.misc.Unsafe { *; }
-#-keep class com.google.gson.stream.** { *; }
-
-# Application classes that will be serialized/deserialized over Gson
--keep class com.google.gson.examples.android.model.** { *; }
-
--keepclassmembers public class * implements com.study.moodline.as.listeners.IParseJsonDataBase {
-    *** objectFromData(***);
-    *** arrayFromData(***);
-    private *;
-   void set*(***);
-   *** get*();
-}
+#-keep class sun.misc.Unsafe { *; }
+##-keep class com.google.gson.stream.** { *; }
+#
+## Application classes that will be serialized/deserialized over Gson
+#-keep class com.google.gson.examples.android.model.** { *; }
+#
+#-keepclassmembers public class * implements com.study.moodline.as.listeners.IParseJsonDataBase {
+#    *** objectFromData(***);
+#    *** arrayFromData(***);
+#    private *;
+#   void set*(***);
+#   *** get*();
+#}
 
 # The support library contains references to newer platform versions.
 # Don't warn about those in case this app is linking against an older
 # platform version. We know about them, and they are safe.
 -dontwarn android.support.**
 -dontwarn com.google.ads.**
-
--dontwarn com.xx.bbb.**
--keep class com.xx.bbb.** { *;}
+-dontwarn okio.**
+-dontwarn com.fasterxml.**
+-dontwarn okio.**
+-dontwarn retrofit2.**
+#  -dontnote ** ILicensingService

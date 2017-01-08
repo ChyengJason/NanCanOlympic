@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/practise_a_n_day"/>
     <TextView
-        android:id="@+id/answer_text"
+        android:id="@+id/option_text"
         android:paddingTop="@dimen/small_margin"
         android:paddingLeft="@dimen/middle_margin"
         android:paddingRight="@dimen/middle_margin"

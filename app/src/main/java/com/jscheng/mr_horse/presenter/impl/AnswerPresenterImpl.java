@@ -34,7 +34,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
 
     public AnswerPresenterImpl(Context context){
         this.mContext = context;
-        this.patternStatus = PatternStatus.BETI_PATTERN;//默认是答题模式，测试使用背题模式
+        this.patternStatus = PatternStatus.DATI_PATTERN;//默认是答题模式，测试使用背题模式
     }
 
     @Override
