@@ -3,6 +3,8 @@ package com.jscheng.mr_horse.presenter.impl;
 import android.content.Context;
 import android.content.Intent;
 
+import com.jscheng.mr_horse.App;
+import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.model.QuestionDoneType;
 import com.jscheng.mr_horse.model.QuestionModelLoad;
 import com.jscheng.mr_horse.utils.Constants;
@@ -11,6 +13,7 @@ import com.jscheng.mr_horse.model.QuestionModel;
 import com.jscheng.mr_horse.model.PatternStatus;
 import com.jscheng.mr_horse.presenter.AnswerPresenter;
 import com.jscheng.mr_horse.utils.JsonUtil;
+import com.jscheng.mr_horse.utils.SharedPreferencesUtil;
 import com.jscheng.mr_horse.view.AnswerView;
 import com.jscheng.mr_horse.view.MvpView;
 import com.orhanobut.logger.Logger;
@@ -38,15 +41,16 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     private int rightNum;
     private int wrongNum;
     private String filename;
-    private int catogory;
+    private String catogory;
+    private boolean loading;
 
     public AnswerPresenterImpl(Context context, Intent intent){
         this.mContext = context;
         this.patternStatus = PatternStatus.DATI_PATTERN;//默认是答题模式，测试使用背题模式
         this.QuestionModelList = new ArrayList();
         this.pageNum = 0;
-        this.catogory = intent.getIntExtra("catogory",-1);
-        if(catogory!=Constants.COLLECT && catogory!=Constants.WRONG){
+        this.catogory = intent.getStringExtra("catogory");
+        if(!catogory.equals(Constants.COLLECT) && !(catogory.equals(Constants.WRONG))){
             this.filename = intent.getStringExtra("filename");
         }else {
             this.filename = "";
@@ -79,12 +83,16 @@ public class AnswerPresenterImpl implements AnswerPresenter{
             @Override
             public void onStart() {
                 super.onStart();
+                loading = true;
                 mAnswerView.showProcessing();
             }
 
             @Override
             public void onCompleted() {
+                if (mAnswerView==null)
+                    return;
                 mAnswerView.hideProcessing();
+                loading = false;
             }
 
             @Override
@@ -95,7 +103,13 @@ public class AnswerPresenterImpl implements AnswerPresenter{
 
             @Override
             public void onNext(List<QuestionModel> questionModelList) {
+                if(mAnswerView==null)
+                    return;
                 mAnswerView.initPaperAdapter(questionModelList,patternStatus);
+                pageNum = QuestionModelLoad.getQuestionDoneNum(mContext,catogory);
+                if(pageNum>0)
+                    mAnswerView.changePaperView(pageNum,false,0);
+                mAnswerView.showPageNumView(pageNum+1,QuestionModelList.size());
             }
         };
 
@@ -110,6 +124,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
                     e.printStackTrace();
                     subscriber.onError(e);
                 }
+
                 subscriber.onCompleted();
             }
         }).map(new Func1<List<QuestionJsonModel>, List<QuestionModel>>() {
@@ -138,7 +153,8 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     @Override
     public void onPageSelected(int position) {
         this.pageNum = position;
-        mAnswerView.showPageNumView(pageNum,QuestionModelList.size());
+        QuestionModelLoad.saveQuestionDoneNum(mContext,catogory,pageNum);
+        mAnswerView.showPageNumView(pageNum+1,QuestionModelList.size());
     }
 
     @Override
@@ -148,7 +164,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
             int pageCount = QuestionModelList.size();
             if((pageNum+1)<pageCount){
                 pageNum++;
-                mAnswerView.changePaperView(pageNum);
+                mAnswerView.changePaperView(pageNum,true,300);
             }
         }
         mAnswerView.showRightNumView(++rightNum);
@@ -173,5 +189,21 @@ public class AnswerPresenterImpl implements AnswerPresenter{
         patternStatus=PatternStatus.BETI_PATTERN;
         mAnswerView.changeToBeitiView();
         mAnswerView.changeAdapterPattern(patternStatus);
+    }
+
+    @Override
+    public void changeTheme() {
+        if (loading == true) return;
+
+        int dayNightTheme = App.getDayNightTheme();
+        if (dayNightTheme == R.style.SunAppTheme) {
+            App.setDayNightTheme(R.style.NightAppTheme);
+            mAnswerView.changeToNightTheme();
+        } else {
+            App.setDayNightTheme(R.style.SunAppTheme);
+            mAnswerView.changeToSunTheme();
+        }
+
+        SharedPreferencesUtil.setParam(mContext,Constants.THEME,App.getDayNightTheme());
     }
 }

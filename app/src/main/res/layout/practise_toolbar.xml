@@ -4,7 +4,7 @@
     android:id="@+id/practise_toolbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/practise_toolbar_height"
-    android:background="@color/colorPrimary">
+    android:background="?attr/colorPrimary">
 
     <ImageButton
         android:id="@+id/practise_title_back"
@@ -13,8 +13,8 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:src="@mipmap/core_title_bar_back_icon"
-        android:background="@color/colorPrimary"/>
+        android:src="?attr/header_icon_back"
+        android:background="?attr/colorPrimary"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -31,8 +31,8 @@
             android:paddingLeft="@dimen/practise_toolbar_pattern_margin"
             android:clickable="true"
             android:text="@string/dati_pattern"
-            android:textColor="@color/colorPrimary"
-            android:background="@drawable/dati_pattern_left"/>
+            android:textColor="@drawable/pattern_selector_text_day"
+            android:background="?attr/left_pattern_selector"/>
         <Button
             android:id="@+id/beiti_pattern_view"
             android:layout_width="wrap_content"
@@ -43,17 +43,18 @@
             android:paddingRight="@dimen/practise_toolbar_pattern_margin"
             android:clickable="true"
             android:text="@string/beiti_pattern"
-            android:textColor="@color/white"
-            android:background="@drawable/dati_pattern_right"/>
+            android:textColor="@drawable/pattern_selector_text_day"
+            android:background="?attr/right_pattern_selector"/>
     </LinearLayout>
 
     <ImageButton
+        android:id="@+id/sun_night"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:src="@mipmap/practise_header_day"
-        android:background="@color/colorPrimary"/>
+        android:src="?attr/theme_icon"
+        android:background="?attr/colorPrimary"/>
 
 </RelativeLayout>

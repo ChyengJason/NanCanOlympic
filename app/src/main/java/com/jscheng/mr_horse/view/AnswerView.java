@@ -16,8 +16,10 @@ public interface AnswerView extends MvpView {
     void changeToDatiView();
     void showError(String s);
     void changeAdapterPattern(PatternStatus status);
-    void changePaperView(int pageNum);
+    void changePaperView(int pageNum,boolean smooth,int delaytime);
     void showRightNumView(int rightNum);
     void showWrongNumView(int wrongNum);
     void showPageNumView(int pageNum,int totalNum);
+    void changeToNightTheme();
+    void changeToSunTheme();
 }

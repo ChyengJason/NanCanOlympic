@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
+
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.HeadViewPaperAdapter;
 import com.jscheng.mr_horse.presenter.MainPresenter;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by cheng on 17-1-8.
@@ -23,6 +26,9 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity implements MainView,View.OnClickListener{
     @BindView(R.id.head_viewpaper)
     ViewPager headViewPager;
+
+    @BindView(R.id.sun_night)
+    ImageButton sunNight;
 
     private View headview_1;
     private View headview_2;
@@ -85,4 +91,20 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
             mainPresenter.detachView(false);
         }
     }
+
+    @Override
+    public void changeToNightTheme() {
+        recreate();
+    }
+
+    @Override
+    public void changeToSunTheme(){
+        recreate();
+    }
+
+    @OnClick(R.id.sun_night)
+    public void onClickSunNight() {
+        mainPresenter.changeTheme();
+    }
+
 }

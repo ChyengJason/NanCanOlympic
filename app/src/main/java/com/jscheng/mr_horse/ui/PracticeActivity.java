@@ -2,7 +2,6 @@ package com.jscheng.mr_horse.ui;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.AnswerViewPaperAdapter;
 import com.jscheng.mr_horse.model.QuestionModel;
@@ -20,7 +18,6 @@ import com.jscheng.mr_horse.model.PatternStatus;
 import com.jscheng.mr_horse.presenter.AnswerPresenter;
 import com.jscheng.mr_horse.presenter.impl.AnswerPresenterImpl;
 import com.jscheng.mr_horse.view.AnswerView;
-import com.orhanobut.logger.Logger;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
@@ -46,6 +43,8 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     TextView PageNumTextView;
     @BindView(R.id.practise_title_back)
     ImageButton titleBack;
+    @BindView(R.id.sun_night)
+    ImageButton sunNight;
 
     private Handler changeViewHandler;
     private AnswerPresenter answerPresenter;
@@ -101,54 +100,14 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
 
     @Override
     public void changeToBeitiView() {
-        Logger.e("beiti");
-        int top1 = datiPatternView.getPaddingTop();
-        int left1 = datiPatternView.getPaddingLeft();
-        int right1 = datiPatternView.getPaddingRight();
-        int bottom1 = datiPatternView.getPaddingBottom();
-        int top2 = beitiPatternView.getPaddingTop();
-        int left2 = beitiPatternView.getPaddingLeft();
-        int right2 = beitiPatternView.getPaddingRight();
-        int bottom2 = beitiPatternView.getPaddingBottom();
-
-        datiPatternView.setBackgroundResource(R.drawable.beiti_pattern_left);
-        beitiPatternView.setBackgroundResource(R.drawable.beiti_pattern_right);
-        datiPatternView.setPadding(left1,top1,right1,bottom1);
-        beitiPatternView.setPadding(left2,top2,right2,bottom2);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            datiPatternView.setTextColor(getColor(R.color.white));
-            beitiPatternView.setTextColor(getColor(R.color.colorPrimary));
-        }else {
-            datiPatternView.setTextColor(getResources().getColor(R.color.white));
-            beitiPatternView.setTextColor(getResources().getColor(R.color.colorPrimary));
-        }
+        datiPatternView.setSelected(false);
+        beitiPatternView.setSelected(true);
     }
 
     @Override
     public void changeToDatiView() {
-        Logger.e("dati");
-        int top1 = datiPatternView.getPaddingTop();
-        int left1 = datiPatternView.getPaddingLeft();
-        int right1 = datiPatternView.getPaddingRight();
-        int bottom1 = datiPatternView.getPaddingBottom();
-        int top2 = beitiPatternView.getPaddingTop();
-        int left2 = beitiPatternView.getPaddingLeft();
-        int right2 = beitiPatternView.getPaddingRight();
-        int bottom2 = beitiPatternView.getPaddingBottom();
-
-        datiPatternView.setBackgroundResource(R.drawable.dati_pattern_left);
-        beitiPatternView.setBackgroundResource(R.drawable.dati_pattern_right);
-        datiPatternView.setPadding(left1,top1,right1,bottom1);
-        beitiPatternView.setPadding(left2,top2,right2,bottom2);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            beitiPatternView.setTextColor(getColor(R.color.white));
-            datiPatternView.setTextColor(getColor(R.color.colorPrimary));
-        }else {
-            beitiPatternView.setTextColor(getResources().getColor(R.color.white));
-            datiPatternView.setTextColor(getResources().getColor(R.color.colorPrimary));
-        }
+        datiPatternView.setSelected(true);
+        beitiPatternView.setSelected(false);
     }
 
     @Override
@@ -173,8 +132,12 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     }
 
     @Override
-    public void changePaperView(int pageNum) {
-        changeViewHandler.sendEmptyMessageDelayed(pageNum,300);
+    public void changePaperView(int pageNum,boolean smooth,int delaytime) {
+        if (delaytime > 0) {
+            changeViewHandler.sendEmptyMessageDelayed(pageNum, delaytime);
+        } else {
+            answerViewPager.setCurrentItem(pageNum, smooth);
+        }
     }
 
     @Override
@@ -192,8 +155,29 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
         PageNumTextView.setText(pageNum+"/"+totalNum);
     }
 
+    @Override
+    public void changeToNightTheme() {
+        recreate();
+    }
+
+    public void changeToSunTheme(){
+        recreate();
+    }
+
+    @OnClick(R.id.sun_night)
+    public void onClickSunNight() {
+        answerPresenter.changeTheme();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
     @OnClick(R.id.practise_title_back)
     public void TitleBack(){
         super.finish();
     }
+
+
 }

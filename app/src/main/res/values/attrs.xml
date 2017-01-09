@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="text_color" format="reference|color" />
+    <attr name="root_view_bg" format="reference|color" />
+    <attr name="main_view_bg" format="reference|color"/>
+    <attr name="secondary_view_bg" format="reference|color" />
+    <attr name="choose_view_bg" format="reference|color" />
+    <attr name="secondary_text_color" format="reference|color" />
+    <attr name="confirm_btn_text_color" format="reference|color"/>
+    <attr name="bottom_view_color" format="reference|color"/>
+    <attr name="bottom_divider_color" format="reference|color"/>
+    <attr name="hollow_circle_color" format="reference|color"/>
+    <attr name="theme_icon" format="reference"/>
+    <attr name="header_icon_back" format="reference"/>
+    <attr name="pattern_text_color" format="reference"/>
+    <attr name="left_pattern_selector" format="reference"/>
+    <attr name="right_pattern_selector" format="reference"/>
+
+
+    <attr name="practise_a_s" format="reference"/>
+    <attr name="practise_b_s" format="reference"/>
+    <attr name="practise_c_s" format="reference"/>
+    <attr name="practise_d_s" format="reference"/>
+    <attr name="practise_e_s" format="reference"/>
+    <attr name="practise_f_s" format="reference"/>
+    <attr name="practise_g_s" format="reference"/>
+
+    <attr name="practise_a_n" format="reference"/>
+    <attr name="practise_b_n" format="reference"/>
+    <attr name="practise_c_n" format="reference"/>
+    <attr name="practise_d_n" format="reference"/>
+    <attr name="practise_e_n" format="reference"/>
+    <attr name="practise_f_n" format="reference"/>
+    <attr name="practise_g_n" format="reference"/>
+
+    <attr name="practise_true" format="reference"/>
+    <attr name="practise_false" format="reference"/>
+
+
+</resources>

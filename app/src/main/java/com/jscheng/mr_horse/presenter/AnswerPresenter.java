@@ -8,4 +8,5 @@ import com.jscheng.mr_horse.adapter.AnswerViewPaperAdapter;
 public interface AnswerPresenter extends MvpPresenter, AnswerViewPaperAdapter.AnswerPageChangeListener {
     void onClickDatiPattern();
     void onClickBeitiPattern();
+    void changeTheme();
 }

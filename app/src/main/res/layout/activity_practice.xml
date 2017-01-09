@@ -20,7 +20,8 @@
         android:layout_below="@+id/practise_toolbar"
         android:layout_above="@+id/practise_bottombar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="?attr/root_view_bg"/>
 
     <com.pnikosis.materialishprogress.ProgressWheel
         android:id="@+id/progress_wheel"
@@ -29,7 +30,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:alpha="0"
-        material:matProg_barColor="@color/colorPrimary"
+        material:matProg_barColor="?attr/colorAccent"
         material:matProg_progressIndeterminate="true"/>
 
 </RelativeLayout>

@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_gray">
+    android:background="?attr/main_view_bg">
 
     <include layout="@layout/main_toolbar"/>
 
@@ -11,12 +11,78 @@
         android:id="@+id/head_viewpaper"
         android:layout_width="match_parent"
         android:layout_height="@dimen/head_paperview_height"
-        android:background="@color/white"/>
+        android:background="?attr/secondary_view_bg"/>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginTop="@dimen/middle_margin"
+        android:layout_marginBottom="@dimen/middle_margin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        ></LinearLayout>
+        android:layout_height="@dimen/acitivity_main_date_height"
+        android:background="?attr/secondary_view_bg">
+        <LinearLayout
+            android:layout_width="@dimen/acitivity_main_date_width"
+            android:layout_height="match_parent"
+            android:background="@drawable/right_ellipse">
+            <TextView
+                android:id="@+id/date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="2017.01.09"
+                android:textColor="?attr/confirm_btn_text_color"
+                android:textSize="@dimen/middle_font">
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/middle_margin">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/all_done_num"
+                android:textSize="@dimen/acitvity_main_today_font"
+                android:textColor="@color/bottom_gray"
+                android:layout_marginLeft="@dimen/small_margin"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/middle_margin"
+                android:text = "0"
+                android:layout_gravity="center_vertical"
+                android:textColor="?attr/colorPrimaryDark"
+                android:textSize="@dimen/middle_font"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/acitivity_main_tody_left_margin"
+                android:text="@string/punch_day_num"
+                android:textSize="@dimen/acitvity_main_today_font"
+                android:textColor="@color/bottom_gray"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/middle_margin"
+                android:text = "0"
+                android:layout_gravity="center_vertical"
+                android:textColor="?attr/colorPrimaryDark"
+                android:textSize="@dimen/middle_font"/>
+        </LinearLayout>
+    </LinearLayout>
+    <include
+        layout="@layout/activity_main_chooses"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_main_chooses"
+        android:orientation="vertical"
+        android:background="?attr/secondary_view_bg"/>
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/middle_margin"
+        android:textColor="?attr/secondary_text_color"
+        android:text="本应用目前是开发版本\n      许多功能未实现"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

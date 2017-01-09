@@ -19,10 +19,15 @@
     <dimen name="practise_option_item_confirm_top_margin">50dp</dimen>
     <dimen name="head_paperview_height">160dp</dimen>
     <dimen name="head_paper_image_height">120dp</dimen>
+    <dimen name="acitivity_main_date_height">60dp</dimen>
+    <dimen name="acitivity_main_date_width">130dp</dimen>
+    <dimen name="acitivity_main_tody_left_margin">30dp</dimen>
+    <dimen name="activity_main_chooses">220dp</dimen>
     <!-- font -->
     <dimen name="small_spacing">6sp</dimen>
     <dimen name="small_font">12sp</dimen>
     <dimen name="middle_font">16sp</dimen>
     <dimen name="big_font">18sp</dimen>
     <dimen name="answer_question_font">17sp</dimen>
+    <dimen name="acitvity_main_today_font">13sp</dimen>
 </resources>

@@ -1,6 +1,7 @@
 package com.jscheng.mr_horse.adapter;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,55 +48,6 @@ public class AnswerListViewAdapter extends BaseAdapter {
         return 0;
     }
 
-    public int getChooseDrawable(int position){
-        if(mQuestionModel!=null && mQuestionModel.getUserAnswerList().contains(position) && isShowUserAnswer){
-            switch (position) {
-                case 0:
-                    return R.mipmap.practise_a_s_day;
-                case 1:
-                    return R.mipmap.practise_b_s_day;
-                case 2:
-                    return R.mipmap.practise_c_s_day;
-                case 3:
-                    return R.mipmap.practise_d_s_day;
-                case 4:
-                    return R.mipmap.practise_e_s_day;
-                case 5:
-                    return R.mipmap.practise_f_s_day;
-                case 6:
-                    return R.mipmap.practise_g_s_day;
-            }
-        }else {
-            switch (position) {
-                case 0:
-                    return R.mipmap.practise_a_n_day;
-                case 1:
-                    return R.mipmap.practise_b_n_day;
-                case 2:
-                    return R.mipmap.practise_c_n_day;
-                case 3:
-                    return R.mipmap.practise_d_n_day;
-                case 4:
-                    return R.mipmap.practise_e_n_day;
-                case 5:
-                    return R.mipmap.practise_f_n_day;
-                case 6:
-                    return R.mipmap.practise_g_n_day;
-            }
-        }
-        return 0;
-    }
-
-    public int getAnswerDrawable(int position) {
-        if(mQuestionModel.getAnswerList().contains(position)){
-            return R.mipmap.practise_true_day;
-        }
-        if(isShowUserAnswer && mQuestionModel.getDone()!= QuestionDoneType.NOT_DONE && !mQuestionModel.getAnswerList().contains(position) && mQuestionModel.getUserAnswerList().contains(position)){
-            return R.mipmap.practise_false_day;
-        }
-        return getChooseDrawable(position);
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
@@ -138,4 +90,92 @@ public class AnswerListViewAdapter extends BaseAdapter {
     public void clickOption(int postion){
         notifyDataSetChanged();
     }
+
+    public int getChooseDrawable(int position){
+
+        TypedValue typedValue = new TypedValue();
+        int resouce;
+        if(mQuestionModel!=null && mQuestionModel.getUserAnswerList().contains(position) && isShowUserAnswer){
+            switch (position) {
+                case 0:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_a_s, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 1:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_b_s, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 2:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_c_s, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 3:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_d_s, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 4:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_e_s, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 5:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_f_s, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 6:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_g_s, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+            }
+        }else {
+            switch (position) {
+                case 0:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_a_n, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 1:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_b_n, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 2:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_c_n, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 3:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_d_n, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 4:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_e_n, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 5:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_f_n, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+                case 6:
+                    mContext.getTheme().resolveAttribute(R.attr.practise_g_n, typedValue, true);
+                    resouce =  typedValue.resourceId;
+                    return resouce;
+            }
+        }
+        return 0;
+    }
+
+    public int getAnswerDrawable(int position) {
+
+        TypedValue typedValue = new TypedValue();
+        int resouce;
+        if(mQuestionModel.getAnswerList().contains(position)){
+            mContext.getTheme().resolveAttribute(R.attr.practise_true, typedValue, true);
+            resouce =  typedValue.resourceId;
+            return resouce;
+        }
+        if(isShowUserAnswer && mQuestionModel.getDone()!= QuestionDoneType.NOT_DONE && !mQuestionModel.getAnswerList().contains(position) && mQuestionModel.getUserAnswerList().contains(position)){
+            mContext.getTheme().resolveAttribute(R.attr.practise_false, typedValue, true);
+            resouce =  typedValue.resourceId;
+            return resouce;
+        }
+        return getChooseDrawable(position);
+    }
+
 }

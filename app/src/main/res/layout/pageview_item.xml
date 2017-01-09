@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/small_spacing"
         android:text="无"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="@dimen/answer_question_font" />
     <ListView
         android:id="@+id/option_listview"
@@ -30,8 +30,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="@dimen/practise_option_item_confirm_width"
         android:layout_height="@dimen/practise_option_item_confirm_height"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"
+        android:background="@drawable/corner_circle"
+        android:textColor="?attr/confirm_btn_text_color"
         android:text="@string/confirm"
         android:textSize="@dimen/big_font"/>
 </LinearLayout>

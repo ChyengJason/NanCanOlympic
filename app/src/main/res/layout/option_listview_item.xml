@@ -22,6 +22,6 @@
         android:layout_height="wrap_content"
         android:lineSpacingExtra="@dimen/small_spacing"
         android:text="无"
-        android:textColor="@color/black"
+        android:textColor="?attr/text_color"
         android:textSize="@dimen/answer_question_font"/>
 </LinearLayout>

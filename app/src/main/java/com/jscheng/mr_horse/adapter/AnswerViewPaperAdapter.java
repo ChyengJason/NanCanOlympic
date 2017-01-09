@@ -86,6 +86,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
             ((AnswerListViewAdapter) viewHolder.listView.getAdapter()).hideAnswer();
 
             if(model.getDone()== QuestionDoneType.NOT_DONE) {
+
                 viewHolder.listView.setOnItemClickListener(new OptionItemListener(position,model));
                 if (model.getQuestionType() == QuestionType.MULTIPLE ) {//多选模式
                     viewHolder.confirmBtn.setVisibility(View.VISIBLE);
@@ -98,6 +99,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
                 } else {//单选模式、判断题
                     viewHolder.confirmBtn.setVisibility(View.GONE);
                 }
+
             }else {//已做过
                 viewHolder.confirmBtn.setVisibility(View.GONE);
             }
@@ -246,6 +248,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
                 }
             }
         }
+        notifyDataSetChanged();
     }
 
     public void changePatternStatus(PatternStatus status){

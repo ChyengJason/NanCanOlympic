@@ -3,9 +3,12 @@ package com.jscheng.mr_horse.presenter.impl;
 import android.content.Context;
 import android.content.Intent;
 
+import com.jscheng.mr_horse.App;
+import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.presenter.MainPresenter;
 import com.jscheng.mr_horse.ui.PracticeActivity;
 import com.jscheng.mr_horse.utils.Constants;
+import com.jscheng.mr_horse.utils.SharedPreferencesUtil;
 import com.jscheng.mr_horse.view.MainView;
 import com.jscheng.mr_horse.view.MvpView;
 
@@ -70,5 +73,17 @@ public class MainPresenterImpl implements MainPresenter {
         intent.putExtra("filename", Constants.ZGJDS_JSON_NAME);
         intent.putExtra("catogory",Constants.MKSZY);
         context.startActivity(intent);
+    }
+    @Override
+    public void changeTheme() {
+        int dayNightTheme = App.getDayNightTheme();
+        if (dayNightTheme == R.style.SunAppTheme) {
+            App.setDayNightTheme(R.style.NightAppTheme);
+            mainView.changeToNightTheme();
+        } else {
+            App.setDayNightTheme(R.style.SunAppTheme);
+            mainView.changeToSunTheme();
+        }
+        SharedPreferencesUtil.setParam(context,Constants.THEME,App.getDayNightTheme());
     }
 }
