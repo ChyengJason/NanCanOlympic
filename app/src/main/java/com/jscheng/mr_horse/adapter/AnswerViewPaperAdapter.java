@@ -13,9 +13,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jscheng.mr_horse.R;
+import com.jscheng.mr_horse.model.QuestionDoneType;
 import com.jscheng.mr_horse.model.QuestionModel;
 import com.jscheng.mr_horse.model.PatternStatus;
 import com.jscheng.mr_horse.model.QuestionType;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -83,7 +85,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
         if (patternStatus == PatternStatus.DATI_PATTERN) {//答题模式
             ((AnswerListViewAdapter) viewHolder.listView.getAdapter()).hideAnswer();
 
-            if(!model.getDone()) {
+            if(model.getDone()== QuestionDoneType.NOT_DONE) {
                 viewHolder.listView.setOnItemClickListener(new OptionItemListener(position,model));
                 if (model.getQuestionType() == QuestionType.MULTIPLE ) {//多选模式
                     viewHolder.confirmBtn.setVisibility(View.VISIBLE);
@@ -96,8 +98,9 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
                 } else {//单选模式、判断题
                     viewHolder.confirmBtn.setVisibility(View.GONE);
                 }
+            }else {//已做过
+                viewHolder.confirmBtn.setVisibility(View.GONE);
             }
-
         }else {//看题模式
             viewHolder.confirmBtn.setVisibility(View.GONE);
             ((AnswerListViewAdapter)viewHolder.listView.getAdapter()).showAnswer(false);
@@ -151,7 +154,11 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
         public Button confirmBtn;
     }
 
-    private class AnswerViewPaperListener implements ViewPager.OnPageChangeListener{
+    public class AnswerViewPaperListener implements ViewPager.OnPageChangeListener{
+
+        public AnswerViewPaperListener(){
+            super();
+        }
         /**
          * @param position 当前页面，及你点击滑动的页面
          * @param positionOffset 当前页面偏移的百分比
@@ -186,6 +193,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
     public interface AnswerPageChangeListener{
         void onPageSelected(int position);
         void onAnswerRight(int postion);
+        void onAnswerWrong(int postion);
     }
 
     private class OptionItemListener implements AdapterView.OnItemClickListener{
@@ -200,7 +208,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int optionPostion, long id) {
 
-            if (questionModel.getDone())return;
+            if (questionModel.getDone()!=QuestionDoneType.NOT_DONE)return;
 
             if(questionModel.getUserAnswerList().contains(optionPostion)){
                 questionModel.getUserAnswerList().remove((Integer)(optionPostion));
@@ -216,16 +224,25 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
     }
 
     private void confirmAnswer(int position,AnswerListViewAdapter adapter,QuestionModel questionModel){
-        questionModel.setDone(true);
+
         List list1 = questionModel.getAnswerList();
         Collections.sort(list1);
         List list2 = questionModel.getUserAnswerList();
         Collections.sort(list2);
-        adapter.showAnswer(true);
         if(list1.equals(list2)) {//答案正确
+            questionModel.setDone(QuestionDoneType.DONE_RIGHT);
+            adapter.showAnswer(true);
             if(listenerList!=null && !listenerList.isEmpty()){
                 for(AnswerPageChangeListener listener:listenerList){
                     listener.onAnswerRight(position);
+                }
+            }
+        }else {
+            questionModel.setDone(QuestionDoneType.DONE_WRONG);
+            adapter.showAnswer(true);
+            if(listenerList!=null && !listenerList.isEmpty()){
+                for(AnswerPageChangeListener listener:listenerList){
+                    listener.onAnswerWrong(position);
                 }
             }
         }

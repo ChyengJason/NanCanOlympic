@@ -17,4 +17,7 @@ public interface AnswerView extends MvpView {
     void showError(String s);
     void changeAdapterPattern(PatternStatus status);
     void changePaperView(int pageNum);
+    void showRightNumView(int rightNum);
+    void showWrongNumView(int wrongNum);
+    void showPageNumView(int pageNum,int totalNum);
 }

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jscheng.mr_horse.R;
+import com.jscheng.mr_horse.model.QuestionDoneType;
 import com.jscheng.mr_horse.model.QuestionModel;
 import com.jscheng.mr_horse.model.QuestionType;
 
@@ -89,7 +90,7 @@ public class AnswerListViewAdapter extends BaseAdapter {
         if(mQuestionModel.getAnswerList().contains(position)){
             return R.mipmap.practise_true_day;
         }
-        if(isShowUserAnswer && mQuestionModel.getDone() && !mQuestionModel.getAnswerList().contains(position) && mQuestionModel.getUserAnswerList().contains(position)){
+        if(isShowUserAnswer && mQuestionModel.getDone()!= QuestionDoneType.NOT_DONE && !mQuestionModel.getAnswerList().contains(position) && mQuestionModel.getUserAnswerList().contains(position)){
             return R.mipmap.practise_false_day;
         }
         return getChooseDrawable(position);
@@ -108,7 +109,7 @@ public class AnswerListViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        if(isShowAnswer || mQuestionModel.getDone()){//显示答案 或者 已做过题目
+        if(isShowAnswer || mQuestionModel.getDone()!=QuestionDoneType.NOT_DONE){//显示答案 或者 已做过题目
             viewHolder.answerChoose.setImageResource(getAnswerDrawable(position));
         }else {
             viewHolder.answerChoose.setImageResource(getChooseDrawable(position));

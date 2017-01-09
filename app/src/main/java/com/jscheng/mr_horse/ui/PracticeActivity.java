@@ -2,6 +2,7 @@ package com.jscheng.mr_horse.ui;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +10,9 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.AnswerViewPaperAdapter;
 import com.jscheng.mr_horse.model.QuestionModel;
@@ -34,6 +38,14 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     Button beitiPatternView;
     @BindView(R.id.progress_wheel)
     ProgressWheel progressWheel;
+    @BindView(R.id.practice_wrong_num_text)
+    TextView wrongNumTextView;
+    @BindView(R.id.practice_right_num_text)
+    TextView rightNUmTextView;
+    @BindView(R.id.practice_page_num)
+    TextView PageNumTextView;
+    @BindView(R.id.practise_title_back)
+    ImageButton titleBack;
 
     private Handler changeViewHandler;
     private AnswerPresenter answerPresenter;
@@ -44,7 +56,7 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice);
         ButterKnife.bind(this);
-        answerPresenter = new AnswerPresenterImpl(this);
+        answerPresenter = new AnswerPresenterImpl(this,getIntent());
         answerPresenter.attachView(this);
         changeViewHandler = new Handler(){
             @Override
@@ -69,6 +81,7 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     public void initPaperAdapter(List<QuestionModel> questionModelList, PatternStatus status) {
         answerViewPaperAdapter = new AnswerViewPaperAdapter(this, questionModelList,status);
         answerViewPager.setAdapter(answerViewPaperAdapter);
+        answerViewPager.addOnPageChangeListener(answerViewPaperAdapter.new AnswerViewPaperListener());
         answerViewPaperAdapter.addAnswerPageListener(answerPresenter);
     }
 
@@ -162,5 +175,25 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     @Override
     public void changePaperView(int pageNum) {
         changeViewHandler.sendEmptyMessageDelayed(pageNum,300);
+    }
+
+    @Override
+    public void showRightNumView(int rightNum) {
+        rightNUmTextView.setText(rightNum+"");
+    }
+
+    @Override
+    public void showWrongNumView(int wrongNum) {
+        wrongNumTextView.setText(wrongNum+"");
+    }
+
+    @Override
+    public void showPageNumView(int pageNum,int totalNum){
+        PageNumTextView.setText(pageNum+"/"+totalNum);
+    }
+
+    @OnClick(R.id.practise_title_back)
+    public void TitleBack(){
+        super.finish();
     }
 }

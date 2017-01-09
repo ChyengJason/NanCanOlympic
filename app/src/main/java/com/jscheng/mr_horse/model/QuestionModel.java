@@ -15,7 +15,7 @@ public class QuestionModel {
     private int optionCount;
     private List<String> optionList;
     private List<Integer> answerList;
-    private Boolean done;//是否做了
+    private QuestionDoneType done;//是否做了
     private List<Integer> userAnswerList;
 
     public QuestionModel(int questionNum,QuestionType questionType, String question, List<String> optionList, List<Integer> answerList){
@@ -25,7 +25,7 @@ public class QuestionModel {
         this.optionList = optionList;
         this.optionCount = optionList!=null?optionList.size():0;
         this.answerList = answerList;
-        this.done = false;
+        this.done = QuestionDoneType.NOT_DONE;
         this.userAnswerList = new ArrayList<>();
     }
 
@@ -69,11 +69,11 @@ public class QuestionModel {
         this.answerList = answerList;
     }
 
-    public Boolean getDone() {
+    public QuestionDoneType getDone() {
         return done;
     }
 
-    public void setDone(Boolean done) {
+    public void setDone(QuestionDoneType done) {
         this.done = done;
     }
 

@@ -1,7 +1,10 @@
 package com.jscheng.mr_horse.presenter.impl;
 
 import android.content.Context;
+import android.content.Intent;
 
+import com.jscheng.mr_horse.model.QuestionDoneType;
+import com.jscheng.mr_horse.model.QuestionModelLoad;
 import com.jscheng.mr_horse.utils.Constants;
 import com.jscheng.mr_horse.model.QuestionJsonModel;
 import com.jscheng.mr_horse.model.QuestionModel;
@@ -32,12 +35,22 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     private AnswerView mAnswerView;
     private Context mContext;
     private int pageNum;
+    private int rightNum;
+    private int wrongNum;
+    private String filename;
+    private int catogory;
 
-    public AnswerPresenterImpl(Context context){
+    public AnswerPresenterImpl(Context context, Intent intent){
         this.mContext = context;
         this.patternStatus = PatternStatus.DATI_PATTERN;//默认是答题模式，测试使用背题模式
         this.QuestionModelList = new ArrayList();
         this.pageNum = 0;
+        this.catogory = intent.getIntExtra("catogory",-1);
+        if(catogory!=Constants.COLLECT && catogory!=Constants.WRONG){
+            this.filename = intent.getStringExtra("filename");
+        }else {
+            this.filename = "";
+        }
     }
 
     @Override
@@ -59,19 +72,40 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     }
 
     private void initData() {
+        wrongNum = 0;
+        rightNum = 0;
+
+        Subscriber subscriber = new Subscriber<List<QuestionModel>>() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                mAnswerView.showProcessing();
+            }
+
+            @Override
+            public void onCompleted() {
+                mAnswerView.hideProcessing();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Logger.e(e.toString());
+                mAnswerView.showError(e.toString());
+            }
+
+            @Override
+            public void onNext(List<QuestionModel> questionModelList) {
+                mAnswerView.initPaperAdapter(questionModelList,patternStatus);
+            }
+        };
+
         Observable.create(new Observable.OnSubscribe<List<QuestionJsonModel>>() {
             @Override
             public void call(Subscriber<? super List<QuestionJsonModel>> subscriber) {
                 subscriber.onStart();
                 try {
-                    String filename = Constants.FLJC_JSON_NAME;
-                    InputStream inputstream = mContext.getClass().getClassLoader().getResourceAsStream("assets/"+filename);
-                    if(inputstream!=null) {
-                        String jsonString = JsonUtil.inputStreamToStr(inputstream);
-                        ArrayList<QuestionJsonModel> jsonModelList = JsonUtil.jsonToArrayList(QuestionJsonModel.class,jsonString);
-
-                        subscriber.onNext(jsonModelList);
-                    }
+                    List<QuestionJsonModel> questionModelList = QuestionModelLoad.getQuestionJsonModels(mContext,filename);
+                    subscriber.onNext(questionModelList);
                 } catch (IOException e) {
                     e.printStackTrace();
                     subscriber.onError(e);
@@ -82,7 +116,6 @@ public class AnswerPresenterImpl implements AnswerPresenter{
             @Override
             public List<QuestionModel> call(List<QuestionJsonModel> questionJsonModel) {
 
-
                 for(QuestionJsonModel model : questionJsonModel){
                     QuestionModelList.add(model.toQuestionModel());
                 }
@@ -90,29 +123,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
             }
         }).subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程
                 .observeOn(AndroidSchedulers.mainThread()) // 指定 Subscriber 的回调发生在主线程
-                .subscribe(new Subscriber<List<QuestionModel>>() {
-                    @Override
-                    public void onStart() {
-                        super.onStart();
-                        mAnswerView.showProcessing();
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        mAnswerView.hideProcessing();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Logger.e(e.toString());
-                        mAnswerView.showError(e.toString());
-                    }
-
-                    @Override
-                    public void onNext(List<QuestionModel> questionModelList) {
-                        mAnswerView.initPaperAdapter(questionModelList,patternStatus);
-                    }
-                });
+                .subscribe(subscriber);
     }
 
     private void initPattern() {
@@ -127,6 +138,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     @Override
     public void onPageSelected(int position) {
         this.pageNum = position;
+        mAnswerView.showPageNumView(pageNum,QuestionModelList.size());
     }
 
     @Override
@@ -139,6 +151,12 @@ public class AnswerPresenterImpl implements AnswerPresenter{
                 mAnswerView.changePaperView(pageNum);
             }
         }
+        mAnswerView.showRightNumView(++rightNum);
+    }
+
+    @Override
+    public void onAnswerWrong(int postion) {
+        mAnswerView.showWrongNumView(++wrongNum);
     }
 
     public void onClickDatiPattern() {
