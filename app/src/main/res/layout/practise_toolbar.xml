@@ -31,7 +31,7 @@
             android:paddingLeft="@dimen/practise_toolbar_pattern_margin"
             android:clickable="true"
             android:text="@string/dati_pattern"
-            android:textColor="@drawable/pattern_selector_text_day"
+            android:textColor="?attr/pattern_selector_text_color"
             android:background="?attr/left_pattern_selector"/>
         <Button
             android:id="@+id/beiti_pattern_view"
@@ -43,7 +43,7 @@
             android:paddingRight="@dimen/practise_toolbar_pattern_margin"
             android:clickable="true"
             android:text="@string/beiti_pattern"
-            android:textColor="@drawable/pattern_selector_text_day"
+            android:textColor="?attr/pattern_selector_text_color"
             android:background="?attr/right_pattern_selector"/>
     </LinearLayout>
 

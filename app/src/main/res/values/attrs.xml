@@ -15,7 +15,7 @@
     <attr name="pattern_text_color" format="reference"/>
     <attr name="left_pattern_selector" format="reference"/>
     <attr name="right_pattern_selector" format="reference"/>
-
+    <attr name="pattern_selector_text_color" format="reference"/>
 
     <attr name="practise_a_s" format="reference"/>
     <attr name="practise_b_s" format="reference"/>
