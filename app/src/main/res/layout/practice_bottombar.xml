@@ -41,6 +41,7 @@
                 android:layout_marginTop="2dp"
                 android:src="@mipmap/practice_icon_true_day"/>
             <TextView
+                android:id="@+id/practice_right_num_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/small_margin"
@@ -57,6 +58,7 @@
                 android:layout_marginTop="2dp"
                 android:src="@mipmap/practice_icon_true_day"/>
             <TextView
+                android:id="@+id/practice_wrong_num_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/small_margin"
@@ -77,6 +79,7 @@
             android:layout_marginTop="2dp"
             android:src="@mipmap/practice_icon_card_day"/>
         <TextView
+            android:id="@+id/practice_page_num"
             android:paddingLeft="@dimen/middle_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

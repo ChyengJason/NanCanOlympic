@@ -17,6 +17,8 @@
     <dimen name="practise_option_item_confirm_width">250dp</dimen>
     <dimen name="practise_option_item_confirm_height">40dp</dimen>
     <dimen name="practise_option_item_confirm_top_margin">50dp</dimen>
+    <dimen name="head_paperview_height">160dp</dimen>
+    <dimen name="head_paper_image_height">120dp</dimen>
     <!-- font -->
     <dimen name="small_spacing">6sp</dimen>
     <dimen name="small_font">12sp</dimen>
