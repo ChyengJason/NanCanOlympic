@@ -2,11 +2,12 @@
 <resources>
     <color name="blue">#3F51B5</color>
     <color name="deep_blue">#303F9F</color>
-    <color name="pink_red">#FF4081</color>
+    <color name="pink_red">#F05E5E</color>
     <color name="white">#e7e7e7</color>
     <color name="black">#000</color>
     <color name="bottom_gray">#949494</color>
     <color name="light_gray">#c6c6c6</color>
+    <color name="main_bg_gray">#d9d9d9</color>
     <color name="white_gray">#e7e7e7</color>
     <color name="white_gray_2">#8A9599</color>
 

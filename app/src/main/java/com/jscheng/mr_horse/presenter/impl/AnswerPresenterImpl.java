@@ -16,6 +16,7 @@ import com.jscheng.mr_horse.utils.JsonUtil;
 import com.jscheng.mr_horse.utils.SharedPreferencesUtil;
 import com.jscheng.mr_horse.view.AnswerView;
 import com.jscheng.mr_horse.view.MvpView;
+import com.jscheng.mr_horse.wiget.QuestionDailog;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -33,7 +35,7 @@ import rx.schedulers.Schedulers;
  * Created by cheng on 17-1-7.
  */
 public class AnswerPresenterImpl implements AnswerPresenter{
-    private List<QuestionModel> QuestionModelList;
+    private List<QuestionModel> questionModelList;
     private PatternStatus patternStatus;
     private AnswerView mAnswerView;
     private Context mContext;
@@ -43,11 +45,12 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     private String filename;
     private String catogory;
     private boolean loading;
+    private Subscription loadSubscription;
 
     public AnswerPresenterImpl(Context context, Intent intent){
         this.mContext = context;
         this.patternStatus = PatternStatus.DATI_PATTERN;//默认是答题模式，测试使用背题模式
-        this.QuestionModelList = new ArrayList();
+        this.questionModelList = new ArrayList();
         this.pageNum = 0;
         this.catogory = intent.getStringExtra("catogory");
         if(!catogory.equals(Constants.COLLECT) && !(catogory.equals(Constants.WRONG))){
@@ -109,11 +112,11 @@ public class AnswerPresenterImpl implements AnswerPresenter{
                 pageNum = QuestionModelLoad.getQuestionDoneNum(mContext,catogory);
                 if(pageNum>0)
                     mAnswerView.changePaperView(pageNum,false,0);
-                mAnswerView.showPageNumView(pageNum+1,QuestionModelList.size());
+                mAnswerView.showPageNumView(pageNum+1,questionModelList.size());
             }
         };
 
-        Observable.create(new Observable.OnSubscribe<List<QuestionJsonModel>>() {
+        loadSubscription = Observable.create(new Observable.OnSubscribe<List<QuestionJsonModel>>() {
             @Override
             public void call(Subscriber<? super List<QuestionJsonModel>> subscriber) {
                 subscriber.onStart();
@@ -132,9 +135,9 @@ public class AnswerPresenterImpl implements AnswerPresenter{
             public List<QuestionModel> call(List<QuestionJsonModel> questionJsonModel) {
 
                 for(QuestionJsonModel model : questionJsonModel){
-                    QuestionModelList.add(model.toQuestionModel());
+                    questionModelList.add(model.toQuestionModel());
                 }
-                return QuestionModelList;
+                return questionModelList;
             }
         }).subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程
                 .observeOn(AndroidSchedulers.mainThread()) // 指定 Subscriber 的回调发生在主线程
@@ -154,14 +157,14 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     public void onPageSelected(int position) {
         this.pageNum = position;
         QuestionModelLoad.saveQuestionDoneNum(mContext,catogory,pageNum);
-        mAnswerView.showPageNumView(pageNum+1,QuestionModelList.size());
+        mAnswerView.showPageNumView(pageNum+1,questionModelList.size());
     }
 
     @Override
     public void onAnswerRight(int postion) {
         this.pageNum = postion;
-        if(QuestionModelList!=null &&!QuestionModelList.isEmpty()){
-            int pageCount = QuestionModelList.size();
+        if(questionModelList!=null &&!questionModelList.isEmpty()){
+            int pageCount = questionModelList.size();
             if((pageNum+1)<pageCount){
                 pageNum++;
                 mAnswerView.changePaperView(pageNum,true,300);
@@ -193,7 +196,8 @@ public class AnswerPresenterImpl implements AnswerPresenter{
 
     @Override
     public void changeTheme() {
-        if (loading == true) return;
+        if(loadSubscription!=null)
+            loadSubscription.unsubscribe();
 
         int dayNightTheme = App.getDayNightTheme();
         if (dayNightTheme == R.style.SunAppTheme) {
@@ -205,5 +209,17 @@ public class AnswerPresenterImpl implements AnswerPresenter{
         }
 
         SharedPreferencesUtil.setParam(mContext,Constants.THEME,App.getDayNightTheme());
+    }
+
+    @Override
+    public void onClickQuestionsLayout() {
+        if(loading==false && questionModelList!=null && !questionModelList.isEmpty())
+            mAnswerView.showQuestionDailog(questionModelList,pageNum);
+    }
+
+    @Override
+    public void onItemSelected(int position) {
+        pageNum = position;
+        mAnswerView.changePaperView(pageNum,false,0);
     }
 }

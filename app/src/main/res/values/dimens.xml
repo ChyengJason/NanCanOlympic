@@ -23,6 +23,7 @@
     <dimen name="acitivity_main_date_width">130dp</dimen>
     <dimen name="acitivity_main_tody_left_margin">30dp</dimen>
     <dimen name="activity_main_chooses">220dp</dimen>
+    <dimen name="question_dailog_layout_height">400dp</dimen>
     <!-- font -->
     <dimen name="small_spacing">6sp</dimen>
     <dimen name="small_font">12sp</dimen>

@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.HeadViewPaperAdapter;
@@ -26,9 +27,10 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity implements MainView,View.OnClickListener{
     @BindView(R.id.head_viewpaper)
     ViewPager headViewPager;
-
     @BindView(R.id.sun_night)
     ImageButton sunNight;
+    @BindView(R.id.date_tv)
+    TextView dateTextView;
 
     private View headview_1;
     private View headview_2;
@@ -107,4 +109,7 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
         mainPresenter.changeTheme();
     }
 
+    public void showDate(String date){
+        dateTextView.setText(date);
+    }
 }

@@ -28,8 +28,6 @@ public class BaseActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
-        Logger.e("theme",(activityTheme)+"");
-        Logger.e("theme",App.getDayNightTheme()+"");
         if(getActivityTheme()!=App.getDayNightTheme()){
             recreate();
         }

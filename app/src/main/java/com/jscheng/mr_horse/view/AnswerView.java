@@ -22,4 +22,5 @@ public interface AnswerView extends MvpView {
     void showPageNumView(int pageNum,int totalNum);
     void changeToNightTheme();
     void changeToSunTheme();
+    void showQuestionDailog(List<QuestionModel> modelList,int currentPosition);
 }

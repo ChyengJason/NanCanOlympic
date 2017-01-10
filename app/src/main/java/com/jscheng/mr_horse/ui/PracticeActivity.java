@@ -7,9 +7,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.AnswerViewPaperAdapter;
@@ -18,6 +22,7 @@ import com.jscheng.mr_horse.model.PatternStatus;
 import com.jscheng.mr_horse.presenter.AnswerPresenter;
 import com.jscheng.mr_horse.presenter.impl.AnswerPresenterImpl;
 import com.jscheng.mr_horse.view.AnswerView;
+import com.jscheng.mr_horse.wiget.QuestionDailog;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
@@ -45,6 +50,8 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     ImageButton titleBack;
     @BindView(R.id.sun_night)
     ImageButton sunNight;
+    @BindView(R.id.questions_layout)
+    LinearLayout questions_layout;
 
     private Handler changeViewHandler;
     private AnswerPresenter answerPresenter;
@@ -179,5 +186,23 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
         super.finish();
     }
 
+    @OnClick(R.id.questions_layout)
+    public void onClickQuestionsLayout(){
+        answerPresenter.onClickQuestionsLayout();
+    }
 
+    public void showQuestionDailog(List<QuestionModel> modelList,int currentPosition){
+        QuestionDailog dialog = new QuestionDailog(this,modelList,R.style.questionDailog,currentPosition);
+        dialog.addQuestionDailogItemListener(answerPresenter);
+        Window window = dialog.getWindow();
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+        dialog.show();
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        params.gravity = Gravity.BOTTOM;
+        params.dimAmount =0.5f;
+        window.setAttributes(params);
+    }
 }

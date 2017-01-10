@@ -12,6 +12,10 @@ import com.jscheng.mr_horse.utils.SharedPreferencesUtil;
 import com.jscheng.mr_horse.view.MainView;
 import com.jscheng.mr_horse.view.MvpView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by cheng on 17-1-8.
  */
@@ -26,6 +30,15 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void attachView(MvpView view) {
         this.mainView = (MainView)view;
+        init();
+    }
+
+    private void init() {
+        DateFormat format = new SimpleDateFormat("yyyy.mm.dd");
+        Date date = new Date(System.currentTimeMillis());
+        String dateStr = format.format(date);
+        if(mainView!=null)
+            mainView.showDate(dateStr);
     }
 
     @Override
