@@ -2,9 +2,9 @@
 头大刷题安卓应用
 
 # 截图
-<img src="/picture/1.png" width="25%" height="25%" style="max-width:100%;"><img>
-<img src="/picture/2.png" width="25%" height="25%" style="max-width:100%;"><img>
-<img src="/picture/3.png" width="25%" height="25%" style="max-width:100%;"><img>
+<img src="/picture/1.png?raw=true" width=360 height=640 alt="Quick Demo">
+<img src="/picture/2.png?raw=true" width=360 height=640 alt="Quick Demo">
+<img src="/picture/3.png?raw=true" width=360 height=640 alt="Quick Demo">
 
 # License
 
