@@ -36,5 +36,12 @@
     <attr name="practise_true" format="reference"/>
     <attr name="practise_false" format="reference"/>
 
+    <attr name="practise_a_true" format="reference"/>
+    <attr name="practise_b_true" format="reference"/>
+    <attr name="practise_c_true" format="reference"/>
+    <attr name="practise_d_true" format="reference"/>
+    <attr name="practise_e_true" format="reference"/>
+    <attr name="practise_f_true" format="reference"/>
+    <attr name="practise_g_true" format="reference"/>
 
 </resources>

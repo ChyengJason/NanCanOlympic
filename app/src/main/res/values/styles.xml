@@ -42,6 +42,14 @@
 
         <item name="practise_true">@mipmap/practise_true_day</item>
         <item name="practise_false">@mipmap/practise_false_day</item>
+
+        <item name="practise_a_true">@mipmap/practise_a_true_day</item>
+        <item name="practise_b_true">@mipmap/practise_b_true_day</item>
+        <item name="practise_c_true">@mipmap/practise_c_true_day</item>
+        <item name="practise_d_true">@mipmap/practise_d_true_day</item>
+        <item name="practise_e_true">@mipmap/practise_e_true_day</item>
+        <item name="practise_f_true">@mipmap/practise_f_true_day</item>
+        <item name="practise_g_true">@mipmap/practise_g_true_day</item>
     </style>
 
     <style name="NightAppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
@@ -85,6 +93,14 @@
 
         <item name="practise_true">@mipmap/practise_true_night</item>
         <item name="practise_false">@mipmap/practise_false_night</item>
+
+        <item name="practise_a_true">@mipmap/practise_a_true_night</item>
+        <item name="practise_b_true">@mipmap/practise_b_true_night</item>
+        <item name="practise_c_true">@mipmap/practise_c_true_night</item>
+        <item name="practise_d_true">@mipmap/practise_d_true_night</item>
+        <item name="practise_e_true">@mipmap/practise_e_true_night</item>
+        <item name="practise_f_true">@mipmap/practise_f_true_night</item>
+        <item name="practise_g_true">@mipmap/practise_g_true_night</item>
     </style>
 
     <style name="questionDailog">

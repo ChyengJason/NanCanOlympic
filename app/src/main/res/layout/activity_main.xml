@@ -28,7 +28,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="2017.01.09"
                 android:textColor="?attr/confirm_btn_text_color"
                 android:textSize="@dimen/middle_font">
             </TextView>
@@ -42,11 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="@string/all_done_num"
+                android:text="@string/today_done_num"
                 android:textSize="@dimen/acitvity_main_today_font"
                 android:textColor="@color/bottom_gray"
                 android:layout_marginLeft="@dimen/small_margin"/>
             <TextView
+                android:id="@+id/today_done_num_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/middle_margin"
@@ -63,6 +63,7 @@
                 android:textSize="@dimen/acitvity_main_today_font"
                 android:textColor="@color/bottom_gray"/>
             <TextView
+                android:id="@+id/punch_day_num_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/middle_margin"

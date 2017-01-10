@@ -10,4 +10,5 @@ public interface MainPresenter extends MvpPresenter {
     void onClickSxdd();
     void onClickZgjds();
     void changeTheme();
+    void onResume();
 }

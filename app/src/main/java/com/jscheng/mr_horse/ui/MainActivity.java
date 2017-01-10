@@ -31,6 +31,10 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
     ImageButton sunNight;
     @BindView(R.id.date_tv)
     TextView dateTextView;
+    @BindView(R.id.punch_day_num_text)
+    TextView puchDayView;
+    @BindView(R.id.today_done_num_text)
+    TextView todayDoneNumView;
 
     private View headview_1;
     private View headview_2;
@@ -111,5 +115,21 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
 
     public void showDate(String date){
         dateTextView.setText(date);
+    }
+
+    @Override
+    public void showHaveDoneNum(String s) {
+        todayDoneNumView.setText(s);
+    }
+
+    @Override
+    public void showPunchDayNum(String s) {
+        puchDayView.setText(s);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mainPresenter.onResume();
     }
 }

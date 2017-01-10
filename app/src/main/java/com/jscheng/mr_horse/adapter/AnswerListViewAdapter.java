@@ -61,9 +61,20 @@ public class AnswerListViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        if(isShowAnswer || mQuestionModel.getDone()!=QuestionDoneType.NOT_DONE){//显示答案 或者 已做过题目
+        if(isShowAnswer){//显示答案
             viewHolder.answerChoose.setImageResource(getAnswerDrawable(position));
-        }else {
+        }
+        else if(mQuestionModel.getDone()!=QuestionDoneType.NOT_DONE) {// 已做过题目
+            if (mQuestionModel.getQuestionType() == QuestionType.MULTIPLE &&
+                    mQuestionModel.getDone()==QuestionDoneType.DONE_WRONG &&
+                    mQuestionModel.getUserAnswerList().contains(position) &&
+                    mQuestionModel.getAnswerList().contains(position)){
+                viewHolder.answerChoose.setImageResource(getTrueDrawable(position));
+            } else {
+                viewHolder.answerChoose.setImageResource(getAnswerDrawable(position));
+            }
+        }
+        else {
             viewHolder.answerChoose.setImageResource(getChooseDrawable(position));
         }
 
@@ -178,4 +189,39 @@ public class AnswerListViewAdapter extends BaseAdapter {
         return getChooseDrawable(position);
     }
 
+    public int getTrueDrawable(int position){
+        TypedValue typedValue = new TypedValue();
+        int resouce;
+        switch (position) {
+            case 0:
+                mContext.getTheme().resolveAttribute(R.attr.practise_a_true, typedValue, true);
+                resouce =  typedValue.resourceId;
+                return resouce;
+            case 1:
+                mContext.getTheme().resolveAttribute(R.attr.practise_b_true, typedValue, true);
+                resouce =  typedValue.resourceId;
+                return resouce;
+            case 2:
+                mContext.getTheme().resolveAttribute(R.attr.practise_c_true, typedValue, true);
+                resouce =  typedValue.resourceId;
+                return resouce;
+            case 3:
+                mContext.getTheme().resolveAttribute(R.attr.practise_d_true, typedValue, true);
+                resouce =  typedValue.resourceId;
+                return resouce;
+            case 4:
+                mContext.getTheme().resolveAttribute(R.attr.practise_e_true, typedValue, true);
+                resouce =  typedValue.resourceId;
+                return resouce;
+            case 5:
+                mContext.getTheme().resolveAttribute(R.attr.practise_f_true, typedValue, true);
+                resouce =  typedValue.resourceId;
+                return resouce;
+            case 6:
+                mContext.getTheme().resolveAttribute(R.attr.practise_g_true, typedValue, true);
+                resouce =  typedValue.resourceId;
+                return resouce;
+        }
+        return 0;
+    }
 }

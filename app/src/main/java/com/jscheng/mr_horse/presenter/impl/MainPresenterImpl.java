@@ -2,7 +2,6 @@ package com.jscheng.mr_horse.presenter.impl;
 
 import android.content.Context;
 import android.content.Intent;
-
 import com.jscheng.mr_horse.App;
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.presenter.MainPresenter;
@@ -11,7 +10,6 @@ import com.jscheng.mr_horse.utils.Constants;
 import com.jscheng.mr_horse.utils.SharedPreferencesUtil;
 import com.jscheng.mr_horse.view.MainView;
 import com.jscheng.mr_horse.view.MvpView;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,11 +32,18 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     private void init() {
-        DateFormat format = new SimpleDateFormat("yyyy.mm.dd");
+        DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
         Date date = new Date(System.currentTimeMillis());
         String dateStr = format.format(date);
-        if(mainView!=null)
-            mainView.showDate(dateStr);
+
+        String lastdayStr = (String) SharedPreferencesUtil.getParam(context, Constants.LAST_DAY, "");
+        int punchday = (int) SharedPreferencesUtil.getParam(context, Constants.PUNCH_DAY_NUM, 0);
+        if (!lastdayStr.equals(dateStr)) {
+            SharedPreferencesUtil.setParam(context, Constants.LAST_DAY, dateStr);
+            SharedPreferencesUtil.setParam(context, Constants.HAVE_DONE_NUM, 0);
+            punchday++;
+            SharedPreferencesUtil.setParam(context, Constants.PUNCH_DAY_NUM, punchday);
+        }
     }
 
     @Override
@@ -98,5 +103,19 @@ public class MainPresenterImpl implements MainPresenter {
             mainView.changeToSunTheme();
         }
         SharedPreferencesUtil.setParam(context,Constants.THEME,App.getDayNightTheme());
+    }
+
+    @Override
+    public void onResume() {
+        DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+        Date date = new Date(System.currentTimeMillis());
+        String dateStr = format.format(date);
+        int haveDoneNum = (int) SharedPreferencesUtil.getParam(context, Constants.HAVE_DONE_NUM, 0);
+        int punchday = (int) SharedPreferencesUtil.getParam(context, Constants.PUNCH_DAY_NUM, 0);
+        if (mainView != null) {
+            mainView.showDate(dateStr);
+            mainView.showHaveDoneNum(haveDoneNum+"");
+            mainView.showPunchDayNum(punchday+"");
+        }
     }
 }

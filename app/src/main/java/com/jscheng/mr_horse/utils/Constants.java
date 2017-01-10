@@ -62,4 +62,16 @@ public class Constants {
      * 主题模式
      */
     public static final String THEME ="theme";
+    /**
+     * 做过的题目数量
+     */
+    public static final String HAVE_DONE_NUM = "have_done_num";
+    /**
+     * 上次登录日期
+     */
+    public static final String LAST_DAY="last_day";
+    /**
+     * 打卡的日数
+     */
+    public static final String PUNCH_DAY_NUM="punch_day_num";
 }

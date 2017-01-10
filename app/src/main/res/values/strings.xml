@@ -4,6 +4,6 @@
     <string name="beiti_pattern">背题模式</string>
     <string name="colloect">收藏</string>
     <string name="confirm">确认</string>
-    <string name="all_done_num">刷题/道</string>
+    <string name="today_done_num">今日刷题/道</string>
     <string name="punch_day_num">打卡/天</string>
 </resources>

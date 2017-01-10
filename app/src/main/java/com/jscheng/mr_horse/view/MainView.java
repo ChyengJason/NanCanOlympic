@@ -7,4 +7,6 @@ public interface MainView extends MvpView {
     void changeToNightTheme();
     void changeToSunTheme();
     void showDate(String date);
+    void showHaveDoneNum(String s);
+    void showPunchDayNum(String s);
 }

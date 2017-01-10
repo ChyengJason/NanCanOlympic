@@ -170,12 +170,16 @@ public class AnswerPresenterImpl implements AnswerPresenter{
                 mAnswerView.changePaperView(pageNum,true,300);
             }
         }
+        int haveDoneNum = (int)SharedPreferencesUtil.getParam(mContext,Constants.HAVE_DONE_NUM,0);
+        SharedPreferencesUtil.setParam(mContext,Constants.HAVE_DONE_NUM,++haveDoneNum);
         mAnswerView.showRightNumView(++rightNum);
     }
 
     @Override
     public void onAnswerWrong(int postion) {
         mAnswerView.showWrongNumView(++wrongNum);
+        int haveDoneNum = (int)SharedPreferencesUtil.getParam(mContext,Constants.HAVE_DONE_NUM,0);
+        SharedPreferencesUtil.setParam(mContext,Constants.HAVE_DONE_NUM,++haveDoneNum);
     }
 
     public void onClickDatiPattern() {
