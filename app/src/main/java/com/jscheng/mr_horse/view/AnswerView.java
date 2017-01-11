@@ -10,8 +10,6 @@ import java.util.List;
  */
 public interface AnswerView extends MvpView {
     void initPaperAdapter(List<QuestionModel> questionModelList, PatternStatus status);
-    void showProcessing();
-    void hideProcessing();
     void changeToBeitiView();
     void changeToDatiView();
     void showError(String s);
@@ -24,6 +22,9 @@ public interface AnswerView extends MvpView {
     void changeToNightTheme();
     void changeToSunTheme();
     void showQuestionDailog(List<QuestionModel> modelList,int currentPosition);
-
     void showCollectView(boolean isShow);
+    void beginProcessing();
+    void showProcessing(int progress);
+    void sucessProcessing();
+    void failProcessing();
 }

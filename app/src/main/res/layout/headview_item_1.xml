@@ -62,4 +62,38 @@
             android:layout_marginLeft="@dimen/middle_margin"
             android:src="@drawable/solid_circle"/>
     </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/big_margin"
+        android:layout_marginRight="@dimen/big_margin"
+        android:layout_marginTop="@dimen/big_margin"
+        android:visibility="?attr/book_show_type">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/head_paper_image_height"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/big_margin"
+            android:layout_marginRight="@dimen/big_margin"
+            android:background="#b5030303"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/head_paper_image_height"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/big_margin"
+            android:layout_marginRight="@dimen/big_margin"
+            android:background="#b5030303"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/head_paper_image_height"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/big_margin"
+            android:layout_marginRight="@dimen/big_margin"
+            android:background="#b5030303"/>
+    </LinearLayout>
+
 </RelativeLayout>

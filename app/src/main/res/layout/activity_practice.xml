@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:material="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <include layout="@layout/practise_toolbar"
@@ -23,14 +24,24 @@
         android:layout_height="match_parent"
         android:background="?attr/root_view_bg"/>
 
-    <com.pnikosis.materialishprogress.ProgressWheel
-        android:id="@+id/progress_wheel"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:alpha="0"
-        material:matProg_barColor="?attr/colorAccent"
-        material:matProg_progressIndeterminate="true"/>
+    <!--<com.pnikosis.materialishprogress.ProgressWheel-->
+        <!--android:id="@+id/progress_wheel"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:alpha="0"-->
+        <!--material:matProg_barColor="?attr/colorAccent"-->
+        <!--material:matProg_progressIndeterminate="true"/>-->
 
+    <com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/circle_loading_view"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:background="?attr/root_view_bg"
+        android:layout_centerInParent="true"
+        app:mainColor="@color/deep_blue"
+        app:secondaryColor="@color/bottom_gray"
+        app:textColor="@color/bottom_gray" />
 </RelativeLayout>

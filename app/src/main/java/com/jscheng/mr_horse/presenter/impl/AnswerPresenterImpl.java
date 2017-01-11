@@ -87,7 +87,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     private void initData() {
         wrongNum = 0;
         rightNum = 0;
-//        final boolean isFirst = (Boolean) SharedPreferencesUtil.getParam(mContext,"first",true);
+
         final boolean isStore = (Boolean) SharedPreferencesUtil.getParam(mContext,catogory,false);
 
         loadSubscription = Observable.create(new Observable.OnSubscribe<List<QuestionModel>>() {
@@ -109,7 +109,14 @@ public class AnswerPresenterImpl implements AnswerPresenter{
                         for(QuestionJsonModel model : questionJsonModelList){
                             questionModelList.add(model.toQuestionModel(catogory));
                         }
-                        QuestionModelLoad.saveQuestionModelToDB(mContext,questionModelList);
+
+                        QuestionModelLoad.saveQuestionModelToDB(mContext, questionModelList, new QuestionDbUtil.DbProgressListener() {
+                            @Override
+                            public void loadProgress(int progress) {
+                                mAnswerView.showProcessing((int)(progress*100/questionModelList.size()));
+                            }
+                        });
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -139,7 +146,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
                 super.onStart();
                 loading = true;
                 if (isStore == false) {
-                    mAnswerView.showProcessing();
+                    mAnswerView.beginProcessing();
                     mAnswerView.showInfo("首次加载会消耗较长时间");
                 }
             }
@@ -153,7 +160,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
             public void onError(Throwable e) {
                 Logger.e(e.toString());
                 mAnswerView.showError(e.toString());
-                mAnswerView.hideProcessing();
+                mAnswerView.failProcessing();
             }
 
             @Override
@@ -177,7 +184,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
 
                 if (mAnswerView==null)
                     return;
-                mAnswerView.hideProcessing();
+                mAnswerView.sucessProcessing();
                 loading = false;
             }
         };

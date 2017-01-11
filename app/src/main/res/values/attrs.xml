@@ -44,4 +44,9 @@
     <attr name="practise_f_true" format="reference"/>
     <attr name="practise_g_true" format="reference"/>
 
+    <attr name="book_show_type">
+        <enum name="show" value="0" />
+        <enum name="inshow" value="1" />
+        <enum name="hide" value="2" />
+    </attr>
 </resources>

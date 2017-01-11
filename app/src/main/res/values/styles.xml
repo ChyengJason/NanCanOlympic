@@ -23,6 +23,7 @@
         <item name="right_pattern_selector">@drawable/beiti_pattern_selector_day</item>
         <item name="hollow_circle_color">@color/white</item>
         <item name="pattern_selector_text_color">@drawable/pattern_selector_text_day</item>
+        <item name="book_show_type">hide</item>
 
         <item name="practise_a_s">@mipmap/practise_a_s_day</item>
         <item name="practise_b_s">@mipmap/practise_b_s_day</item>
@@ -74,6 +75,7 @@
         <item name="right_pattern_selector">@drawable/beiti_pattern_selector_night</item>
         <item name="hollow_circle_color">@color/accent_night</item>
         <item name="pattern_selector_text_color">@drawable/pattern_selector_text_night</item>
+        <item name="book_show_type">show</item>
 
         <item name="practise_a_s">@mipmap/practise_a_s_night</item>
         <item name="practise_b_s">@mipmap/practise_b_s_night</item>

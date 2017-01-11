@@ -39,9 +39,9 @@ public class QuestionModelLoad {
         SharedPreferencesUtil.setParam(mContext,key,num);
     }
 
-    public static void saveQuestionModelToDB(Context mContext,List<QuestionModel> modelList) {
+    public static void saveQuestionModelToDB(Context mContext, List<QuestionModel> modelList, QuestionDbUtil.DbProgressListener listener) {
         QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
-        questionDbUtil.insertList(modelList);
+        questionDbUtil.insertList(modelList,listener);
     }
 
     public static List<QuestionModel> getQuestionModelsfromDB(Context mContext,String catogory) {

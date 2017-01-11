@@ -9,52 +9,156 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
-        <LinearLayout
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/secondary_view_bg">
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:id="@+id/cuoti_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/activity_main_chooses_item_width"
+                    android:layout_height="@dimen/activity_main_chooses_item_width"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/cuoti_night"/>
+                <TextView
+                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="?attr/secondary_text_color"
+                    android:text="@string/cuoti_xunlian"/>
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/collect_layout"
             android:layout_marginLeft="0.5dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/secondary_view_bg">
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/activity_main_chooses_item_width"
+                    android:layout_height="@dimen/activity_main_chooses_item_width"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/collect_night"/>
+                <TextView
+                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="?attr/secondary_text_color"
+                    android:text="@string/collect_xunlian"/>
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/setting_layout"
             android:layout_marginLeft="0.5dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/secondary_view_bg">
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/activity_main_chooses_item_width"
+                    android:layout_height="@dimen/activity_main_chooses_item_width"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/setting_night"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="?attr/secondary_text_color"
+                    android:text="@string/setting"/>
+            </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_marginTop="0.5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/share_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/secondary_view_bg">
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/activity_main_chooses_item_width"
+                    android:layout_height="@dimen/activity_main_chooses_item_width"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/share_night"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="?attr/secondary_text_color"
+                    android:text="@string/share"
+                    />
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_marginLeft="0.5dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/secondary_view_bg">
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:id="@+id/about_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/activity_main_chooses_item_width"
+                    android:layout_height="@dimen/activity_main_chooses_item_width"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/about_night"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/middle_margin"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="?attr/secondary_text_color"
+                    android:text="@string/about"/>
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_marginLeft="0.5dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/secondary_view_bg">
-        </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jscheng.mr_horse.R;
@@ -131,5 +132,30 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
     public void onResume() {
         super.onResume();
         mainPresenter.onResume();
+    }
+
+    @OnClick(R.id.about_layout)
+    public void onClickAboutLayout(){
+
+    }
+
+    @OnClick(R.id.setting_layout)
+    public void onClickSettingLayout(){
+
+    }
+
+    @OnClick(R.id.collect_layout)
+    public void onClickCollectLayout(){
+
+    }
+
+    @OnClick(R.id.cuoti_layout)
+    public void onClickCuotiLayout(){
+
+    }
+
+    @OnClick(R.id.share_layout)
+    public void onClickShareLayout(){
+
     }
 }

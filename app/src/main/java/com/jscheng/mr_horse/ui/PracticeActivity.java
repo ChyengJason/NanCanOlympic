@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.AnswerViewPaperAdapter;
 import com.jscheng.mr_horse.model.QuestionModel;
@@ -25,9 +26,9 @@ import com.jscheng.mr_horse.presenter.AnswerPresenter;
 import com.jscheng.mr_horse.presenter.impl.AnswerPresenterImpl;
 import com.jscheng.mr_horse.view.AnswerView;
 import com.jscheng.mr_horse.wiget.QuestionDailog;
-import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -40,8 +41,6 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     Button datiPatternView;
     @BindView(R.id.beiti_pattern_view)
     Button beitiPatternView;
-    @BindView(R.id.progress_wheel)
-    ProgressWheel progressWheel;
     @BindView(R.id.practice_wrong_num_text)
     TextView wrongNumTextView;
     @BindView(R.id.practice_right_num_text)
@@ -58,8 +57,11 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     LinearLayout collectLayout;
     @BindView(R.id.collect_iv)
     ImageView collectIamgeView;
+    @BindView(R.id.circle_loading_view)
+    AnimatedCircleLoadingView loadingView;
 
     private Handler changeViewHandler;
+    private Handler progressViewHandler;
     private AnswerPresenter answerPresenter;
     private AnswerViewPaperAdapter answerViewPaperAdapter;
 
@@ -73,7 +75,14 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
         changeViewHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
-                answerViewPager.setCurrentItem(msg.what,true);
+                if(answerViewPager!=null)
+                    answerViewPager.setCurrentItem(msg.what,true);
+            }
+        };
+        progressViewHandler = new Handler(){
+            @Override
+            public void handleMessage (Message msg){
+                loadingView.setPercent(msg.what);
             }
         };
     }
@@ -98,17 +107,26 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     }
 
     @Override
-    public void showProcessing() {
-        progressWheel.setVisibility(View.VISIBLE);
-        ValueAnimator progressFadeInAnim = ObjectAnimator.ofFloat(progressWheel, "alpha", 0, 1, 1);
-        progressFadeInAnim.start();
+    public void beginProcessing() {
+        loadingView.setVisibility(View.VISIBLE);
+        loadingView.startDeterminate();
     }
 
     @Override
-    public void hideProcessing() {
-        progressWheel.setVisibility(View.GONE);
-        ValueAnimator progressFadeInAnim = ObjectAnimator.ofFloat(progressWheel, "alpha", 1, 0, 0);
-        progressFadeInAnim.start();
+    public void showProcessing(int progress){
+        progressViewHandler.sendEmptyMessage(progress);
+    }
+
+    @Override
+    public void sucessProcessing() {
+        loadingView.stopOk();
+        loadingView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void failProcessing(){
+        loadingView.stopFailure();
+        loadingView.setVisibility(View.GONE);
     }
 
     @Override

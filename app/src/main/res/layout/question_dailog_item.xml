@@ -11,5 +11,5 @@
         android:textSize="@dimen/middle_font"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/gray_circle"/>
+        android:background="@drawable/blue_circle"/>
 </FrameLayout>

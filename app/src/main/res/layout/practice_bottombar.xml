@@ -11,12 +11,15 @@
         android:layout_height="1dp"
         android:background="?attr/bottom_divider_color"/>
     <LinearLayout
+        android:id="@+id/collect_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:orientation="horizontal"
+        android:clickable="true"
         android:paddingLeft="@dimen/practise_bottombar_pattern_left_pading">
         <ImageView
+            android:id="@+id/collect_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/collect_icon_no"/>

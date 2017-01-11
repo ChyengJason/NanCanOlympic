@@ -58,12 +58,12 @@ public class QuestionDbUtil {
         }
     }
 
-    public void insertList(List<QuestionModel> modelList){
+    public void insertList(List<QuestionModel> modelList,DbProgressListener listener){
         Cursor cursor = null;
         try {
             this.open();
-            for (QuestionModel questionModel : modelList) {
-
+            for(int i=0;i<modelList.size();i++){
+                QuestionModel questionModel = modelList.get(i);
                 cursor = db.rawQuery("select * from " + QuestionDB.TABLE_NAME + " where " + QuestionDB.Question_Catogory + " = '" + questionModel.getCatogory()
                         + "' and " + QuestionDB.Question_Num + " = '" + questionModel.getQuestionNum() + "'", null);
                 if (!cursor.moveToNext()) {//不存在
@@ -80,6 +80,8 @@ public class QuestionDbUtil {
                     db.insert(QuestionDB.TABLE_NAME, null, cv);
                 }
                 if(cursor!=null && !cursor.isClosed()) cursor.close();
+                if(listener!=null)
+                    listener.loadProgress(i);
             }
             Logger.e("已经存入数据库");
         }catch (Exception e){
@@ -88,6 +90,10 @@ public class QuestionDbUtil {
             this.close();
             if(cursor!=null && !cursor.isClosed()) cursor.close();
         }
+    }
+
+    public interface DbProgressListener{
+        void loadProgress(int progress);
     }
 
     // 删除数据操作

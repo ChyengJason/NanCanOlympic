@@ -6,4 +6,9 @@
     <string name="confirm">确认</string>
     <string name="today_done_num">今日刷题/道</string>
     <string name="punch_day_num">打卡/天</string>
+    <string name="cuoti_xunlian">错题训练</string>
+    <string name="collect_xunlian">题目收藏</string>
+    <string name="about">关于</string>
+    <string name="setting">设置</string>
+    <string name="share">分享</string>
 </resources>
