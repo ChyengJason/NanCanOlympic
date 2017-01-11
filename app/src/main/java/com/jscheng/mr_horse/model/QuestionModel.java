@@ -11,22 +11,45 @@ import java.util.List;
 public class QuestionModel {
     private int questionNum;
     private QuestionType questionType;
+    private String catogory;
     private String question;
     private int optionCount;
     private List<String> optionList;
     private List<Integer> answerList;
-    private QuestionDoneType done;//是否做了
+    private QuestionDoneType newDone;//是否做了
+    private QuestionDoneType done;//上次是否做了
     private List<Integer> userAnswerList;
+    private boolean isCollected;
+    private boolean isWrong;
 
-    public QuestionModel(int questionNum,QuestionType questionType, String question, List<String> optionList, List<Integer> answerList){
+    public QuestionModel(int questionNum,QuestionType questionType, String catogory,String question, List<String> optionList, List<Integer> answerList){
         this.questionNum = questionNum;
         this.questionType = questionType;
+        this.catogory = catogory;
         this.question = question;
         this.optionList = optionList;
         this.optionCount = optionList!=null?optionList.size():0;
         this.answerList = answerList;
+        this.newDone = QuestionDoneType.NOT_DONE;
         this.done = QuestionDoneType.NOT_DONE;
         this.userAnswerList = new ArrayList<>();
+        this.isCollected = false;
+        this.isWrong = false;
+    }
+
+    public QuestionModel(int questionNum,QuestionType questionType,QuestionDoneType done, String catogory,String question, List<String> optionList, List<Integer> answerList,boolean isCollected,boolean isWrong){
+        this.questionNum = questionNum;
+        this.questionType = questionType;
+        this.question = question;
+        this.catogory = catogory;
+        this.optionList = optionList;
+        this.optionCount = optionList!=null?optionList.size():0;
+        this.answerList = answerList;
+        this.done = done;
+        this.userAnswerList = new ArrayList<>();
+        this.isCollected = isCollected;
+        this.isWrong = isWrong;
+        this.newDone = QuestionDoneType.NOT_DONE;
     }
 
     public String getQuestion() {
@@ -69,6 +92,14 @@ public class QuestionModel {
         this.answerList = answerList;
     }
 
+    public QuestionDoneType getNewDone() {
+        return newDone;
+    }
+
+    public void setNewDone(QuestionDoneType newDone) {
+        this.newDone = newDone;
+    }
+
     public QuestionDoneType getDone() {
         return done;
     }
@@ -91,5 +122,33 @@ public class QuestionModel {
 
     public void setUserAnswerList(List<Integer> userAnswerList) {
         this.userAnswerList = userAnswerList;
+    }
+
+    public boolean isCollected() {
+        return isCollected;
+    }
+
+    public void setCollected(boolean collected) {
+        isCollected = collected;
+    }
+
+    public boolean isWrong() {
+        return isWrong;
+    }
+
+    public void setWrong(boolean wrong) {
+        isWrong = wrong;
+    }
+
+    public String getCatogory() {
+        return catogory;
+    }
+
+    public void setCatogory(String catogory) {
+        this.catogory = catogory;
+    }
+
+    public String toString(){
+        return questionNum+" "+question;
     }
 }

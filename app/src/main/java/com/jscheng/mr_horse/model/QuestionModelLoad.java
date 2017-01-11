@@ -3,6 +3,7 @@ package com.jscheng.mr_horse.model;
 import android.content.Context;
 
 import com.jscheng.mr_horse.utils.JsonUtil;
+import com.jscheng.mr_horse.utils.QuestionDbUtil;
 import com.jscheng.mr_horse.utils.SharedPreferencesUtil;
 import com.orhanobut.logger.Logger;
 
@@ -35,7 +36,70 @@ public class QuestionModelLoad {
 
     public static void saveQuestionDoneNum(Context mContext,String catogory,Integer num){
         String key = catogory+"_done_num";
-//        Logger.e(num+"");
         SharedPreferencesUtil.setParam(mContext,key,num);
+    }
+
+    public static void saveQuestionModelToDB(Context mContext,List<QuestionModel> modelList) {
+        QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+        questionDbUtil.insertList(modelList);
+    }
+
+    public static List<QuestionModel> getQuestionModelsfromDB(Context mContext,String catogory) {
+        try {
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            return questionDbUtil.getAllData(catogory);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+        return new ArrayList<>();
+    }
+
+    public static void setQuestionModelDone(Context mContext,QuestionModel questionModel){
+        try{
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            questionDbUtil.update(questionModel);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+    }
+
+    public static void setQuestionModelToCollect(Context mContext,QuestionModel questionModel){
+        try{
+            questionModel.setCollected(true);
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            questionDbUtil.update(questionModel);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+    }
+
+    public static void setQuestionModelOutCollect(Context mContext,QuestionModel questionModel){
+        try{
+            questionModel.setCollected(false);
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            questionDbUtil.update(questionModel);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+    }
+
+    public static void setQuestionModelToWrongCollect(Context mContext,QuestionModel questionModel){
+        try{
+            questionModel.setWrong(true);
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            questionDbUtil.update(questionModel);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+    }
+
+    public static void setQuestionModelOutWrongCollect(Context mContext,QuestionModel questionModel){
+        try{
+            questionModel.setWrong(false);
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            questionDbUtil.update(questionModel);
+        }catch (Exception e){
+            Logger.e(e);
+        }
     }
 }

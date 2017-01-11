@@ -58,7 +58,7 @@ public class QuestionJsonModel implements Serializable{
         return questionNum+" "+question;
     }
 
-    public QuestionModel toQuestionModel(){
+    public QuestionModel toQuestionModel(String catogory){
         QuestionType type = null;
         switch (questionType){
             case 1:
@@ -74,6 +74,6 @@ public class QuestionJsonModel implements Serializable{
                 type = QuestionType.SINGLE;
                 break;
         }
-        return new QuestionModel(questionNum,type,question,options,answer);
+        return new QuestionModel(questionNum,type,catogory,question,options,answer);
     }
 }

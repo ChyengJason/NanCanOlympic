@@ -83,33 +83,42 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
         viewHolder.listView.setAdapter(listViewAdapter);
 
         if (patternStatus == PatternStatus.DATI_PATTERN) {//答题模式
-            ((AnswerListViewAdapter) viewHolder.listView.getAdapter()).hideAnswer();
-
-            if(model.getDone()== QuestionDoneType.NOT_DONE) {
-
-                viewHolder.listView.setOnItemClickListener(new OptionItemListener(position,model));
-                if (model.getQuestionType() == QuestionType.MULTIPLE ) {//多选模式
-                    viewHolder.confirmBtn.setVisibility(View.VISIBLE);
-                    viewHolder.confirmBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            confirmAnswer(position,listViewAdapter, model);
-                        }
-                    });
-                } else {//单选模式、判断题
-                    viewHolder.confirmBtn.setVisibility(View.GONE);
-                }
-
-            }else {//已做过
-                viewHolder.confirmBtn.setVisibility(View.GONE);
-            }
-        }else {//看题模式
-            viewHolder.confirmBtn.setVisibility(View.GONE);
-            ((AnswerListViewAdapter)viewHolder.listView.getAdapter()).showAnswer(false);
+            datiPattern(viewHolder,listViewAdapter,model,position);
+        }
+        else {//看题模式
+            beitiPattern(viewHolder);
         }
 
         container.addView(convertView ,ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT );
         return convertView;
+    }
+
+    private void datiPattern(SingleViewHolder viewHolder,final AnswerListViewAdapter listViewAdapter,final QuestionModel model, final int position){
+
+        if( model.getNewDone()==QuestionDoneType.NOT_DONE){//未作题
+            ((AnswerListViewAdapter) viewHolder.listView.getAdapter()).hideAnswer();
+            viewHolder.listView.setOnItemClickListener(new OptionItemListener(position,model));
+            if (model.getQuestionType() == QuestionType.MULTIPLE ) {//多选模式
+                viewHolder.confirmBtn.setVisibility(View.VISIBLE);
+                viewHolder.confirmBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        confirmAnswer(position,listViewAdapter, model);
+                    }
+                });
+            }else {
+                viewHolder.confirmBtn.setVisibility(View.GONE);
+            }
+
+        }else {//已经做了
+            viewHolder.confirmBtn.setVisibility(View.GONE);
+            ((AnswerListViewAdapter)viewHolder.listView.getAdapter()).showAnswer(true);
+        }
+    }
+
+    private void beitiPattern(SingleViewHolder viewHolder){
+        viewHolder.confirmBtn.setVisibility(View.GONE);
+        ((AnswerListViewAdapter)viewHolder.listView.getAdapter()).showAnswer(false);
     }
 
     public int getCount() {
@@ -210,7 +219,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int optionPostion, long id) {
 
-            if (questionModel.getDone()!=QuestionDoneType.NOT_DONE)return;
+            if (questionModel.getNewDone()!=QuestionDoneType.NOT_DONE)return;
 
             if(questionModel.getUserAnswerList().contains(optionPostion)){
                 questionModel.getUserAnswerList().remove((Integer)(optionPostion));
@@ -232,7 +241,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
         List list2 = questionModel.getUserAnswerList();
         Collections.sort(list2);
         if(list1.equals(list2)) {//答案正确
-            questionModel.setDone(QuestionDoneType.DONE_RIGHT);
+            questionModel.setNewDone(QuestionDoneType.DONE_RIGHT);
             adapter.showAnswer(true);
             if(listenerList!=null && !listenerList.isEmpty()){
                 for(AnswerPageChangeListener listener:listenerList){
@@ -240,7 +249,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
                 }
             }
         }else {
-            questionModel.setDone(QuestionDoneType.DONE_WRONG);
+            questionModel.setNewDone(QuestionDoneType.DONE_WRONG);
             adapter.showAnswer(true);
             if(listenerList!=null && !listenerList.isEmpty()){
                 for(AnswerPageChangeListener listener:listenerList){

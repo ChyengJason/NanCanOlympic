@@ -11,4 +11,5 @@ public interface AnswerPresenter extends MvpPresenter, AnswerViewPaperAdapter.An
     void onClickBeitiPattern();
     void changeTheme();
     void onClickQuestionsLayout();
+    void onClickCollect();
 }

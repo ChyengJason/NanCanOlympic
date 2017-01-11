@@ -61,23 +61,22 @@ public class AnswerListViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        if(isShowAnswer){//显示答案
+        if (isShowAnswer) {//显示答案
             viewHolder.answerChoose.setImageResource(getAnswerDrawable(position));
-        }
-        else if(mQuestionModel.getDone()!=QuestionDoneType.NOT_DONE) {// 已做过题目
+        }else if ( mQuestionModel.getNewDone()!=QuestionDoneType.NOT_DONE) {
+            // 已做过题目
             if (mQuestionModel.getQuestionType() == QuestionType.MULTIPLE &&
-                    mQuestionModel.getDone()==QuestionDoneType.DONE_WRONG &&
+                    mQuestionModel.getNewDone()==QuestionDoneType.DONE_WRONG &&
                     mQuestionModel.getUserAnswerList().contains(position) &&
                     mQuestionModel.getAnswerList().contains(position)){
                 viewHolder.answerChoose.setImageResource(getTrueDrawable(position));
             } else {
                 viewHolder.answerChoose.setImageResource(getAnswerDrawable(position));
             }
-        }
-        else {
+        } else {
+            //未作过的题目
             viewHolder.answerChoose.setImageResource(getChooseDrawable(position));
         }
-
         viewHolder.optionText.setText(mQuestionModel.getOptionList().get(position));
         return convertView;
     }
@@ -181,7 +180,7 @@ public class AnswerListViewAdapter extends BaseAdapter {
             resouce =  typedValue.resourceId;
             return resouce;
         }
-        if(isShowUserAnswer && mQuestionModel.getDone()!= QuestionDoneType.NOT_DONE && !mQuestionModel.getAnswerList().contains(position) && mQuestionModel.getUserAnswerList().contains(position)){
+        if(isShowUserAnswer && mQuestionModel.getNewDone()!= QuestionDoneType.NOT_DONE && !mQuestionModel.getAnswerList().contains(position) && mQuestionModel.getUserAnswerList().contains(position)){
             mContext.getTheme().resolveAttribute(R.attr.practise_false, typedValue, true);
             resouce =  typedValue.resourceId;
             return resouce;

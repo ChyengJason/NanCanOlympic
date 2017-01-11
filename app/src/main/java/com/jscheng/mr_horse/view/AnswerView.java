@@ -15,6 +15,7 @@ public interface AnswerView extends MvpView {
     void changeToBeitiView();
     void changeToDatiView();
     void showError(String s);
+    void showInfo(String s);
     void changeAdapterPattern(PatternStatus status);
     void changePaperView(int pageNum,boolean smooth,int delaytime);
     void showRightNumView(int rightNum);
@@ -23,4 +24,6 @@ public interface AnswerView extends MvpView {
     void changeToNightTheme();
     void changeToSunTheme();
     void showQuestionDailog(List<QuestionModel> modelList,int currentPosition);
+
+    void showCollectView(boolean isShow);
 }

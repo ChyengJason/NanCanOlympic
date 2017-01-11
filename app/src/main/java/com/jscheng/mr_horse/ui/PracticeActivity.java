@@ -2,7 +2,6 @@ package com.jscheng.mr_horse.ui;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
@@ -13,8 +12,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.AnswerViewPaperAdapter;
 import com.jscheng.mr_horse.model.QuestionModel;
@@ -51,7 +53,11 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     @BindView(R.id.sun_night)
     ImageButton sunNight;
     @BindView(R.id.questions_layout)
-    LinearLayout questions_layout;
+    LinearLayout questionsLayout;
+    @BindView(R.id.collect_layout)
+    LinearLayout collectLayout;
+    @BindView(R.id.collect_iv)
+    ImageView collectIamgeView;
 
     private Handler changeViewHandler;
     private AnswerPresenter answerPresenter;
@@ -120,6 +126,11 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     @Override
     public void showError(String s) {
 
+    }
+
+    @Override
+    public void showInfo(String s) {
+        Toast.makeText(this,s,Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.dati_pattern_view)
@@ -204,5 +215,18 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
         params.gravity = Gravity.BOTTOM;
         params.dimAmount =0.5f;
         window.setAttributes(params);
+    }
+
+    @OnClick(R.id.collect_layout)
+    public void onClickCollect(){
+        answerPresenter.onClickCollect();
+    }
+
+    @Override
+    public void showCollectView(boolean isShow) {
+        if(isShow)
+            collectIamgeView.setImageResource(R.mipmap.collect_icon_yes);
+        else
+            collectIamgeView.setImageResource(R.mipmap.collect_icon_no);
     }
 }
