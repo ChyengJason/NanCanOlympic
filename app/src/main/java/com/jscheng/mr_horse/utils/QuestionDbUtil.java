@@ -59,36 +59,32 @@ public class QuestionDbUtil {
     }
 
     public void insertList(List<QuestionModel> modelList,DbProgressListener listener){
-        Cursor cursor = null;
         try {
             this.open();
+            db.beginTransaction();
             for(int i=0;i<modelList.size();i++){
                 QuestionModel questionModel = modelList.get(i);
-                cursor = db.rawQuery("select * from " + QuestionDB.TABLE_NAME + " where " + QuestionDB.Question_Catogory + " = '" + questionModel.getCatogory()
-                        + "' and " + QuestionDB.Question_Num + " = '" + questionModel.getQuestionNum() + "'", null);
-                if (!cursor.moveToNext()) {//不存在
-                    ContentValues cv = new ContentValues();
-                    cv.put(questionDB.Question_Num, questionModel.getQuestionNum());
-                    cv.put(questionDB.Question_Type, questionTypeToInt(questionModel.getQuestionType()));
-                    cv.put(questionDB.Question_Done_Type, questionDoneTypeToInt(questionModel.getDone()));
-                    cv.put(questionDB.Question_Catogory, questionModel.getCatogory());
-                    cv.put(questionDB.Question_Text, questionModel.getQuestion());
-                    cv.put(questionDB.Option_List, listToString(questionModel.getOptionList(), '#'));
-                    cv.put(questionDB.Answer_List, listToString(questionModel.getAnswerList(), '#'));
-                    cv.put(questionDB.isCollect, booleanToInt(questionModel.isCollected()));
-                    cv.put(questionDB.isWrong, booleanToInt(questionModel.isWrong()));
-                    db.insert(QuestionDB.TABLE_NAME, null, cv);
-                }
-                if(cursor!=null && !cursor.isClosed()) cursor.close();
+                ContentValues cv = new ContentValues();
+                cv.put(questionDB.Question_Num, questionModel.getQuestionNum());
+                cv.put(questionDB.Question_Type, questionTypeToInt(questionModel.getQuestionType()));
+                cv.put(questionDB.Question_Done_Type, questionDoneTypeToInt(questionModel.getDone()));
+                cv.put(questionDB.Question_Catogory, questionModel.getCatogory());
+                cv.put(questionDB.Question_Text, questionModel.getQuestion());
+                cv.put(questionDB.Option_List, listToString(questionModel.getOptionList(), '#'));
+                cv.put(questionDB.Answer_List, listToString(questionModel.getAnswerList(), '#'));
+                cv.put(questionDB.isCollect, booleanToInt(questionModel.isCollected()));
+                cv.put(questionDB.isWrong, booleanToInt(questionModel.isWrong()));
+                db.insert(QuestionDB.TABLE_NAME, null, cv);
                 if(listener!=null)
                     listener.loadProgress(i);
             }
+            db.setTransactionSuccessful();
             Logger.e("已经存入数据库");
         }catch (Exception e){
             Logger.e(e);
         }finally {
+            db.endTransaction();
             this.close();
-            if(cursor!=null && !cursor.isClosed()) cursor.close();
         }
     }
 
