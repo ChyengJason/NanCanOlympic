@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="?attr/main_view_bg">
 
-    <include layout="@layout/main_toolbar"/>
+    <include layout="@layout/sun_light_main_toolbar"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/head_viewpaper"

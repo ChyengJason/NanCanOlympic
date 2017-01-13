@@ -11,4 +11,10 @@
     <string name="about">关于</string>
     <string name="setting">设置</string>
     <string name="share">分享</string>
+    <string name="delete">清除</string>
+    <string name="fljc">思修法律基础</string>
+    <string name="mkszy">马克思主义</string>
+    <string name="mzdsx">毛概理论</string>
+    <string name="sxdd">思修道德基础</string>
+    <string name="zgjds">中国近代史</string>
 </resources>

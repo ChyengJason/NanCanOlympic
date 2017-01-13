@@ -13,6 +13,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:clickable="true"
             android:background="?attr/secondary_view_bg">
             <LinearLayout
                 android:id="@+id/cuoti_layout"
@@ -41,6 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:clickable="true"
             android:background="?attr/secondary_view_bg">
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -68,6 +70,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:clickable="true"
             android:background="?attr/secondary_view_bg">
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -95,6 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:clickable="true"
         android:orientation="horizontal">
         <FrameLayout
             android:id="@+id/share_layout"
@@ -129,6 +133,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:clickable="true"
             android:background="?attr/secondary_view_bg">
             <LinearLayout
                 android:id="@+id/about_layout"

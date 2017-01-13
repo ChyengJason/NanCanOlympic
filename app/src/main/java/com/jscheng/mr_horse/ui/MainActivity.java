@@ -1,5 +1,6 @@
 package com.jscheng.mr_horse.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -13,6 +14,7 @@ import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.HeadViewPaperAdapter;
 import com.jscheng.mr_horse.presenter.MainPresenter;
 import com.jscheng.mr_horse.presenter.impl.MainPresenterImpl;
+import com.jscheng.mr_horse.utils.Constants;
 import com.jscheng.mr_horse.view.MainView;
 
 import java.util.ArrayList;
@@ -146,12 +148,16 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
 
     @OnClick(R.id.collect_layout)
     public void onClickCollectLayout(){
-
+        Intent intent = new Intent(this,WrongActivity.class);
+        intent.putExtra("catogory", Constants.COLLECT);
+        startActivity(intent);
     }
 
     @OnClick(R.id.cuoti_layout)
     public void onClickCuotiLayout(){
-
+        Intent intent = new Intent(this,WrongActivity.class);
+        intent.putExtra("catogory", Constants.WRONG);
+        startActivity(intent);
     }
 
     @OnClick(R.id.share_layout)

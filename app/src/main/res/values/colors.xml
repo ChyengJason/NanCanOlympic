@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue">#3F51B5</color>action/ic_info_outline
+    <color name="blue">#3F51B5</color>
+    <color name="light_blue">#5163d1</color>
     <color name="deep_blue">#303F9F</color>
     <color name="pink_red">#F05E5E</color>
     <color name="white">#e7e7e7</color>
@@ -10,6 +11,7 @@
     <color name="main_bg_gray">#d9d9d9</color>
     <color name="white_gray">#e7e7e7</color>
     <color name="white_gray_2">#8A9599</color>
+    <color name="white_gray_3">#dedede</color>
 
     <!-- night theme-->
     <color name="primary_night">#242d40</color>
@@ -22,8 +24,8 @@
     <color name="divider_night">#a5FFFFFF</color>
     <color name="background_color_night">#303030</color>
     <color name="background_color_night_2">#404040</color>
+    <color name="background_color_night_3">#646464</color>
     <color name="item_color_night">#404040</color>
-
     <!--day-->
     <color name="primary">#3F51B5</color>
     <color name="primary_dark">#303F9F</color>

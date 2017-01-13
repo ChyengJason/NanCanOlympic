@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/secondary_view_bg">
+
+    <include layout="@layout/rubbish_toolbar"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="@dimen/wrong_item_height"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginLeft="@dimen/middle_margin"
+        android:layout_marginRight="@dimen/middle_margin"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="?attr/wrong_item_backgroud">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/wrong_circle"
+                android:layout_marginLeft="@dimen/middle_margin"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:layout_width="@dimen/wrong_item_left_circle"
+                android:layout_height="@dimen/wrong_item_left_circle"
+                android:background="@drawable/wrong_circle"/>
+
+            <TextView
+                android:layout_toRightOf="@+id/wrong_circle"
+                android:layout_marginLeft="@dimen/big_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/fljc"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/wrong_item_right_width"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/wrong_right_item_backgroud"
+                android:text="700"
+                android:gravity="center"
+                android:textColor="?attr/confirm_btn_text_color"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/wrong_item_right_width"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_red_dark"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textSize="20sp"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="@dimen/wrong_item_height"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginLeft="@dimen/middle_margin"
+        android:layout_marginRight="@dimen/middle_margin"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="?attr/wrong_item_backgroud">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/wrong_circle2"
+                android:layout_marginLeft="@dimen/middle_margin"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:layout_width="@dimen/wrong_item_left_circle"
+                android:layout_height="@dimen/wrong_item_left_circle"
+                android:background="@drawable/wrong_circle"/>
+
+            <TextView
+                android:layout_toRightOf="@+id/wrong_circle2"
+                android:layout_marginLeft="@dimen/big_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/mkszy"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/wrong_item_right_width"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/wrong_right_item_backgroud"
+                android:text="700"
+                android:gravity="center"
+                android:textColor="?attr/confirm_btn_text_color"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/wrong_item_right_width"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_red_dark"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textSize="20sp"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="@dimen/wrong_item_height"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginLeft="@dimen/middle_margin"
+        android:layout_marginRight="@dimen/middle_margin"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="?attr/wrong_item_backgroud">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/wrong_circle3"
+                android:layout_marginLeft="@dimen/middle_margin"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:layout_width="@dimen/wrong_item_left_circle"
+                android:layout_height="@dimen/wrong_item_left_circle"
+                android:background="@drawable/wrong_circle"/>
+
+            <TextView
+                android:layout_toRightOf="@+id/wrong_circle3"
+                android:layout_marginLeft="@dimen/big_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/mzdsx"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/wrong_item_right_width"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/wrong_right_item_backgroud"
+                android:text="700"
+                android:gravity="center"
+                android:textColor="?attr/confirm_btn_text_color"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/wrong_item_right_width"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_red_dark"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textSize="20sp"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="@dimen/wrong_item_height"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginLeft="@dimen/middle_margin"
+        android:layout_marginRight="@dimen/middle_margin"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="?attr/wrong_item_backgroud">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/wrong_circle4"
+                android:layout_marginLeft="@dimen/middle_margin"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:layout_width="@dimen/wrong_item_left_circle"
+                android:layout_height="@dimen/wrong_item_left_circle"
+                android:background="@drawable/wrong_circle"/>
+
+            <TextView
+                android:layout_toRightOf="@+id/wrong_circle4"
+                android:layout_marginLeft="@dimen/big_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/sxdd"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/wrong_item_right_width"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/wrong_right_item_backgroud"
+                android:text="700"
+                android:gravity="center"
+                android:textColor="?attr/confirm_btn_text_color"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/wrong_item_right_width"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_red_dark"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textSize="20sp"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_height="@dimen/wrong_item_height"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginLeft="@dimen/middle_margin"
+        android:layout_marginRight="@dimen/middle_margin"
+        app:cardElevation="1dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="?attr/wrong_item_backgroud">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/wrong_circle5"
+                android:layout_marginLeft="@dimen/middle_margin"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:layout_width="@dimen/wrong_item_left_circle"
+                android:layout_height="@dimen/wrong_item_left_circle"
+                android:background="@drawable/wrong_circle"/>
+
+            <TextView
+                android:layout_toRightOf="@+id/wrong_circle5"
+                android:layout_marginLeft="@dimen/big_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/zgjds"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/wrong_item_right_width"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/wrong_right_item_backgroud"
+                android:text="700"
+                android:gravity="center"
+                android:textColor="?attr/confirm_btn_text_color"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/wrong_item_right_width"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_red_dark"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textSize="20sp"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

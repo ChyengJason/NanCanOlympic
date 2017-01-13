@@ -11,6 +11,7 @@
     <attr name="bottom_divider_color" format="reference|color"/>
     <attr name="hollow_circle_color" format="reference|color"/>
     <attr name="theme_icon" format="reference"/>
+    <attr name="rubbish_icon" format="reference"/>
     <attr name="header_icon_back" format="reference"/>
     <attr name="pattern_text_color" format="reference"/>
     <attr name="left_pattern_selector" format="reference"/>
@@ -43,6 +44,9 @@
     <attr name="practise_e_true" format="reference"/>
     <attr name="practise_f_true" format="reference"/>
     <attr name="practise_g_true" format="reference"/>
+    
+    <attr name="wrong_item_backgroud" format="reference"/>
+    <attr name="wrong_right_item_backgroud" format="reference"/>
 
     <attr name="book_show_type">
         <enum name="show" value="0" />

@@ -113,7 +113,8 @@ public class AnswerPresenterImpl implements AnswerPresenter{
                         QuestionModelLoad.saveQuestionModelToDB(mContext, questionModelList, new QuestionDbUtil.DbProgressListener() {
                             @Override
                             public void loadProgress(int progress) {
-                                mAnswerView.showProcessing((int)(progress*100/questionModelList.size()));
+                                if(mAnswerView!=null)
+                                    mAnswerView.showProcessing((int)(progress*100/questionModelList.size()));
                             }
                         });
 

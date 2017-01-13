@@ -27,6 +27,7 @@ import com.jscheng.mr_horse.presenter.impl.AnswerPresenterImpl;
 import com.jscheng.mr_horse.view.AnswerView;
 import com.jscheng.mr_horse.wiget.QuestionDailog;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import butterknife.BindView;
@@ -60,8 +61,8 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     @BindView(R.id.circle_loading_view)
     AnimatedCircleLoadingView loadingView;
 
-    private Handler changeViewHandler;
-    private Handler progressViewHandler;
+    private PracticeHandler changeViewHandler;
+    private PracticeHandler progressViewHandler;
     private AnswerPresenter answerPresenter;
     private AnswerViewPaperAdapter answerViewPaperAdapter;
 
@@ -72,19 +73,19 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
         ButterKnife.bind(this);
         answerPresenter = new AnswerPresenterImpl(this,getIntent());
         answerPresenter.attachView(this);
-        changeViewHandler = new Handler(){
+        changeViewHandler = new PracticeHandler(this, new PracticeHandler.PracticeCallback() {
             @Override
-            public void handleMessage(Message msg) {
+            public void handleMessge(Message msg) {
                 if(answerViewPager!=null)
                     answerViewPager.setCurrentItem(msg.what,true);
             }
-        };
-        progressViewHandler = new Handler(){
+        });
+        progressViewHandler = new PracticeHandler(this, new PracticeHandler.PracticeCallback() {
             @Override
-            public void handleMessage (Message msg){
+            public void handleMessge(Message msg) {
                 loadingView.setPercent(msg.what);
             }
-        };
+        });
     }
 
     @Override
@@ -246,5 +247,27 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
             collectIamgeView.setImageResource(R.mipmap.collect_icon_yes);
         else
             collectIamgeView.setImageResource(R.mipmap.collect_icon_no);
+    }
+
+    private static class PracticeHandler extends Handler {
+        private final WeakReference<PracticeActivity> mActivity;
+        private final PracticeCallback callback;
+
+        public PracticeHandler(PracticeActivity activity,PracticeCallback callback) {
+            mActivity = new WeakReference<PracticeActivity>(activity);
+            this.callback = callback;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            PracticeActivity activity = mActivity.get();
+            if (activity != null && callback!=null) {
+                callback.handleMessge(msg);
+            }
+        }
+
+        interface PracticeCallback{
+            void handleMessge(Message msg);
+        }
     }
 }
