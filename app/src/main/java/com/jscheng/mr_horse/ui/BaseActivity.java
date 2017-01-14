@@ -5,8 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.jscheng.mr_horse.App;
-import com.jscheng.mr_horse.utils.Constants;
-import com.orhanobut.logger.Logger;
+import com.jscheng.mr_horse.utils.Configs;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -21,7 +20,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityTheme = App.getDayNightTheme();
         setTheme(activityTheme);
-        MobclickAgent.startWithConfigure(new MobclickAgent.UMAnalyticsConfig(this, Constants.YOU_MENG_APP_KEY, Constants.CHANNEL_ID));
+        MobclickAgent.startWithConfigure(new MobclickAgent.UMAnalyticsConfig(this, Configs.YOU_MENG_APP_KEY, Configs.CHANNEL_ID));
     }
 
     @Override

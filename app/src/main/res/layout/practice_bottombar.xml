@@ -20,14 +20,38 @@
         android:paddingLeft="@dimen/practise_bottombar_pattern_left_pading">
         <ImageView
             android:id="@+id/collect_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@mipmap/collect_icon_no"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/small_margin"
+            android:paddingTop="2dp"
             android:text="@string/colloect"
+            android:textColor="@color/bottom_gray"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rubbish_layout"
+        android:layout_toRightOf="@+id/collect_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:paddingLeft="@dimen/practise_bottombar_pattern_left_pading">
+        <ImageView
+            android:id="@+id/rubbish_iv"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:src="@mipmap/remove_rubbish"
+            android:scaleType="fitXY"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/small_margin"
+            android:text="@string/remove"
             android:textColor="@color/bottom_gray"/>
     </LinearLayout>
 

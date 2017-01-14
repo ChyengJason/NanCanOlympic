@@ -67,7 +67,7 @@
 -keep public class * extends android.support.v4.app.DialogFragment
 -keep public class * extends android.app.Fragment
 -keep public class com.android.vending.licensing.ILicensingService
-
+-keep public class com.tencent.bugly.**{*;}
 # For native methods, see http://proguard.sourceforge.net/manual/examples.html#native
 -keepclasseswithmembernames class * {
  native <methods>;

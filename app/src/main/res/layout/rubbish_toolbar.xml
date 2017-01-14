@@ -18,6 +18,7 @@
 
     <ImageButton
         android:id="@+id/rubbish"
+        android:visibility="visible"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
@@ -26,4 +27,17 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:src="?attr/rubbish_icon"
         android:background="?attr/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/cancel"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="?attr/colorPrimary"
+        android:text="@string/cancel"
+        android:textColor="?attr/confirm_btn_text_color"
+        android:textSize="@dimen/big_font"/>
 </RelativeLayout>

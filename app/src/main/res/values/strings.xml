@@ -4,6 +4,7 @@
     <string name="beiti_pattern">背题模式</string>
     <string name="colloect">收藏</string>
     <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
     <string name="today_done_num">今日刷题/道</string>
     <string name="punch_day_num">打卡/天</string>
     <string name="cuoti_xunlian">错题训练</string>
@@ -17,4 +18,5 @@
     <string name="mzdsx">毛概理论</string>
     <string name="sxdd">思修道德基础</string>
     <string name="zgjds">中国近代史</string>
+    <string name="remove">移除</string>
 </resources>

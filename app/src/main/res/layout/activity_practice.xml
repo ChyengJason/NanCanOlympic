@@ -2,8 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:material="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <include layout="@layout/practise_toolbar"
@@ -41,6 +39,7 @@
         android:layout_height="250dp"
         android:background="?attr/root_view_bg"
         android:layout_centerInParent="true"
+        android:visibility="gone"
         app:mainColor="@color/deep_blue"
         app:secondaryColor="@color/bottom_gray"
         app:textColor="@color/bottom_gray" />

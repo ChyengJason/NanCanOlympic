@@ -10,13 +10,6 @@ public class Constants {
     public static final String SHAREPERFERENCE_FILE_NAME = "Mr_Horse";
 
     /**
-     *  友盟统计
-     */
-    public final static String YOU_MENG_APP_KEY = "5873336ce88bad7ea6000f2c";
-
-    public final static String CHANNEL_ID="pre.im";
-
-    /**
      * 思修道德
      */
     public static final String SXDD = "sxdd";
@@ -94,4 +87,8 @@ public class Constants {
      * filename
      */
     public static final String FILENAME = "filename";
+    /**
+     * classification
+     */
+    public static final String CLASSIFICATION = "classification";
 }

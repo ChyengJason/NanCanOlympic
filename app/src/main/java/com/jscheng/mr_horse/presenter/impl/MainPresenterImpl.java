@@ -45,6 +45,7 @@ public class MainPresenterImpl implements MainPresenter {
             punchday++;
             SharedPreferencesUtil.setParam(context, Constants.PUNCH_DAY_NUM, punchday);
         }
+        showDateAndDoneNum();
     }
 
     @Override
@@ -60,7 +61,7 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context, PracticeActivity.class);
         intent.putExtra(Constants.FILENAME, Constants.FLJC_JSON_NAME);
         intent.putExtra(Constants.CATOGORY,Constants.FLJC);
-        context.startActivity(intent);
+        mainView.startActivityForResult(intent);
     }
 
     @Override
@@ -68,7 +69,7 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context, PracticeActivity.class);
         intent.putExtra(Constants.FILENAME, Constants.MKSZY_JSON_NAME);
         intent.putExtra(Constants.CATOGORY,Constants.MKSZY);
-        context.startActivity(intent);
+        mainView.startActivityForResult(intent);
     }
 
     @Override
@@ -76,7 +77,7 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context, PracticeActivity.class);
         intent.putExtra(Constants.FILENAME, Constants.MZDSX_JSON_NAME);
         intent.putExtra(Constants.CATOGORY,Constants.MZDSX);
-        context.startActivity(intent);
+        mainView.startActivityForResult(intent);
 
     }
 
@@ -85,7 +86,7 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context, PracticeActivity.class);
         intent.putExtra(Constants.FILENAME, Constants.SXDD_JSON_NAME);
         intent.putExtra(Constants.CATOGORY,Constants.SXDD);
-        context.startActivity(intent);
+        mainView.startActivityForResult(intent);
     }
 
     @Override
@@ -93,7 +94,7 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context, PracticeActivity.class);
         intent.putExtra(Constants.FILENAME, Constants.ZGJDS_JSON_NAME);
         intent.putExtra(Constants.CATOGORY,Constants.ZGJDS);
-        context.startActivity(intent);
+        mainView.startActivityForResult(intent);
     }
     @Override
     public void changeTheme() {
@@ -109,7 +110,25 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void onResume() {
+    public void onActivityForResult() {
+        showDateAndDoneNum();
+    }
+
+    @Override
+    public void onClickCollect() {
+        Intent intent = new Intent(context,WrongActivity.class);
+        intent.putExtra(Constants.CATOGORY, Constants.COLLECT);
+        mainView.startActivityForResult(intent);
+    }
+
+    @Override
+    public void onClickWrong() {
+        Intent intent = new Intent(context,WrongActivity.class);
+        intent.putExtra(Constants.CATOGORY, Constants.WRONG);
+        mainView.startActivityForResult(intent);
+    }
+
+    private void showDateAndDoneNum(){
         DateFormat format = new SimpleDateFormat("yyyy.MM.dd");
         Date date = new Date(System.currentTimeMillis());
         String dateStr = format.format(date);
@@ -120,19 +139,5 @@ public class MainPresenterImpl implements MainPresenter {
             mainView.showHaveDoneNum(haveDoneNum+"");
             mainView.showPunchDayNum(punchday+"");
         }
-    }
-
-    @Override
-    public void onClickCollect() {
-        Intent intent = new Intent(context,WrongActivity.class);
-        intent.putExtra(Constants.CATOGORY, Constants.COLLECT);
-        context.startActivity(intent);
-    }
-
-    @Override
-    public void onClickWrong() {
-        Intent intent = new Intent(context,WrongActivity.class);
-        intent.putExtra(Constants.CATOGORY, Constants.WRONG);
-        context.startActivity(intent);
     }
 }

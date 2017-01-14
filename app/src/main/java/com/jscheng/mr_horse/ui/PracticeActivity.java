@@ -1,7 +1,6 @@
 package com.jscheng.mr_horse.ui;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
@@ -22,9 +21,9 @@ import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.AnswerViewPaperAdapter;
 import com.jscheng.mr_horse.model.QuestionModel;
 import com.jscheng.mr_horse.model.PatternStatus;
-import com.jscheng.mr_horse.presenter.AnswerPresenter;
-import com.jscheng.mr_horse.presenter.impl.AnswerPresenterImpl;
-import com.jscheng.mr_horse.view.AnswerView;
+import com.jscheng.mr_horse.presenter.PracticePresenter;
+import com.jscheng.mr_horse.presenter.impl.PracticePresenterImpl;
+import com.jscheng.mr_horse.view.PracticeView;
 import com.jscheng.mr_horse.wiget.QuestionDailog;
 
 import java.lang.ref.WeakReference;
@@ -34,7 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PracticeActivity extends BaseActivity implements AnswerView {
+public class PracticeActivity extends BaseActivity implements PracticeView {
 
     @BindView(R.id.viewpaper)
     ViewPager answerViewPager;
@@ -60,10 +59,12 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     ImageView collectIamgeView;
     @BindView(R.id.circle_loading_view)
     AnimatedCircleLoadingView loadingView;
+    @BindView(R.id.rubbish_layout)
+    LinearLayout rubbish_layout;
 
     private PracticeHandler changeViewHandler;
     private PracticeHandler progressViewHandler;
-    private AnswerPresenter answerPresenter;
+    private PracticePresenter practicePresenter;
     private AnswerViewPaperAdapter answerViewPaperAdapter;
 
     @Override
@@ -71,8 +72,8 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice);
         ButterKnife.bind(this);
-        answerPresenter = new AnswerPresenterImpl(this,getIntent());
-        answerPresenter.attachView(this);
+        practicePresenter = new PracticePresenterImpl(this,getIntent());
+        practicePresenter.attachView(this);
         changeViewHandler = new PracticeHandler(this, new PracticeHandler.PracticeCallback() {
             @Override
             public void handleMessge(Message msg) {
@@ -91,10 +92,10 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(answerPresenter !=null) {
-            answerPresenter.detachView(false);
+        if(practicePresenter !=null) {
+            practicePresenter.detachView(false);
             if(answerViewPaperAdapter!=null){
-                answerViewPaperAdapter.removeAnswerPageListener(answerPresenter);
+                answerViewPaperAdapter.removeAnswerPageListener(practicePresenter);
             }
         }
     }
@@ -104,7 +105,7 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
         answerViewPaperAdapter = new AnswerViewPaperAdapter(this, questionModelList,status);
         answerViewPager.setAdapter(answerViewPaperAdapter);
         answerViewPager.addOnPageChangeListener(answerViewPaperAdapter.new AnswerViewPaperListener());
-        answerViewPaperAdapter.addAnswerPageListener(answerPresenter);
+        answerViewPaperAdapter.addAnswerPageListener(practicePresenter);
     }
 
     @Override
@@ -154,12 +155,12 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
 
     @OnClick(R.id.dati_pattern_view)
     public void onClickDatiPatternView(){
-        answerPresenter.onClickDatiPattern();
+        practicePresenter.onClickDatiPattern();
     }
 
     @OnClick(R.id.beiti_pattern_view)
     public void onClickBeitiPatternView(){
-        answerPresenter.onClickBeitiPattern();
+        practicePresenter.onClickBeitiPattern();
     }
 
     @Override
@@ -170,6 +171,7 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
 
     @Override
     public void changePaperView(int pageNum,boolean smooth,int delaytime) {
+        answerViewPaperAdapter.notifyDataSetChanged();
         if (delaytime > 0) {
             changeViewHandler.sendEmptyMessageDelayed(pageNum, delaytime);
         } else {
@@ -203,7 +205,7 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
 
     @OnClick(R.id.sun_night)
     public void onClickSunNight() {
-        answerPresenter.changeTheme();
+        practicePresenter.changeTheme();
     }
 
     @Override
@@ -218,18 +220,19 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
 
     @Override
     public void onBackPressed() {
-        answerPresenter.detachView(false);
-        super.onBackPressed();
+        practicePresenter.detachView(false);
+
+        finish();
     }
 
     @OnClick(R.id.questions_layout)
     public void onClickQuestionsLayout(){
-        answerPresenter.onClickQuestionsLayout();
+        practicePresenter.onClickQuestionsLayout();
     }
 
     public void showQuestionDailog(List<QuestionModel> modelList,int currentPosition){
         QuestionDailog dialog = new QuestionDailog(this,modelList,R.style.questionDailog,currentPosition);
-        dialog.addQuestionDailogItemListener(answerPresenter);
+        dialog.addQuestionDailogItemListener(practicePresenter);
         Window window = dialog.getWindow();
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
@@ -244,7 +247,7 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
 
     @OnClick(R.id.collect_layout)
     public void onClickCollect(){
-        answerPresenter.onClickCollect();
+        practicePresenter.onClickCollect();
     }
 
     @Override
@@ -253,6 +256,19 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
             collectIamgeView.setImageResource(R.mipmap.collect_icon_yes);
         else
             collectIamgeView.setImageResource(R.mipmap.collect_icon_no);
+    }
+
+    public void hideRemoveLayout(){
+        rubbish_layout.setVisibility(View.GONE);
+    }
+
+    public void showRemoveLayout(){
+        rubbish_layout.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.rubbish_layout)
+    public void onClickRubbish_layout(){
+        practicePresenter.onClickRubbishLayout();
     }
 
     private static class PracticeHandler extends Handler {
@@ -276,4 +292,16 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
             void handleMessge(Message msg);
         }
     }
+
+    public void finishActivity(){
+        super.finish();
+    }
+
+    @Override
+    public void finish() {
+        practicePresenter.detachView(false);
+        this.setResult(1,new Intent());
+        super.finish();
+    }
+
 }

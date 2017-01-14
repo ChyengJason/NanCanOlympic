@@ -136,6 +136,35 @@ public class QuestionDbUtil {
         return false;
     }
 
+    public void updateList(List<QuestionModel> modelList){
+        try {
+            this.open();
+            db.beginTransaction();
+            for(int i=0;i<modelList.size();i++){
+                QuestionModel questionModel = modelList.get(i);
+                ContentValues cv = new ContentValues();
+                cv.put(questionDB.Question_Num, questionModel.getQuestionNum());
+                cv.put(questionDB.Question_Type, questionTypeToInt(questionModel.getQuestionType()));
+                cv.put(questionDB.Question_Done_Type, questionDoneTypeToInt(questionModel.getDone()));
+                cv.put(questionDB.Question_Catogory, questionModel.getCatogory());
+                cv.put(questionDB.Question_Text, questionModel.getQuestion());
+                cv.put(questionDB.Option_List, listToString(questionModel.getOptionList(), '#'));
+                cv.put(questionDB.Answer_List, listToString(questionModel.getAnswerList(), '#'));
+                cv.put(questionDB.isCollect, booleanToInt(questionModel.isCollected()));
+                cv.put(questionDB.isWrong, booleanToInt(questionModel.isWrong()));
+                db.update(QuestionDB.TABLE_NAME, cv, QuestionDB.Question_Num + "=? and "+QuestionDB.Question_Catogory+"=? ",
+                    new String[]{questionModel.getQuestionNum()+"",questionModel.getCatogory()});
+            }
+            db.setTransactionSuccessful();
+            Logger.e("更改数据库完成");
+        }catch (Exception e){
+            Logger.e(e);
+        }finally {
+            db.endTransaction();
+            this.close();
+        }
+    }
+
     // 获取所有数据
     public ArrayList<QuestionModel> getAllData(String catagory) {
         ArrayList<QuestionModel> items = new ArrayList<QuestionModel>();
@@ -224,6 +253,40 @@ public class QuestionDbUtil {
                 cursor.close();
         }
         return items;
+    }
+
+    public void removeCollectQuestion(String catogory){
+        try {
+            this.open();
+            db.beginTransaction();
+            ContentValues cv = new ContentValues();
+            cv.put(questionDB.isCollect, 0);
+            db.update(QuestionDB.TABLE_NAME, cv, QuestionDB.Question_Catogory+"=? ", new String[]{catogory});
+            db.setTransactionSuccessful();
+            Logger.e("移除收藏完成");
+        }catch (Exception e){
+            Logger.e(e);
+        }finally {
+            db.endTransaction();
+            this.close();
+        }
+    }
+
+    public void removeWrongQuestion(String catogory){
+        try {
+            this.open();
+            db.beginTransaction();
+            ContentValues cv = new ContentValues();
+            cv.put(questionDB.isWrong, 0);
+            db.update(QuestionDB.TABLE_NAME, cv, QuestionDB.Question_Catogory+"=? ", new String[]{catogory});
+            db.setTransactionSuccessful();
+            Logger.e("移除错题完成");
+        }catch (Exception e){
+            Logger.e(e);
+        }finally {
+            db.endTransaction();
+            this.close();
+        }
     }
 
     // 获取错误数据

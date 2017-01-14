@@ -150,4 +150,28 @@ public class QuestionModelLoad {
         int num = (int)SharedPreferencesUtil.getParam(mContext,key,0);
         return num;
     }
+
+    public static void removeWrongQuestionModels(Context mContext,String catogory){
+        try{
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            questionDbUtil.removeWrongQuestion(catogory);
+
+            String key = catogory+"_wrong_num";
+            SharedPreferencesUtil.setParam(mContext,key,0);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+    }
+
+    public static void removeCollectQuestionModels(Context mContext,String catogory){
+        try{
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            questionDbUtil.removeCollectQuestion(catogory);
+
+            String key = catogory+"_collect_num";
+            SharedPreferencesUtil.setParam(mContext,key,0);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+    }
 }

@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
         android:name=".App"
@@ -28,6 +29,9 @@
         <activity android:name=".ui.PracticeActivity"></activity>
         <activity android:name=".ui.BaseActivity"></activity>
         <activity android:name=".ui.WrongActivity"></activity>
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:theme="@android:style/Theme.Translucent" />
     </application>
 
 </manifest>
