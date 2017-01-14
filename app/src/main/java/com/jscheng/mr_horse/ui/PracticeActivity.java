@@ -213,7 +213,13 @@ public class PracticeActivity extends BaseActivity implements AnswerView {
 
     @OnClick(R.id.practise_title_back)
     public void TitleBack(){
-        super.finish();
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        answerPresenter.detachView(false);
+        super.onBackPressed();
     }
 
     @OnClick(R.id.questions_layout)

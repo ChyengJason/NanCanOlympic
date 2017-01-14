@@ -148,16 +148,12 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
 
     @OnClick(R.id.collect_layout)
     public void onClickCollectLayout(){
-        Intent intent = new Intent(this,WrongActivity.class);
-        intent.putExtra("catogory", Constants.COLLECT);
-        startActivity(intent);
+       mainPresenter.onClickCollect();
     }
 
     @OnClick(R.id.cuoti_layout)
-    public void onClickCuotiLayout(){
-        Intent intent = new Intent(this,WrongActivity.class);
-        intent.putExtra("catogory", Constants.WRONG);
-        startActivity(intent);
+    public void onClickWrongLayout(){
+        mainPresenter.onClickWrong();
     }
 
     @OnClick(R.id.share_layout)

@@ -226,7 +226,7 @@ public class QuestionDbUtil {
         return items;
     }
 
-    // 获取收藏数据
+    // 获取错误数据
     public ArrayList<QuestionModel> getWrongData(String catagory) {
         ArrayList<QuestionModel> items = new ArrayList<QuestionModel>();
         Cursor cursor = null;

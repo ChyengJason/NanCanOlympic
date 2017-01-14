@@ -6,6 +6,7 @@ import com.jscheng.mr_horse.App;
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.presenter.MainPresenter;
 import com.jscheng.mr_horse.ui.PracticeActivity;
+import com.jscheng.mr_horse.ui.WrongActivity;
 import com.jscheng.mr_horse.utils.Constants;
 import com.jscheng.mr_horse.utils.SharedPreferencesUtil;
 import com.jscheng.mr_horse.view.MainView;
@@ -48,31 +49,33 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void detachView(boolean retainInstance) {
-        if(retainInstance==false)
+        if(retainInstance==false) {
             this.mainView = null;
+            this.context = null;
+        }
     }
 
     @Override
     public void onClickFljc() {
         Intent intent = new Intent(context, PracticeActivity.class);
-        intent.putExtra("filename", Constants.FLJC_JSON_NAME);
-        intent.putExtra("catogory",Constants.FLJC);
+        intent.putExtra(Constants.FILENAME, Constants.FLJC_JSON_NAME);
+        intent.putExtra(Constants.CATOGORY,Constants.FLJC);
         context.startActivity(intent);
     }
 
     @Override
     public void onClickMkszy() {
         Intent intent = new Intent(context, PracticeActivity.class);
-        intent.putExtra("filename", Constants.MKSZY_JSON_NAME);
-        intent.putExtra("catogory",Constants.MKSZY);
+        intent.putExtra(Constants.FILENAME, Constants.MKSZY_JSON_NAME);
+        intent.putExtra(Constants.CATOGORY,Constants.MKSZY);
         context.startActivity(intent);
     }
 
     @Override
     public void onClickMzdsx() {
         Intent intent = new Intent(context, PracticeActivity.class);
-        intent.putExtra("filename", Constants.MZDSX_JSON_NAME);
-        intent.putExtra("catogory",Constants.MZDSX);
+        intent.putExtra(Constants.FILENAME, Constants.MZDSX_JSON_NAME);
+        intent.putExtra(Constants.CATOGORY,Constants.MZDSX);
         context.startActivity(intent);
 
     }
@@ -80,16 +83,16 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void onClickSxdd() {
         Intent intent = new Intent(context, PracticeActivity.class);
-        intent.putExtra("filename", Constants.SXDD_JSON_NAME);
-        intent.putExtra("catogory",Constants.SXDD);
+        intent.putExtra(Constants.FILENAME, Constants.SXDD_JSON_NAME);
+        intent.putExtra(Constants.CATOGORY,Constants.SXDD);
         context.startActivity(intent);
     }
 
     @Override
     public void onClickZgjds() {
         Intent intent = new Intent(context, PracticeActivity.class);
-        intent.putExtra("filename", Constants.ZGJDS_JSON_NAME);
-        intent.putExtra("catogory",Constants.MKSZY);
+        intent.putExtra(Constants.FILENAME, Constants.ZGJDS_JSON_NAME);
+        intent.putExtra(Constants.CATOGORY,Constants.ZGJDS);
         context.startActivity(intent);
     }
     @Override
@@ -117,5 +120,19 @@ public class MainPresenterImpl implements MainPresenter {
             mainView.showHaveDoneNum(haveDoneNum+"");
             mainView.showPunchDayNum(punchday+"");
         }
+    }
+
+    @Override
+    public void onClickCollect() {
+        Intent intent = new Intent(context,WrongActivity.class);
+        intent.putExtra(Constants.CATOGORY, Constants.COLLECT);
+        context.startActivity(intent);
+    }
+
+    @Override
+    public void onClickWrong() {
+        Intent intent = new Intent(context,WrongActivity.class);
+        intent.putExtra(Constants.CATOGORY, Constants.WRONG);
+        context.startActivity(intent);
     }
 }

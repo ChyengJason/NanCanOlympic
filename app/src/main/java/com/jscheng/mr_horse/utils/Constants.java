@@ -22,18 +22,24 @@ public class Constants {
     public static final String SXDD = "sxdd";
 
     public static final String SXDD_JSON_NAME = "sxdd.json";
+
+    public static final String SXDD_NAME = "思修道德";
     /**
      * 法律基础
      */
     public static final String FLJC = "fljc";
 
     public static final String FLJC_JSON_NAME = "fljc.json";
+
+    public static final String FLJC_NAME = "法律基础";
     /**
      * 马克思主义
      */
     public static final String MKSZY = "mkszy";
 
     public static final String MKSZY_JSON_NAME = "mkszy.json";
+
+    public static final String MKSZY_NAME = "马克思主义";
 
     /**
      * 中国近代史
@@ -42,6 +48,8 @@ public class Constants {
 
     public static final String ZGJDS_JSON_NAME = "zgjds.json";
 
+    public static final String ZGJDS_NAME = "中国近代史";
+
     /**
      *毛泽东思想
      */
@@ -49,15 +57,19 @@ public class Constants {
 
     public static final String MZDSX_JSON_NAME = "mzdsx.json";
 
+    public static final String MZDSX_NAME = "毛概理论";
     /**
      * 收藏
      */
     public static final String COLLECT = "collect";
 
+    public static final String COLLECT_NAME = "收藏题目";
     /**
      *  错题训练
      */
     public static final String WRONG = "wrong";
+
+    public static final String WRONG_NAME = "错题训练";
     /**
      * 主题模式
      */
@@ -74,4 +86,12 @@ public class Constants {
      * 打卡的日数
      */
     public static final String PUNCH_DAY_NUM="punch_day_num";
+    /**
+     * catogory
+     */
+    public static final String CATOGORY = "catogory";
+    /**
+     * filename
+     */
+    public static final String FILENAME = "filename";
 }

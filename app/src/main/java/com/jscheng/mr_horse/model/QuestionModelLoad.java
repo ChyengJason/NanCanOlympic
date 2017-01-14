@@ -68,6 +68,10 @@ public class QuestionModelLoad {
             questionModel.setCollected(true);
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             questionDbUtil.update(questionModel);
+
+            String key = questionModel.getCatogory()+"_collect_num";
+            int num = (int)SharedPreferencesUtil.getParam(mContext,key,0);
+            SharedPreferencesUtil.setParam(mContext,key,num+1);
         }catch (Exception e){
             Logger.e(e);
         }
@@ -78,28 +82,72 @@ public class QuestionModelLoad {
             questionModel.setCollected(false);
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             questionDbUtil.update(questionModel);
+
+            String key = questionModel.getCatogory()+"_collect_num";
+            int num = (int)SharedPreferencesUtil.getParam(mContext,key,1);
+            SharedPreferencesUtil.setParam(mContext,key,num-1);
         }catch (Exception e){
             Logger.e(e);
         }
     }
 
-    public static void setQuestionModelToWrongCollect(Context mContext,QuestionModel questionModel){
+    public static void setQuestionModelToWrong(Context mContext,QuestionModel questionModel){
         try{
             questionModel.setWrong(true);
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             questionDbUtil.update(questionModel);
+
+            String key = questionModel.getCatogory()+"_wrong_num";
+            int num = (int)SharedPreferencesUtil.getParam(mContext,key,0);
+            SharedPreferencesUtil.setParam(mContext,key,num+1);
         }catch (Exception e){
             Logger.e(e);
         }
     }
 
-    public static void setQuestionModelOutWrongCollect(Context mContext,QuestionModel questionModel){
+    public static void setQuestionModelOutWrong(Context mContext,QuestionModel questionModel){
         try{
             questionModel.setWrong(false);
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             questionDbUtil.update(questionModel);
+
+            String key = questionModel.getCatogory()+"_wrong_num";
+            int num = (int)SharedPreferencesUtil.getParam(mContext,key,1);
+            SharedPreferencesUtil.setParam(mContext,key,num-1);
         }catch (Exception e){
             Logger.e(e);
         }
+    }
+
+    public static List<QuestionModel> getCollectQuestionModel(Context mContext,String catogory){
+        try{
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            return questionDbUtil.getCollectedData(catogory);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+        return new ArrayList<>();
+    }
+
+    public static List<QuestionModel> getWrongQuestionModel(Context mContext,String catogory){
+        try{
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            return questionDbUtil.getWrongData(catogory);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+        return new ArrayList<>();
+    }
+
+    public static Integer getWrongQuestionModelNum(Context mContext,String catogory){
+        String key = catogory+"_wrong_num";
+        int num = (int)SharedPreferencesUtil.getParam(mContext,key,0);
+        return num;
+    }
+
+    public static Integer getCollectQuestionModelNum(Context mContext,String catogory){
+        String key = catogory+"_collect_num";
+        int num = (int)SharedPreferencesUtil.getParam(mContext,key,0);
+        return num;
     }
 }

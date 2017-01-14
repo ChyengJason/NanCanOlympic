@@ -50,7 +50,6 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     private boolean loading;
     private Observable loadSubscription;
     private Observable storeSubscription;
-//    private Observable dbCopySubscription;
     private Subscriber subscriber;
 
     public AnswerPresenterImpl(Context context, Intent intent){
@@ -58,9 +57,9 @@ public class AnswerPresenterImpl implements AnswerPresenter{
         this.patternStatus = PatternStatus.DATI_PATTERN;//默认是答题模式，测试使用背题模式
         this.questionModelList = new ArrayList();
         this.pageNum = 0;
-        this.catogory = intent.getStringExtra("catogory");
+        this.catogory = intent.getStringExtra(Constants.CATOGORY);
         if(!catogory.equals(Constants.COLLECT) && !(catogory.equals(Constants.WRONG))){
-            this.filename = intent.getStringExtra("filename");
+            this.filename = intent.getStringExtra(Constants.FILENAME);
         }else {
             this.filename = "";
         }
@@ -76,6 +75,9 @@ public class AnswerPresenterImpl implements AnswerPresenter{
     public void detachView(boolean retainInstance) {
         if(!retainInstance) {
             this.mAnswerView = null;
+            this.mContext = null;
+            if (subscriber!=null)
+                subscriber.unsubscribe();
         }
     }
 
@@ -126,20 +128,6 @@ public class AnswerPresenterImpl implements AnswerPresenter{
             }
         });
 
-//        dbCopySubscription = Observable.create(new Observable.OnSubscribe<Object>() {
-//            @Override
-//            public void call(Subscriber<? super Object> subscriber) {
-//                if(isFirst){
-//                    try {
-//                        QuestionDB.CopySqliteFileFromRawToDatabases(mContext,"Mr_Horse.db");
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-////                SharedPreferencesUtil.setParam(mContext,"first",false);
-//                subscriber.onCompleted();
-//            }
-//        });
 
         subscriber = new Subscriber<List<QuestionModel>>() {
             @Override
@@ -245,7 +233,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
         questionModelList.get(postion).setDone(QuestionDoneType.DONE_WRONG);
         QuestionModelLoad.setQuestionModelDone(mContext,questionModelList.get(postion));
         //加入错题集
-        QuestionModelLoad.setQuestionModelToWrongCollect(mContext,questionModelList.get(postion));
+        QuestionModelLoad.setQuestionModelToWrong(mContext,questionModelList.get(postion));
     }
 
     public void onClickDatiPattern() {
@@ -292,6 +280,7 @@ public class AnswerPresenterImpl implements AnswerPresenter{
         if(loading || questionModelList.isEmpty())
             return;
         QuestionModel model = questionModelList.get(pageNum);
+
         if(model.isCollected()){
             model.setCollected(false);
             QuestionModelLoad.setQuestionModelOutCollect(mContext,model);
