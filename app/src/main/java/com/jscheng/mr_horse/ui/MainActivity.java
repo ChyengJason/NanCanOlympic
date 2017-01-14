@@ -248,4 +248,20 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
                 break;
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mainPresenter.onActivityForResult();
+    }
+
+    public void startActivityForResult(Intent intent){
+        this.startActivityForResult(intent,1);
+    }
+
+    @Override
+    public void finish() {
+        mainPresenter.detachView(false);
+        super.finish();
+    }
 }
