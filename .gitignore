@@ -7,4 +7,4 @@
 /build
 /captures
 *~
-/app/src/main/java/com/jscheng/mr_horse/utils/Config.java
+/app/src/main/java/com/jscheng/mr_horse/utils/Configs.java
