@@ -91,4 +91,8 @@ public class Constants {
      * classification
      */
     public static final String CLASSIFICATION = "classification";
+    /**
+     * dowloadUrl
+     */
+    public static final String DOWNLOAD_URL = "http://pre.im/naocan";
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/root_view_bg">
+
+    <include layout="@layout/normal_toolbar"/>
+
+    <ImageView
+        android:id="@+id/app_image"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitXY"
+        android:clickable="true"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/app_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_gravity="center_horizontal"
+        android:textColor="?attr/text_color"
+        android:textSize="@dimen/big_font"
+        android:layout_centerVertical="true"/>
+
+    <!--<TextView-->
+        <!--android:id="@+id/app_descripe"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="@dimen/much_big_margin"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:text="@string/person_app"-->
+        <!--android:textColor="?attr/text_color"-->
+        <!--android:textSize="@dimen/big_font"-->
+        <!--android:layout_centerVertical="true"/>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/person_egg"
+        android:textColor="?attr/text_color"
+        android:textSize="@dimen/small_font"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/app_email"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/person_email"
+        android:textColor="?attr/text_color"
+        android:textSize="@dimen/big_font"
+        android:layout_centerVertical="true"/>
+</LinearLayout>

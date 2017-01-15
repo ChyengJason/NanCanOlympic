@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/practise_toolbar_height"
+    android:background="?attr/colorPrimary">
+
+    <ImageButton
+        android:id="@+id/title_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:src="?attr/header_icon_back"
+        android:background="?attr/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_toRightOf="@+id/title_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/big_margin"
+        android:text="@string/about"
+        android:textColor="?attr/confirm_btn_text_color"
+        android:textSize="@dimen/big_font"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

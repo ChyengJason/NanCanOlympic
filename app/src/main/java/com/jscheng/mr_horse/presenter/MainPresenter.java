@@ -13,4 +13,6 @@ public interface MainPresenter extends MvpPresenter {
     void onActivityForResult();
     void onClickCollect();
     void onClickWrong();
+    void onClickAbout();
+    void onClickShareLayout();
 }

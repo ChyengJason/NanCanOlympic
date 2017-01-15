@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">脑残奥运</string>
+    <string name="app_name">头大的烦恼</string>
     <string name="dati_pattern">答题模式</string>
-    <string name="beiti_pattern">背题模式</string>
+    <string name="beiti_pattern">看题模式</string>
     <string name="colloect">收藏</string>
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>
     <string name="today_done_num">今日刷题/道</string>
-    <string name="punch_day_num">打卡/天</string>
+    <string name="punch_day_num">已看/天</string>
     <string name="cuoti_xunlian">错题训练</string>
     <string name="collect_xunlian">题目收藏</string>
     <string name="about">关于</string>
@@ -19,4 +19,8 @@
     <string name="sxdd">思修道德基础</string>
     <string name="zgjds">中国近代史</string>
     <string name="remove">移除</string>
+    <string name="person_app">个人开发应用</string>
+    <string name="person_egg">(有彩蛋哦)</string>
+    <string name="person_email">联系邮箱:13jscheng@stu.edu.cn</string>
+    <string name="download_address">下载地址</string>
 </resources>

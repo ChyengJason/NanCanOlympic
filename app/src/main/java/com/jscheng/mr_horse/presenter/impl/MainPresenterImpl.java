@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.jscheng.mr_horse.App;
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.presenter.MainPresenter;
+import com.jscheng.mr_horse.ui.AboutActivity;
 import com.jscheng.mr_horse.ui.PracticeActivity;
 import com.jscheng.mr_horse.ui.WrongActivity;
 import com.jscheng.mr_horse.utils.Constants;
@@ -126,6 +127,16 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context,WrongActivity.class);
         intent.putExtra(Constants.CATOGORY, Constants.WRONG);
         mainView.startActivityForResult(intent);
+    }
+
+    @Override
+    public void onClickAbout() {
+        context.startActivity(new Intent(context, AboutActivity.class));
+    }
+
+    @Override
+    public void onClickShareLayout() {
+        mainView.showShareDialog();
     }
 
     private void showDateAndDoneNum(){

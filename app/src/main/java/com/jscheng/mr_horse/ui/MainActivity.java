@@ -1,21 +1,26 @@
 package com.jscheng.mr_horse.ui;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.HeadViewPaperAdapter;
 import com.jscheng.mr_horse.presenter.MainPresenter;
 import com.jscheng.mr_horse.presenter.impl.MainPresenterImpl;
+import com.jscheng.mr_horse.utils.Configs;
 import com.jscheng.mr_horse.utils.Constants;
+import com.jscheng.mr_horse.utils.ShareUtil;
 import com.jscheng.mr_horse.view.MainView;
+import com.jscheng.mr_horse.wiget.ShareDialog;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +32,7 @@ import butterknife.OnClick;
 /**
  * Created by cheng on 17-1-8.
  */
-public class MainActivity extends BaseActivity implements MainView,View.OnClickListener{
+public class MainActivity extends BaseActivity implements MainView,View.OnClickListener,ShareDialog.OnShareSelectCallBack{
     @BindView(R.id.head_viewpaper)
     ViewPager headViewPager;
     @BindView(R.id.sun_night)
@@ -42,14 +47,21 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
     private View headview_1;
     private View headview_2;
     private MainPresenter mainPresenter;
+    private IWXAPI wxApi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        regToWx();
         initViewPaper();
         initPresenter();
+    }
+
+    private void regToWx() {
+        wxApi = WXAPIFactory.createWXAPI(this, Configs.WX_APP_ID,true);
+        wxApi.registerApp(Configs.WX_APP_ID);
     }
 
     private void initPresenter() {
@@ -134,7 +146,7 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
 
     @OnClick(R.id.about_layout)
     public void onClickAboutLayout(){
-
+            mainPresenter.onClickAbout();
     }
 
     @OnClick(R.id.setting_layout)
@@ -154,7 +166,7 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
 
     @OnClick(R.id.share_layout)
     public void onClickShareLayout(){
-
+        mainPresenter.onClickShareLayout();
     }
 
     @Override
@@ -171,5 +183,27 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
     public void finish() {
         mainPresenter.detachView(false);
         super.finish();
+    }
+
+    public void showShareDialog() {
+        ShareDialog dialog = new ShareDialog();
+        dialog.setOnShareSelectCallBack(this);
+        dialog.show(getSupportFragmentManager());
+    }
+
+    @Override
+    public void onShareSelect(int position) {
+        switch (position){
+            case ShareDialog.CIRCLE:
+                ShareUtil.sendToCircle(wxApi,Constants.DOWNLOAD_URL, getString(R.string.app_name), getString(R.string.download_address),
+                        BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+                break;
+            case ShareDialog.WEIXIN:
+                ShareUtil.sendToWeiXin(wxApi,Constants.DOWNLOAD_URL, getString(R.string.app_name), getString(R.string.download_address),
+                        BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+                break;
+            default:
+                break;
+        }
     }
 }

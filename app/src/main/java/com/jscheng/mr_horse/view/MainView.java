@@ -12,4 +12,5 @@ public interface MainView extends MvpView {
     void showHaveDoneNum(String s);
     void showPunchDayNum(String s);
     void startActivityForResult(Intent intent);
+    void showShareDialog();
 }

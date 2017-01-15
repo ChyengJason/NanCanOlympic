@@ -29,6 +29,7 @@
         <activity android:name=".ui.PracticeActivity"></activity>
         <activity android:name=".ui.BaseActivity"></activity>
         <activity android:name=".ui.WrongActivity"></activity>
+        <activity android:name=".ui.AboutActivity"></activity>
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:theme="@android:style/Theme.Translucent" />
