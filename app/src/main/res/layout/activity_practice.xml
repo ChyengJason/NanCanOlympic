@@ -40,7 +40,6 @@
         android:background="?attr/root_view_bg"
         android:visibility="gone"
         android:layout_centerInParent="true"
-        android:visibility="gone"
         app:mainColor="@color/deep_blue"
         app:secondaryColor="@color/bottom_gray"
         app:textColor="@color/bottom_gray" />
