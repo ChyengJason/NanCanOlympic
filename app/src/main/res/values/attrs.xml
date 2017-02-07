@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="app_icon" format="reference"/>
     <attr name="text_color" format="reference|color" />
     <attr name="root_view_bg" format="reference|color" />
     <attr name="main_view_bg" format="reference|color"/>
@@ -17,6 +18,7 @@
     <attr name="left_pattern_selector" format="reference"/>
     <attr name="right_pattern_selector" format="reference"/>
     <attr name="pattern_selector_text_color" format="reference"/>
+    <attr name="setting_divider_color" format="reference"/>
 
     <attr name="practise_a_s" format="reference"/>
     <attr name="practise_b_s" format="reference"/>

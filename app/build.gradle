@@ -41,6 +41,7 @@ dependencies {
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.android.support:cardview-v7:23.0.+'
     compile 'com.pnikosis:materialish-progress:1.7'
+    compile 'com.kyleduo.switchbutton:library:1.4.4'
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'

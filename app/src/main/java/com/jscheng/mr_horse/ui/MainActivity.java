@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.jscheng.mr_horse.App;
 import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.HeadViewPaperAdapter;
 import com.jscheng.mr_horse.presenter.MainPresenter;
@@ -151,7 +152,7 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
 
     @OnClick(R.id.setting_layout)
     public void onClickSettingLayout(){
-
+        mainPresenter.onClickSetting();
     }
 
     @OnClick(R.id.collect_layout)
@@ -195,12 +196,12 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
     public void onShareSelect(int position) {
         switch (position){
             case ShareDialog.CIRCLE:
-                ShareUtil.sendToCircle(wxApi,Constants.DOWNLOAD_URL, getString(R.string.app_name), getString(R.string.download_address),
-                        BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+                ShareUtil.sendToCircle(wxApi,Constants.DOWNLOAD_URL, getString(R.string.app_name), getString(R.string.app_descripe),
+                        BitmapFactory.decodeResource(getResources(), R.mipmap.icon_night));
                 break;
             case ShareDialog.WEIXIN:
-                ShareUtil.sendToWeiXin(wxApi,Constants.DOWNLOAD_URL, getString(R.string.app_name), getString(R.string.download_address),
-                        BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+                ShareUtil.sendToWeiXin(wxApi,Constants.DOWNLOAD_URL, getString(R.string.app_name), getString(R.string.app_descripe),
+                        BitmapFactory.decodeResource(getResources(), R.mipmap.icon_night));
                 break;
             default:
                 break;

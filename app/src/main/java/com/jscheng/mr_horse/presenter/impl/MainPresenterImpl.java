@@ -7,6 +7,7 @@ import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.presenter.MainPresenter;
 import com.jscheng.mr_horse.ui.AboutActivity;
 import com.jscheng.mr_horse.ui.PracticeActivity;
+import com.jscheng.mr_horse.ui.SettingActivity;
 import com.jscheng.mr_horse.ui.WrongActivity;
 import com.jscheng.mr_horse.utils.Constants;
 import com.jscheng.mr_horse.utils.SharedPreferencesUtil;
@@ -137,6 +138,11 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void onClickShareLayout() {
         mainView.showShareDialog();
+    }
+
+    @Override
+    public void onClickSetting() {
+        context.startActivity(new Intent(context, SettingActivity.class));
     }
 
     private void showDateAndDoneNum(){

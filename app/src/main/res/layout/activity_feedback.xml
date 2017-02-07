@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/secondary_view_bg">
+
+    <include layout="@layout/normal_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/middle_margin"
+        android:background="@drawable/solid_edittext">
+        <EditText
+            android:id="@+id/feed_back_edit"
+            android:layout_margin="@dimen/middle_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="?attr/text_color"
+            android:textSize="@dimen/middle_font"
+            android:background="?attr/secondary_view_bg"
+            android:gravity="top" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/confirm"
+        android:layout_marginTop="@dimen/middle_margin"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="@dimen/practise_option_item_confirm_width"
+        android:layout_height="@dimen/practise_option_item_confirm_height"
+        android:layout_marginBottom="@dimen/practise_option_item_confirm_top_margin"
+        android:background="@drawable/corner_circle"
+        android:textColor="?attr/confirm_btn_text_color"
+        android:text="@string/confirm"
+        android:textSize="@dimen/big_font"/>
+</LinearLayout>

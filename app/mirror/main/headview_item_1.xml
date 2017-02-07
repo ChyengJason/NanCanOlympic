@@ -1,0 +1,16 @@
+<!-- [ Mirror metadata ] generatedAt: 1485766265415 -->
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ 
+
+Valid attributes on <screen> tag: theme="@style/someTheme" inEditMode="false" overlay="@drawable/mockup" -->
+<screen>
+    <_content layout="@layout/headview_item_1">
+        <!-- ImageView Examples:
+        <fljc_book src="@drawable/image_resource" />
+        <fljc_book src="relative_path/image.jpg" /> -->
+        <fljc_book />
+        <mkszy_book />
+        <mzdsx_book />
+    </_content>
+</screen>

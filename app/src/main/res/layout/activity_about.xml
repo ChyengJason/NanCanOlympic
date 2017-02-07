@@ -15,7 +15,7 @@
         android:layout_gravity="center_horizontal"
         android:scaleType="fitXY"
         android:clickable="true"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="?attr/app_icon"/>
 
     <TextView
         android:id="@+id/app_info"

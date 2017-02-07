@@ -28,6 +28,7 @@
     <dimen name="wrong_item_height">75dp</dimen>
     <dimen name="wrong_item_left_circle">14dp</dimen>
     <dimen name="wrong_item_right_width">100dp</dimen>
+    <dimen name="activity_setting_item">48dp</dimen>
     <!-- font -->
     <dimen name="small_spacing">6sp</dimen>
     <dimen name="small_font">12sp</dimen>
