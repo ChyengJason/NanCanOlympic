@@ -1,0 +1,28 @@
+<!-- [ Mirror metadata ] generatedAt: 1485766265421 -->
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ 
+
+Valid attributes on <screen> tag: theme="@style/someTheme" inEditMode="false" overlay="@drawable/mockup" -->
+<screen>
+    <_content layout="@layout/activity_wrong_chooses">
+        <!-- TextView Examples:
+        <wrong_circle text="@string/string_resource" />
+        <wrong_circle text="Text literal" textSize="14sp" /> -->
+        <wrong_circle />
+        <fljc_num_tv />
+        <fljc_delete_tv />
+        <wrong_circle2 />
+        <mkszy_num_tv />
+        <mkszy_delete_tv />
+        <wrong_circle3 />
+        <mzdsx_num_tv />
+        <mzdsx_delete_tv />
+        <wrong_circle4 />
+        <sxdd_num_tv />
+        <sxdd_delete_tv />
+        <wrong_circle5 />
+        <zgjds_num_tv />
+        <zgjds_delete_tv />
+    </_content>
+</screen>

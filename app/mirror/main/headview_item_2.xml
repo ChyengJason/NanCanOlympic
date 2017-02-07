@@ -1,0 +1,15 @@
+<!-- [ Mirror metadata ] generatedAt: 1485766265424 -->
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ 
+
+Valid attributes on <screen> tag: theme="@style/someTheme" inEditMode="false" overlay="@drawable/mockup" -->
+<screen>
+    <_content layout="@layout/headview_item_2">
+        <!-- ImageView Examples:
+        <sxdd_book src="@drawable/image_resource" />
+        <sxdd_book src="relative_path/image.jpg" /> -->
+        <sxdd_book />
+        <zgjds_book />
+    </_content>
+</screen>

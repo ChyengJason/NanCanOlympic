@@ -1,0 +1,25 @@
+<!-- [ Mirror metadata ] generatedAt: 1485766265425 -->
+<!-- Generated screen file. Fill the id tags below with content with
+which to populate your previewed layout. For a complete specification
+of sample data, please see http://jimulabs.com/sample-data-specifications/ 
+
+Valid attributes on <screen> tag: theme="@style/someTheme" inEditMode="false" overlay="@drawable/mockup" -->
+<screen>
+    <actionbar showTabsFor="@id/head_viewpaper"/>
+    <_content layout="@layout/activity_main">
+        <head_viewpaper>
+            <!-- Add pages to your ViewPager here like so:
+            <_page title="page title" icon="@drawable/my_icon"/>
+            <_page layout="@layout/my_page_layout">
+                <my_image_view src="@drawable/my_image"/>
+            </_page>
+            -->
+        </head_viewpaper>
+        <!-- TextView Examples:
+        <date_tv text="@string/string_resource" />
+        <date_tv text="Text literal" textSize="14sp" /> -->
+        <date_tv />
+        <today_done_num_text />
+        <punch_day_num_text />
+    </_content>
+</screen>
