@@ -38,6 +38,7 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:background="?attr/root_view_bg"
+        android:visibility="gone"
         android:layout_centerInParent="true"
         app:mainColor="@color/deep_blue"
         app:secondaryColor="@color/bottom_gray"
