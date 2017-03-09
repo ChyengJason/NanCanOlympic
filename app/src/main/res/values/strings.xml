@@ -26,5 +26,7 @@
     <string name="download_address">下载地址</string>
     <string name="auto_update">自动更新版本</string>
     <string name="feed_back">意见反馈</string>
+    <string name="content_not_null">内容不为空</string>
+    <string name="thanks_for_your_advise">发送成功，谢谢您的反馈！</string>
     <string name="check_update">检查更新</string>
 </resources>

@@ -119,7 +119,6 @@ public class PracticePresenterImpl implements PracticePresenter {
             @Override
             public void onError(Throwable e) {
                 mPracticeView.showError(e.toString());
-                Logger.e(e.toString()+"  "+catogory.toString()+"  "+classification);
             }
 
             @Override
@@ -205,6 +204,7 @@ public class PracticePresenterImpl implements PracticePresenter {
                 Logger.e(e.toString());
                 mPracticeView.showError(e.toString());
                 mPracticeView.failProcessing();
+
             }
 
             @Override
@@ -414,6 +414,7 @@ public class PracticePresenterImpl implements PracticePresenter {
      */
     @Override
     public void onItemSelected(int position) {
+        if(mPracticeView==null)return;
         pageNum = position;
         mPracticeView.changePaperView(pageNum,false,0);
         showCollect();

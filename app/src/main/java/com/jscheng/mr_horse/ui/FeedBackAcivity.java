@@ -54,7 +54,7 @@ public class FeedBackAcivity extends BaseActivity{
     @OnClick(R.id.confirm)
     public void onClickConfirm(){
         if(feedBackEdit.getText().toString().isEmpty() || feedBackEdit.getText().toString().equals("")){
-            Toast.makeText(this,"内容不为空",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getString(R.string.content_not_null),Toast.LENGTH_SHORT).show();
             return;
         }
         String content = feedBackEdit.getText().toString();
@@ -89,7 +89,7 @@ public class FeedBackAcivity extends BaseActivity{
 
                         @Override
                         public void onNext(String s) {
-                            Toast.makeText(FeedBackAcivity.this,"发送成功，谢谢您的反馈！",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FeedBackAcivity.this,getString(R.string.thanks_for_your_advise),Toast.LENGTH_SHORT).show();
                             confirm.setClickable(true);
                             feedBackEdit.setText("");
                             View v = getCurrentFocus();
