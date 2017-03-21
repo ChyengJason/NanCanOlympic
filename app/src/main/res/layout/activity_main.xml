@@ -7,11 +7,33 @@
 
     <include layout="@layout/sun_light_main_toolbar"/>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/head_viewpaper"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/head_paperview_height"
-        android:background="?attr/secondary_view_bg"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="?attr/secondary_view_bg">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/head_viewpaper"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/head_paperview_height"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_gravity="center_horizontal">
+            <ImageView
+                android:id="@+id/head_circle_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/solid_circle"/>
+            <ImageView
+                android:id="@+id/head_circle_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/middle_margin"
+                android:src="@drawable/hollow_circle"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_marginTop="@dimen/middle_margin"
@@ -81,10 +103,10 @@
         android:background="?attr/secondary_view_bg"/>
 
     <!--<TextView-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginTop="@dimen/middle_margin"-->
-        <!--android:textColor="?attr/secondary_text_color"-->
-        <!--android:text="本应用目前是开发版本\n      许多功能未实现"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:layout_marginTop="@dimen/middle_margin"-->
+    <!--android:textColor="?attr/secondary_text_color"-->
+    <!--android:text="本应用目前是开发版本\n      许多功能未实现"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content" />-->
 </LinearLayout>

@@ -81,7 +81,7 @@ public class QuestionDbUtil {
             db.setTransactionSuccessful();
             Logger.e("已经存入数据库");
         }catch (Exception e){
-            Logger.e(e);
+//            Logger.e(e);
         }finally {
             db.endTransaction();
             this.close();

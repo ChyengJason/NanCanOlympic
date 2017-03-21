@@ -19,6 +19,8 @@
     <attr name="right_pattern_selector" format="reference"/>
     <attr name="pattern_selector_text_color" format="reference"/>
     <attr name="setting_divider_color" format="reference"/>
+    <attr name="search_divider_color" format="reference" />
+    <attr name="search_hint_text_color" format="reference" />
 
     <attr name="practise_a_s" format="reference"/>
     <attr name="practise_b_s" format="reference"/>

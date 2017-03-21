@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jscheng.mr_horse.App;
@@ -44,7 +45,10 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
     TextView puchDayView;
     @BindView(R.id.today_done_num_text)
     TextView todayDoneNumView;
-
+    @BindView(R.id.head_circle_left)
+    ImageView headCircleLeftView;
+    @BindView(R.id.head_circle_right)
+    ImageView headCircleRightView;
     private View headview_1;
     private View headview_2;
     private MainPresenter mainPresenter;
@@ -78,11 +82,33 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
         viewList.add(headview_1);
         viewList.add(headview_2);
         headViewPager.setAdapter(new HeadViewPaperAdapter(viewList));
+        setHeadViewPagerListener();
         (headview_1.findViewById(R.id.fljc_book)).setOnClickListener(this);
         (headview_1.findViewById(R.id.mkszy_book)).setOnClickListener(this);
         (headview_1.findViewById(R.id.mzdsx_book)).setOnClickListener(this);
         (headview_2.findViewById(R.id.sxdd_book)).setOnClickListener(this);
         (headview_2.findViewById(R.id.zgjds_book)).setOnClickListener(this);
+    }
+
+    private void setHeadViewPagerListener() {
+        headViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0){
+                    headCircleLeftView.setImageResource(R.drawable.solid_circle);
+                    headCircleRightView.setImageResource(R.drawable.hollow_circle);
+                }else {
+                    headCircleLeftView.setImageResource(R.drawable.hollow_circle);
+                    headCircleRightView.setImageResource(R.drawable.solid_circle);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
     }
 
     @Override
@@ -168,6 +194,11 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
     @OnClick(R.id.share_layout)
     public void onClickShareLayout(){
         mainPresenter.onClickShareLayout();
+    }
+
+    @OnClick(R.id.search_layout)
+    public void onClickSearchLayout() {
+        mainPresenter.onClickSearchLayout();
     }
 
     @Override

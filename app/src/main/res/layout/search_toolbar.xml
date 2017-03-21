@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/practise_toolbar_height"
+    android:background="?attr/colorPrimary">
+
+    <ImageButton
+        android:id="@+id/title_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:src="?attr/header_icon_back"
+        android:background="?attr/colorPrimary"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/title_back"
+        android:layout_marginLeft="@dimen/big_margin"
+        android:layout_marginTop="@dimen/middle_margin"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/title_search_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search"
+            android:textColorHint= "?attr/search_hint_text_color"
+            android:textColor= "?attr/confirm_btn_text_color"
+            android:textSize="@dimen/big_font"
+            android:imeOptions="actionSearch"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:textCursorDrawable="@null"
+            android:singleLine="true"
+            android:inputType="text"
+            android:maxLength="35"/>
+        <TextView
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_width="280dp"
+            android:layout_height="1dp"
+            android:background="?attr/search_divider_color"/>
+    </LinearLayout>
+
+</RelativeLayout>

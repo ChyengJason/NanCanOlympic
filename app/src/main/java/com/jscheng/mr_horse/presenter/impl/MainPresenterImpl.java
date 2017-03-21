@@ -7,6 +7,7 @@ import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.presenter.MainPresenter;
 import com.jscheng.mr_horse.ui.AboutActivity;
 import com.jscheng.mr_horse.ui.PracticeActivity;
+import com.jscheng.mr_horse.ui.SearchActivity;
 import com.jscheng.mr_horse.ui.SettingActivity;
 import com.jscheng.mr_horse.ui.WrongActivity;
 import com.jscheng.mr_horse.utils.Constants;
@@ -143,6 +144,11 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void onClickSetting() {
         context.startActivity(new Intent(context, SettingActivity.class));
+    }
+
+    @Override
+    public void onClickSearchLayout() {
+        context.startActivity(new Intent(context, SearchActivity.class));
     }
 
     private void showDateAndDoneNum(){

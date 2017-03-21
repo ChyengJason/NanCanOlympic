@@ -39,4 +39,5 @@ public class HeadViewPaperAdapter extends PagerAdapter {
         // TODO Auto-generated method stub
         container.removeView(viewList.get(position));
     }
+
 }
