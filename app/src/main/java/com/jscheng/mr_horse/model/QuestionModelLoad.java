@@ -44,10 +44,25 @@ public class QuestionModelLoad {
         questionDbUtil.insertList(modelList,listener);
     }
 
+    public static void saveQuestionModelToDB(Context mContext, List<QuestionModel> modelList) {
+        QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+        questionDbUtil.insertList(modelList,null);
+    }
+
     public static List<QuestionModel> getQuestionModelsfromDB(Context mContext,String catogory) {
         try {
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             return questionDbUtil.getAllData(catogory);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+        return new ArrayList<>();
+    }
+
+    public static List<QuestionModel> searchQuestionModelsfromDB(Context mContext,String searchText) {
+        try {
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            return questionDbUtil.getSearchData(searchText);
         }catch (Exception e){
             Logger.e(e);
         }

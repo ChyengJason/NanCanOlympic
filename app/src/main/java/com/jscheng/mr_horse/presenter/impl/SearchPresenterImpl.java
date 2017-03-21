@@ -32,7 +32,7 @@ public class SearchPresenterImpl implements SearchPresenter {
     private Context mContext;
     private Observable<List<QuestionModel>> storeSubscription;
     private Observable<List<QuestionModel>> loadSubscription;
-    private Subscriber subscriber;
+    private Subscriber<List<QuestionModel>> subscriber;
     private boolean isLoading;
 
     public SearchPresenterImpl(Context mContext){
@@ -58,7 +58,7 @@ public class SearchPresenterImpl implements SearchPresenter {
         if (isLoading)
             return;
         Map<String,String> loadMap = checkData();
-        storeAndLoadData(loadMap);
+        storeAndLoadData(loadMap,searchText);
     }
 
     private Map<String,String> checkData() {
@@ -81,34 +81,28 @@ public class SearchPresenterImpl implements SearchPresenter {
         return loadMap;
     }
 
-    private void storeAndLoadData(final Map<String,String> loadMap) {
+    private void storeAndLoadData(final Map<String,String> loadMap, final String searchText) {
         storeSubscription = Observable.create(new Observable.OnSubscribe<List<QuestionModel>>() {
             @Override
             public void call(Subscriber<? super List<QuestionModel>> subscriber) {
                 subscriber.onStart();
-                final List<QuestionModel> questionModelList = new ArrayList<QuestionModel>();
                 try {
                     for (String catogory : loadMap.keySet()) {
-                        String filename = loadMap.get(catogory);
-                        for (QuestionJsonModel questionJsonModel : QuestionModelLoad.getQuestionJsonModels(mContext, filename)) {
+                        final List<QuestionModel> questionModelList = new ArrayList<QuestionModel>();
+                        for (QuestionJsonModel questionJsonModel : QuestionModelLoad.getQuestionJsonModels(mContext, loadMap.get(catogory))) {
                             questionModelList.add(questionJsonModel.toQuestionModel(catogory));
                         }
-                    }
-                    QuestionModelLoad.saveQuestionModelToDB(mContext, questionModelList, new QuestionDbUtil.DbProgressListener() {
-                        @Override
-                        public void loadProgress(int progress) {
-                            if (mSearchView != null)
-                                mSearchView.showProcessing((int) (progress * 100 / questionModelList.size()));
-                        }
-                    });
-                    for (String catogory : loadMap.keySet()) {
+                        QuestionModelLoad.saveQuestionModelToDB(mContext, questionModelList);
+                        Logger.e(questionModelList.size() + "");
+                        Logger.e(catogory + "");
                         SharedPreferencesUtil.setParam(mContext, catogory,true);
                     }
-                    Logger.e(questionModelList.size() + "");
-                    subscriber.onNext(questionModelList);
+                    Logger.e("存储结束");
+                    subscriber.onCompleted();
                 } catch (IOException e) {
                     e.printStackTrace();
                     subscriber.onError(e);
+                    Logger.e(e+ "");
                 }
             }
         });
@@ -116,11 +110,12 @@ public class SearchPresenterImpl implements SearchPresenter {
         loadSubscription = Observable.create(new Observable.OnSubscribe<List<QuestionModel>>() {
             @Override
             public void call(Subscriber<? super List<QuestionModel>> subscriber) {
-                subscriber.onNext(null);
+                List<QuestionModel> results = QuestionModelLoad.searchQuestionModelsfromDB(mContext,searchText);
+                subscriber.onNext(results);
             }
         });
 
-        subscriber = new Subscriber() {
+        subscriber = new Subscriber<List<QuestionModel>>() {
             @Override
             public void onStart() {
                 super.onStart();
@@ -140,17 +135,21 @@ public class SearchPresenterImpl implements SearchPresenter {
                 isLoading = false;
                 if (mSearchView == null)
                     return;
+                Logger.e("查询错误"+e.toString());
                 mSearchView.showError(e.toString());
                 mSearchView.failProcessing();
             }
 
             @Override
-            public void onNext(Object o) {
+            public void onNext(List<QuestionModel> results) {
                 isLoading = false;
                 if (mSearchView == null)
                     return;
                 mSearchView.sucessProcessing();
-                Logger.e("查询结束");
+                Logger.e("查询结束"+results.size());
+                for (QuestionModel model : results){
+                    Logger.e(model.toString());
+                }
             }
         };
 
