@@ -15,4 +15,13 @@
         android:text="无"
         android:textColor="?attr/text_color"
         android:textSize="@dimen/answer_question_font"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:layout_marginLeft="@dimen/big_margin"
+        android:layout_marginRight="@dimen/big_margin"
+        android:background="?attr/search_divider_color"/>
 </LinearLayout>

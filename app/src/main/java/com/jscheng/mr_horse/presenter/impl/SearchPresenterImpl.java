@@ -1,12 +1,16 @@
 package com.jscheng.mr_horse.presenter.impl;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import com.jscheng.mr_horse.App;
 import com.jscheng.mr_horse.model.QuestionJsonModel;
 import com.jscheng.mr_horse.model.QuestionModel;
 import com.jscheng.mr_horse.model.QuestionModelLoad;
 import com.jscheng.mr_horse.presenter.SearchPresenter;
+import com.jscheng.mr_horse.utils.AppHandler;
 import com.jscheng.mr_horse.utils.Constants;
+import com.jscheng.mr_horse.utils.QuestionCatagoryUtil;
 import com.jscheng.mr_horse.utils.SharedPreferencesUtil;
 import com.jscheng.mr_horse.view.MvpView;
 import com.jscheng.mr_horse.view.SearchView;
@@ -19,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import rx.Observable;
+import rx.Producer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -55,8 +60,9 @@ public class SearchPresenterImpl implements SearchPresenter {
     public void detachView(boolean retainInstance) {
         this.mSearchView = null;
         this.mContext = null;
-        if (subscriber!=null)
-            subscriber.unsubscribe();
+//        if (subscriber!=null)
+//            subscriber.unsubscribe();
+        AppHandler.getInstance().removeRunnable(showLoadingRunnable);
     }
 
     @Override
@@ -127,14 +133,29 @@ public class SearchPresenterImpl implements SearchPresenter {
         return loadMap;
     }
 
+    private Runnable showLoadingRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mSearchView == null)
+                return;
+            if (isSearching || isStoring)
+                mSearchView.beginProcess();
+        }
+    };
+
     private void storeAndLoadData(final Map<String,String> loadMap, final String searchText) {
         storeSubscription = Observable.create(new Observable.OnSubscribe<List<QuestionModel>>() {
             @Override
             public void call(Subscriber<? super List<QuestionModel>> subscriber) {
                 subscriber.onStart();
-                isStoring = true;
                 try {
-                    for (String catogory : loadMap.keySet()) {
+                    for (final String catogory : loadMap.keySet()) {
+                        AppHandler.getInstance().post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(mContext,"正在加载 \""+ QuestionCatagoryUtil.getName(catogory)+"\" ",Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         final List<QuestionModel> questionModelList = new ArrayList<QuestionModel>();
                         for (QuestionJsonModel questionJsonModel : QuestionModelLoad.getQuestionJsonModels(mContext, loadMap.get(catogory))) {
                             questionModelList.add(questionJsonModel.toQuestionModel(catogory));
@@ -173,8 +194,9 @@ public class SearchPresenterImpl implements SearchPresenter {
                 Logger.e("查询开始");
                 if (mSearchView == null)
                     return;
-                if (isStoring) mSearchView.showInfo("首次加载会消耗较长时间");
-                mSearchView.beginProcess();
+                if (isStoring)
+                    mSearchView.showInfo("首次加载会消耗较长时间,只是第一次哦");
+                AppHandler.getInstance().postDelay(showLoadingRunnable,1000);
             }
 
             @Override
@@ -194,12 +216,12 @@ public class SearchPresenterImpl implements SearchPresenter {
 
             @Override
             public void onNext(List<QuestionModel> results) {
+                Logger.e("查询结束"+results.size());
                 isStoring = false;
                 isSearching = false;
                 if (mSearchView == null)
                     return;
                 mSearchView.sucessProcessing();
-                Logger.e("查询结束"+results.size());
                 if (results.size() > 0)
                     mSearchView.showSearchResult(searchText,results);
                 else
@@ -222,6 +244,7 @@ public class SearchPresenterImpl implements SearchPresenter {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(subscriber);
         } else {
+            isStoring = true;
             Observable.concat(storeSubscription, loadSubscription)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

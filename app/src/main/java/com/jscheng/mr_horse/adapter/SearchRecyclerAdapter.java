@@ -52,12 +52,12 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
         String catagoryString  = ". [" + QuestionCatagoryUtil.getShortName(model.getCatogory()) + "] ";
         StringBuilder content = new StringBuilder(numString + catagoryString);
         if (model.getQuestion().contains(searchWord)) {
-            content.append(model.getQuestion().trim());
+            content.append(model.getQuestion().replaceAll("\\s*", ""));
         }else {
             content.append(model.getQuestion());
             for (String answer : model.getOptionList()){
                 if (answer.contains(searchWord)){
-                    content.append(answer.trim());
+                    content.append(answer.replaceAll("\\s*", ""));
                     break;
                 }
             }

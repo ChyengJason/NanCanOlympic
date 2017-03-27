@@ -74,9 +74,9 @@ public class SearchActivity extends BaseActivity implements SearchView {
         recyclerView.setLayoutManager(layoutManager);
         adapter = new SearchRecyclerAdapter();
         recyclerView.setAdapter(adapter);
-        RecyclerViewDivider dividerItemDecoration = new RecyclerViewDivider(this, RecyclerViewDivider.VERTICAL_LIST);
-        dividerItemDecoration.setDivider(R.drawable.item_divider);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+//        RecyclerViewDivider dividerItemDecoration = new RecyclerViewDivider(this, RecyclerViewDivider.VERTICAL_LIST);
+//        dividerItemDecoration.setDivider(R.drawable.item_divider);
+//        recyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     private void initSearchEditText() {

@@ -16,6 +16,7 @@
 
         <ImageView
             android:id="@+id/sxdd_book"
+            style="@style/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="@dimen/head_paper_image_height"
             android:layout_weight="1"
@@ -26,6 +27,7 @@
             android:clickable="true"/>
         <ImageView
             android:id="@+id/zgjds_book"
+            style="@style/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="@dimen/head_paper_image_height"
             android:layout_weight="1"

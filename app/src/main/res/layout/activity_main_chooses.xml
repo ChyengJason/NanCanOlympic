@@ -3,20 +3,20 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/choose_view_bg">
+    android:background="?attr/secondary_view_bg">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
         <FrameLayout
+            android:id="@+id/cuoti_layout"
+            style="@style/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:background="?attr/secondary_view_bg">
+            android:clickable="true">
             <LinearLayout
-                android:id="@+id/cuoti_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -36,14 +36,18 @@
             </LinearLayout>
         </FrameLayout>
 
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="?attr/choose_view_bg"/>
+
         <FrameLayout
             android:id="@+id/collect_layout"
-            android:layout_marginLeft="0.5dp"
+            style="@style/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:background="?attr/secondary_view_bg">
+            android:clickable="true">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,14 +68,18 @@
             </LinearLayout>
         </FrameLayout>
 
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="?attr/choose_view_bg"/>
+
         <FrameLayout
             android:id="@+id/search_layout"
-            android:layout_marginLeft="0.5dp"
+            style="@style/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:background="?attr/secondary_view_bg">
+            android:clickable="true">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,8 +102,12 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/choose_view_bg"/>
+
     <LinearLayout
-        android:layout_marginTop="0.5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -104,11 +116,11 @@
 
         <FrameLayout
             android:id="@+id/setting_layout"
+            style="@style/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:background="?attr/secondary_view_bg">
+            android:clickable="true">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,13 +141,18 @@
             </LinearLayout>
         </FrameLayout>
 
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="?attr/choose_view_bg"/>
+
         <FrameLayout
-            android:layout_marginLeft="0.5dp"
             android:id="@+id/share_layout"
+            style="@style/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?attr/secondary_view_bg">
+            android:clickable="true">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -158,15 +175,19 @@
             </LinearLayout>
         </FrameLayout>
 
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="?attr/choose_view_bg"/>
+
         <FrameLayout
-            android:layout_marginLeft="0.5dp"
+            android:id="@+id/about_layout"
+            style="@style/selectableItemBackground"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:background="?attr/secondary_view_bg">
+            android:clickable="true">
             <LinearLayout
-                android:id="@+id/about_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
