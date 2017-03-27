@@ -89,7 +89,7 @@
                     android:layout_width="@dimen/activity_main_chooses_item_width"
                     android:layout_height="@dimen/activity_main_chooses_item_width"
                     android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/setting_night"/>
+                    android:src="@mipmap/search"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/middle_margin"
