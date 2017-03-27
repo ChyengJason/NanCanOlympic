@@ -7,7 +7,6 @@ import com.jscheng.mr_horse.model.QuestionModel;
 import com.jscheng.mr_horse.model.QuestionModelLoad;
 import com.jscheng.mr_horse.presenter.SearchPresenter;
 import com.jscheng.mr_horse.utils.Constants;
-import com.jscheng.mr_horse.utils.QuestionDbUtil;
 import com.jscheng.mr_horse.utils.SharedPreferencesUtil;
 import com.jscheng.mr_horse.view.MvpView;
 import com.jscheng.mr_horse.view.SearchView;
@@ -28,16 +27,23 @@ import rx.schedulers.Schedulers;
  * Created by cheng on 2017/3/21.
  */
 public class SearchPresenterImpl implements SearchPresenter {
+    private static final int PageMaxLine = 20;
     private SearchView mSearchView;
     private Context mContext;
     private Observable<List<QuestionModel>> storeSubscription;
     private Observable<List<QuestionModel>> loadSubscription;
     private Subscriber<List<QuestionModel>> subscriber;
-    private boolean isLoading;
+    private Subscriber<List<QuestionModel>> loadMoreSubscriber;
+    private boolean isSearching;
+    private boolean isStoring;
+    private int pageNum;
+    private boolean isLastPage;
 
     public SearchPresenterImpl(Context mContext){
         this.mContext = mContext;
-        this.isLoading = false;
+        this.isSearching = false;
+        this.isStoring = false;
+        this.pageNum = 0;
     }
 
     @Override
@@ -55,10 +61,50 @@ public class SearchPresenterImpl implements SearchPresenter {
 
     @Override
     public void onClickSearch(String searchText) {
-        if (isLoading)
+        if (isStoring || isSearching)
             return;
+        if (searchText == null || searchText.trim().isEmpty())
+            return;
+        this.pageNum = 0;
+        this.isLastPage = false;
+
         Map<String,String> loadMap = checkData();
         storeAndLoadData(loadMap,searchText);
+    }
+
+    @Override
+    public void onClickMoreLayout() {
+        if (isStoring || isSearching)
+            return;
+        if (loadSubscription!=null ){
+            if (loadMoreSubscriber == null)
+                loadMoreSubscriber = new Subscriber<List<QuestionModel>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        Logger.e("查询错误"+e.toString());
+                        isSearching = false;
+                        if (mSearchView == null)
+                            return;
+                        mSearchView.showError(e.toString());
+                    }
+                    @Override
+                    public void onNext(List<QuestionModel> questionModels) {
+                        isSearching = false;
+                        if (!questionModels.isEmpty())
+                            mSearchView.addSearchResults(questionModels);
+                        if (isLastPage)
+                            mSearchView.showLastPageView();
+                        else
+                            mSearchView.showMorePageView();
+                    }
+                };
+            loadSubscription.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(loadMoreSubscriber);
+        }
     }
 
     private Map<String,String> checkData() {
@@ -86,6 +132,7 @@ public class SearchPresenterImpl implements SearchPresenter {
             @Override
             public void call(Subscriber<? super List<QuestionModel>> subscriber) {
                 subscriber.onStart();
+                isStoring = true;
                 try {
                     for (String catogory : loadMap.keySet()) {
                         final List<QuestionModel> questionModelList = new ArrayList<QuestionModel>();
@@ -110,7 +157,11 @@ public class SearchPresenterImpl implements SearchPresenter {
         loadSubscription = Observable.create(new Observable.OnSubscribe<List<QuestionModel>>() {
             @Override
             public void call(Subscriber<? super List<QuestionModel>> subscriber) {
-                List<QuestionModel> results = QuestionModelLoad.searchQuestionModelsfromDB(mContext,searchText);
+                isSearching = true;
+                List<QuestionModel> results = QuestionModelLoad.searchQuestionModelsfromDB(mContext,searchText,PageMaxLine,pageNum * PageMaxLine);
+                pageNum++;
+                if (results.size() < PageMaxLine)
+                    isLastPage = true;
                 subscriber.onNext(results);
             }
         });
@@ -120,9 +171,9 @@ public class SearchPresenterImpl implements SearchPresenter {
             public void onStart() {
                 super.onStart();
                 Logger.e("查询开始");
-                isLoading = true;
                 if (mSearchView == null)
                     return;
+                if (isStoring) mSearchView.showInfo("首次加载会消耗较长时间");
                 mSearchView.beginProcess();
             }
 
@@ -132,21 +183,34 @@ public class SearchPresenterImpl implements SearchPresenter {
 
             @Override
             public void onError(Throwable e) {
-                isLoading = false;
+                Logger.e("查询错误"+e.toString());
+                isStoring = false;
+                isSearching = false;
                 if (mSearchView == null)
                     return;
-                Logger.e("查询错误"+e.toString());
                 mSearchView.showError(e.toString());
                 mSearchView.failProcessing();
             }
 
             @Override
             public void onNext(List<QuestionModel> results) {
-                isLoading = false;
+                isStoring = false;
+                isSearching = false;
                 if (mSearchView == null)
                     return;
                 mSearchView.sucessProcessing();
                 Logger.e("查询结束"+results.size());
+                if (results.size() > 0)
+                    mSearchView.showSearchResult(searchText,results);
+                else
+                    mSearchView.clearSearchResult();
+
+                if (isLastPage){
+                    mSearchView.showLastPageView();
+                }else {
+                    mSearchView.showMorePageView();
+                }
+
                 for (QuestionModel model : results){
                     Logger.e(model.toString());
                 }

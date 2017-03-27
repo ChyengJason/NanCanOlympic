@@ -5,4 +5,5 @@ package com.jscheng.mr_horse.presenter;
  */
 public interface SearchPresenter extends MvpPresenter {
     void onClickSearch(String searchText);
+    void onClickMoreLayout();
 }

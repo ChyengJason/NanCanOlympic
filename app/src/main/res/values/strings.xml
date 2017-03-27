@@ -30,4 +30,6 @@
     <string name="content_not_null">内容不为空</string>
     <string name="thanks_for_your_advise">发送成功，谢谢您的反馈！</string>
     <string name="check_update">检查更新</string>
+    <string name="click_more">查看更多</string>
+    <string name="without_more">没有更多</string>
 </resources>

@@ -30,7 +30,7 @@
         <item name="rubbish_icon">@mipmap/rubbish_day</item>
         <item name="app_icon">@mipmap/icon_day</item>
         <item name="setting_divider_color">@color/white_gray_3</item>
-        <item name="search_hint_text_color">@color/white_gray</item>
+        <item name="search_hint_text_color">@color/white_gray_4</item>
         <item name="search_divider_color">@color/light_gray</item>
 
         <item name="practise_a_s">@mipmap/practise_a_s_day</item>
@@ -89,7 +89,7 @@
         <item name="rubbish_icon">@mipmap/rubbish_night</item>
         <item name="app_icon">@mipmap/icon_night</item>
         <item name="setting_divider_color">@color/background_color_night_2</item>
-        <item name="search_hint_text_color">@color/bottom_gray</item>
+        <item name="search_hint_text_color">@color/bottom_gray_2</item>
 
         <item name="practise_a_s">@mipmap/practise_a_s_night</item>
         <item name="practise_b_s">@mipmap/practise_b_s_night</item>

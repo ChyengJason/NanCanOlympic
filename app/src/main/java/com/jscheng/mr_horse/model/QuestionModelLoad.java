@@ -69,6 +69,17 @@ public class QuestionModelLoad {
         return new ArrayList<>();
     }
 
+    public static List<QuestionModel> searchQuestionModelsfromDB(Context mContext,String searchText,int limitNum, int offsetNum) {
+        try {
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            return questionDbUtil.getSearchData(searchText,limitNum, offsetNum);
+        }catch (Exception e){
+            Logger.e(e);
+        }
+        return new ArrayList<>();
+    }
+
+
     public static void setQuestionModelDone(Context mContext,QuestionModel questionModel){
         try{
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);

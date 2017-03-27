@@ -339,18 +339,66 @@ public class QuestionDbUtil {
         Cursor cursor = null;
         try {
             this.open();
-            cursor = db.rawQuery("select * from " + QuestionDB.TABLE_NAME + " where "
-                    + QuestionDB.Question_Catogory + " like '%" + searchText + "%' or "
-                    + QuestionDB.Question_Text     + " like '%" + searchText + "%' or "
-                    + QuestionDB.Option_List       + " like '%" + searchText + "%' ", null);
-            Logger.e("select * from " + QuestionDB.TABLE_NAME + " where "
-                    + QuestionDB.Question_Catogory + " like '%" + searchText + "%' or "
-                    + QuestionDB.Question_Text     + " like '%" + searchText + "%' or "
-                    + QuestionDB.Option_List       + " like '%" + searchText + "%' ");
+            cursor = db.rawQuery("select * from " + QuestionDB.TABLE_NAME + " where " +
+                    QuestionDB.Question_Catogory + " like '%" + searchText + "%' or " +
+                    QuestionDB.Question_Text     + " like '%" + searchText + "%' or " +
+                    QuestionDB.Option_List       + " like '%" + searchText + "%' ", null);
+//            Logger.e("select * from " + QuestionDB.TABLE_NAME + " where "
+//                    + QuestionDB.Question_Catogory + " like '%" + searchText + "%' or "
+//                    + QuestionDB.Question_Text     + " like '%" + searchText + "%' or "
+//                    + QuestionDB.Option_List       + " like '%" + searchText + "%' ");
             if (cursor.moveToFirst()) {
                 while (!cursor.isAfterLast()) {
                     int question_num = cursor.getInt(cursor
                     .getColumnIndex(QuestionDB.Question_Num));
+                    QuestionType question_type = intToQuestionType(cursor.getInt(cursor
+                            .getColumnIndex(QuestionDB.Question_Type)));
+                    QuestionDoneType question_done_type = intToQuestionDoneType(cursor.getInt(cursor
+                            .getColumnIndex(QuestionDB.Question_Done_Type)));
+                    String question_catogory = cursor.getString(cursor
+                            .getColumnIndex(QuestionDB.Question_Catogory));
+                    String question_text = cursor.getString(cursor
+                            .getColumnIndex(QuestionDB.Question_Text));
+
+                    List<String> option_list = stringToStringList(cursor.getString(cursor
+                            .getColumnIndex(QuestionDB.Option_List)), '#');
+                    List<Integer> answer_list = stringToList(cursor.getString(cursor
+                            .getColumnIndex(QuestionDB.Answer_List)), '#');
+                    boolean is_collect = intToBoolean(cursor.getInt(cursor
+                            .getColumnIndex(QuestionDB.isCollect)));
+                    boolean is_wrong = intToBoolean(cursor.getInt(cursor
+                            .getColumnIndex(QuestionDB.isWrong)));
+
+                    QuestionModel item = new QuestionModel(question_num, question_type, question_done_type, question_catogory, question_text, option_list, answer_list, is_collect, is_wrong);
+                    items.add(item);
+                    cursor.moveToNext();
+                }
+            }
+            if(cursor!=null && !cursor.isClosed()) cursor.close();
+        }catch (Exception e){
+            Logger.e(e);
+        }finally {
+            this.close();
+            if(cursor!=null && !cursor.isClosed())
+                cursor.close();
+        }
+        return items;
+    }
+
+    public ArrayList<QuestionModel> getSearchData(String searchText,int limitNum, int offsetNum) {
+        ArrayList<QuestionModel> items = new ArrayList<QuestionModel>();
+        Cursor cursor = null;
+        try {
+            this.open();
+            cursor = db.rawQuery("select * from " + QuestionDB.TABLE_NAME + " where " +
+                    QuestionDB.Question_Catogory + " like '%" + searchText + "%' or " +
+                    QuestionDB.Question_Text     + " like '%" + searchText + "%' or " +
+                    QuestionDB.Option_List       + " like '%" + searchText + "%' " +
+                    "limit " + limitNum + " offset " + offsetNum + " " , null);
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    int question_num = cursor.getInt(cursor
+                            .getColumnIndex(QuestionDB.Question_Num));
                     QuestionType question_type = intToQuestionType(cursor.getInt(cursor
                             .getColumnIndex(QuestionDB.Question_Type)));
                     QuestionDoneType question_done_type = intToQuestionDoneType(cursor.getInt(cursor

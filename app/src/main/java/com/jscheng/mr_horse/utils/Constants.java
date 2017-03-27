@@ -17,6 +17,8 @@ public class Constants {
     public static final String SXDD_JSON_NAME = "sxdd.json";
 
     public static final String SXDD_NAME = "思修道德";
+
+    public static final String SXDD_SHORT_NAME = "思修";
     /**
      * 法律基础
      */
@@ -25,6 +27,8 @@ public class Constants {
     public static final String FLJC_JSON_NAME = "fljc.json";
 
     public static final String FLJC_NAME = "法律基础";
+
+    public static final String FLJC_SHORT_NAME = "法律";
     /**
      * 马克思主义
      */
@@ -33,6 +37,8 @@ public class Constants {
     public static final String MKSZY_JSON_NAME = "mkszy.json";
 
     public static final String MKSZY_NAME = "马克思主义";
+
+    public static final String MKSZY_SHORT_NAME = "马克思";
 
     /**
      * 中国近代史
@@ -43,6 +49,8 @@ public class Constants {
 
     public static final String ZGJDS_NAME = "中国近代史";
 
+    public static final String ZGJDS_SHORT_NAME = "近代史";
+
     /**
      *毛泽东思想
      */
@@ -51,6 +59,10 @@ public class Constants {
     public static final String MZDSX_JSON_NAME = "mzdsx.json";
 
     public static final String MZDSX_NAME = "毛概理论";
+
+    public static final String MZDSX_SHORT_NAME = "毛概";
+
+    public static final String UNKNOWN = "未知";
     /**
      * 收藏
      */
