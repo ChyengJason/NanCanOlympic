@@ -103,6 +103,8 @@ public class Constants {
      * classification
      */
     public static final String CLASSIFICATION = "classification";
+
+    public static final String PAGE_NUM = "page_num";
     /**
      * dowloadUrl
      */
@@ -119,4 +121,5 @@ public class Constants {
      * 是否自动更新
      */
     public static final String AUTO_CHECK_UPGRADE = "autoCheckUpgrade";
+
 }

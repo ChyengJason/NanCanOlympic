@@ -171,7 +171,7 @@ public class QuestionDbUtil {
         Cursor cursor = null;
         try {
             this.open();
-             cursor = db.rawQuery("select * from " + QuestionDB.TABLE_NAME + " where " + QuestionDB.Question_Catogory + " = '" + catagory + "'", null);
+             cursor = db.rawQuery("select * from " + QuestionDB.TABLE_NAME + " where " + QuestionDB.Question_Catogory + " = '" + catagory + "' order by " + QuestionDB.Question_Num , null);
             if (cursor.moveToFirst()) {
                 while (!cursor.isAfterLast()) {
                     int question_num = cursor.getInt(cursor

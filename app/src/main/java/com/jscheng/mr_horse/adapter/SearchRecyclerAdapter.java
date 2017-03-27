@@ -7,6 +7,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jscheng.mr_horse.App;
@@ -43,7 +44,7 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
     }
 
     @Override
-    public void onBindViewHolder(SearchRecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(SearchRecyclerViewHolder holder, final int position) {
         QuestionModel model = searchList.get(position);
         if (model == null)
             throw new RuntimeException(" NO." + position + "is null");
@@ -71,6 +72,13 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
             style.setSpan(new ForegroundColorSpan(highLightColor), index, index + searchWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         holder.searchContentTextview.setText(style);
+        holder.searchContentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickItemListener!=null)
+                    clickItemListener.onClickItem(position,searchList.get(position));
+            }
+        });
     }
 
     public void clear() {
@@ -81,9 +89,11 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
     protected static class SearchRecyclerViewHolder extends RecyclerView.ViewHolder{
 
         TextView searchContentTextview;
+        LinearLayout searchContentLayout;
         public SearchRecyclerViewHolder(View itemView) {
             super(itemView);
             searchContentTextview = (TextView) itemView.findViewById(R.id.search_content_item_textview);
+            searchContentLayout = (LinearLayout) itemView.findViewById(R.id.search_content_item_layout);
         }
     }
 
@@ -97,5 +107,19 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
     public void addSearchContent( List<QuestionModel> searchList){
         this.searchList.addAll(searchList);
         this.notifyDataSetChanged();
+    }
+
+    public OnClickItemListener getClickItemListener() {
+        return clickItemListener;
+    }
+
+    public void setClickItemListener(OnClickItemListener clickItemListener) {
+        this.clickItemListener = clickItemListener;
+    }
+
+    private OnClickItemListener clickItemListener = null;
+
+    public interface OnClickItemListener{
+        void onClickItem(int postion,QuestionModel model);
     }
 }

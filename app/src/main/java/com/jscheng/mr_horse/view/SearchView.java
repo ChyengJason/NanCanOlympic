@@ -1,5 +1,7 @@
 package com.jscheng.mr_horse.view;
 
+import android.content.Intent;
+
 import com.jscheng.mr_horse.model.QuestionModel;
 
 import java.util.List;

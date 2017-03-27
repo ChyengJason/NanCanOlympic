@@ -35,4 +35,20 @@ public class QuestionCatagoryUtil {
         }
         return Constants.UNKNOWN;
     }
+
+    public static String getJsonFileName(String catagory){
+        switch (catagory){
+            case Constants.FLJC:
+                return Constants.FLJC_JSON_NAME;
+            case Constants.MKSZY:
+                return Constants.MKSZY_JSON_NAME;
+            case Constants.MZDSX:
+                return Constants.MKSZY_JSON_NAME;
+            case Constants.SXDD:
+                return Constants.SXDD_JSON_NAME;
+            case Constants.ZGJDS:
+                return Constants.ZGJDS_JSON_NAME;
+        }
+        return Constants.UNKNOWN;
+    }
 }

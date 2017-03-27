@@ -36,7 +36,7 @@ import butterknife.OnClick;
 /**
  * Created by cheng on 2017/3/21.
  */
-public class SearchActivity extends BaseActivity implements SearchView {
+public class SearchActivity extends BaseActivity implements SearchView,SearchRecyclerAdapter.OnClickItemListener {
 
     @BindView(R.id.title_search_edit)
     EditText searchEditText;
@@ -77,6 +77,7 @@ public class SearchActivity extends BaseActivity implements SearchView {
 //        RecyclerViewDivider dividerItemDecoration = new RecyclerViewDivider(this, RecyclerViewDivider.VERTICAL_LIST);
 //        dividerItemDecoration.setDivider(R.drawable.item_divider);
 //        recyclerView.addItemDecoration(dividerItemDecoration);
+        adapter.setClickItemListener(this);
     }
 
     private void initSearchEditText() {
@@ -171,5 +172,10 @@ public class SearchActivity extends BaseActivity implements SearchView {
     @OnClick(R.id.more_content_layout)
     public void clickMoreLayout(){
         presenter.onClickMoreLayout();
+    }
+
+    @Override
+    public void onClickItem(int postion,QuestionModel model) {
+        presenter.onClickItem(postion,model);
     }
 }

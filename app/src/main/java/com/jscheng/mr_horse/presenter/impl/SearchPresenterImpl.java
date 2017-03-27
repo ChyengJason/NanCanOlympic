@@ -1,13 +1,14 @@
 package com.jscheng.mr_horse.presenter.impl;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
-import com.jscheng.mr_horse.App;
 import com.jscheng.mr_horse.model.QuestionJsonModel;
 import com.jscheng.mr_horse.model.QuestionModel;
 import com.jscheng.mr_horse.model.QuestionModelLoad;
 import com.jscheng.mr_horse.presenter.SearchPresenter;
+import com.jscheng.mr_horse.ui.PracticeActivity;
 import com.jscheng.mr_horse.utils.AppHandler;
 import com.jscheng.mr_horse.utils.Constants;
 import com.jscheng.mr_horse.utils.QuestionCatagoryUtil;
@@ -23,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import rx.Observable;
-import rx.Producer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -111,6 +111,15 @@ public class SearchPresenterImpl implements SearchPresenter {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(loadMoreSubscriber);
         }
+    }
+
+    @Override
+    public void onClickItem(int postion, QuestionModel model) {
+        Intent intent = new Intent(mContext, PracticeActivity.class);
+        intent.putExtra(Constants.FILENAME,QuestionCatagoryUtil.getJsonFileName(model.getCatogory()));
+        intent.putExtra(Constants.CATOGORY,model.getCatogory());
+        intent.putExtra(Constants.PAGE_NUM,model.getQuestionNum()-1);
+        mContext.startActivity(intent);
     }
 
     private Map<String,String> checkData() {

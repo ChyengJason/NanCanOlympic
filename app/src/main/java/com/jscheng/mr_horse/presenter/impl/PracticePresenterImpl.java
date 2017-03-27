@@ -51,7 +51,7 @@ public class PracticePresenterImpl implements PracticePresenter {
         this.mContext = context;
         this.patternStatus = PatternStatus.DATI_PATTERN;//默认是答题模式，测试使用背题模式
         this.questionModelList = new ArrayList();
-        this.pageNum = 0;
+        this.pageNum = intent.getIntExtra(Constants.PAGE_NUM,-1);
         this.catogory = intent.getStringExtra(Constants.CATOGORY);
 
         if(!catogory.equals(Constants.COLLECT) && !(catogory.equals(Constants.WRONG))){
@@ -213,7 +213,8 @@ public class PracticePresenterImpl implements PracticePresenter {
                     return;
                 questionModelList.addAll(ModelList);
                 mPracticeView.initPaperAdapter(questionModelList,patternStatus);
-                pageNum = QuestionModelLoad.getQuestionDoneNum(mContext,catogory);
+                if (pageNum == -1)
+                    pageNum = QuestionModelLoad.getQuestionDoneNum(mContext,catogory);
                 if(pageNum>0)
                     mPracticeView.changePaperView(pageNum,false,0);
                 mPracticeView.showPageNumView(pageNum+1,questionModelList.size());
