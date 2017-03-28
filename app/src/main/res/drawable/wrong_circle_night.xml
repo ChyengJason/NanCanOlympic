@@ -6,5 +6,5 @@
     <solid android:color= "@android:color/transparent" />
     <stroke
         android:width= "3dp"
-        android:color= "?attr/colorPrimary" />
+        android:color= "@color/primary_night" />
 </shape>

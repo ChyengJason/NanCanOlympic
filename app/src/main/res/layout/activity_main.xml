@@ -25,13 +25,13 @@
                 android:id="@+id/head_circle_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/solid_circle"/>
+                android:src="?attr/solid_circle"/>
             <ImageView
                 android:id="@+id/head_circle_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/middle_margin"
-                android:src="@drawable/hollow_circle"/>
+                android:src="?attr/hollow_circle"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -44,7 +44,7 @@
         <LinearLayout
             android:layout_width="@dimen/acitivity_main_date_width"
             android:layout_height="match_parent"
-            android:background="@drawable/right_ellipse">
+            android:background="?attr/right_ellipse">
             <TextView
                 android:id="@+id/date_tv"
                 android:layout_width="wrap_content"

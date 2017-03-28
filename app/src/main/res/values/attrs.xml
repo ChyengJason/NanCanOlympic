@@ -21,6 +21,11 @@
     <attr name="setting_divider_color" format="reference"/>
     <attr name="search_divider_color" format="reference" />
     <attr name="search_hint_text_color" format="reference" />
+    <attr name="corner_circle" format="reference"/>
+    <attr name="hollow_circle" format="reference"/>
+    <attr name="solid_circle" format="reference"/>
+    <attr name="right_ellipse" format="reference"/>
+    <attr name="wrong_circle" format="reference"/>
 
     <attr name="practise_a_s" format="reference"/>
     <attr name="practise_b_s" format="reference"/>

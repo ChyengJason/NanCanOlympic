@@ -32,7 +32,7 @@
                 android:gravity="center"
                 android:layout_width="@dimen/wrong_item_left_circle"
                 android:layout_height="@dimen/wrong_item_left_circle"
-                android:background="@drawable/wrong_circle"/>
+                android:background="?attr/wrong_circle"/>
 
             <TextView
                 android:layout_toRightOf="@+id/wrong_circle"
@@ -100,7 +100,7 @@
                 android:gravity="center"
                 android:layout_width="@dimen/wrong_item_left_circle"
                 android:layout_height="@dimen/wrong_item_left_circle"
-                android:background="@drawable/wrong_circle"/>
+                android:background="?attr/wrong_circle"/>
 
             <TextView
                 android:layout_toRightOf="@+id/wrong_circle2"
@@ -168,7 +168,7 @@
                 android:gravity="center"
                 android:layout_width="@dimen/wrong_item_left_circle"
                 android:layout_height="@dimen/wrong_item_left_circle"
-                android:background="@drawable/wrong_circle"/>
+                android:background="?attr/wrong_circle"/>
 
             <TextView
                 android:layout_toRightOf="@+id/wrong_circle3"
@@ -236,7 +236,7 @@
                 android:gravity="center"
                 android:layout_width="@dimen/wrong_item_left_circle"
                 android:layout_height="@dimen/wrong_item_left_circle"
-                android:background="@drawable/wrong_circle"/>
+                android:background="?attr/wrong_circle"/>
 
             <TextView
                 android:layout_toRightOf="@+id/wrong_circle4"
@@ -304,7 +304,7 @@
                 android:gravity="center"
                 android:layout_width="@dimen/wrong_item_left_circle"
                 android:layout_height="@dimen/wrong_item_left_circle"
-                android:background="@drawable/wrong_circle"/>
+                android:background="?attr/wrong_circle"/>
 
             <TextView
                 android:layout_toRightOf="@+id/wrong_circle5"

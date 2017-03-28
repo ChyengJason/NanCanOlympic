@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="@dimen/middle_margin"
-        android:background="@drawable/solid_edittext">
+        android:background="@drawable/solid_edittext_day">
         <EditText
             android:id="@+id/feed_back_edit"
             android:layout_margin="@dimen/middle_margin"
@@ -29,7 +29,7 @@
         android:layout_width="@dimen/practise_option_item_confirm_width"
         android:layout_height="@dimen/practise_option_item_confirm_height"
         android:layout_marginBottom="@dimen/practise_option_item_confirm_top_margin"
-        android:background="@drawable/corner_circle"
+        android:background="?attr/corner_circle"
         android:textColor="?attr/confirm_btn_text_color"
         android:text="@string/confirm"
         android:textSize="@dimen/big_font"/>

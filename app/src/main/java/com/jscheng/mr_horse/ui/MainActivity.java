@@ -98,11 +98,21 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
             @Override
             public void onPageSelected(int position) {
                 if (position == 0){
-                    headCircleLeftView.setImageResource(R.drawable.solid_circle);
-                    headCircleRightView.setImageResource(R.drawable.hollow_circle);
+                    if (App.getDayNightTheme() == R.style.SunAppTheme) {
+                        headCircleLeftView.setImageResource(R.drawable.solid_circle_day);
+                        headCircleRightView.setImageResource(R.drawable.hollow_circle_day);
+                    }else {
+                        headCircleLeftView.setImageResource(R.drawable.solid_circle_night);
+                        headCircleRightView.setImageResource(R.drawable.hollow_circle_night);
+                    }
                 }else {
-                    headCircleLeftView.setImageResource(R.drawable.hollow_circle);
-                    headCircleRightView.setImageResource(R.drawable.solid_circle);
+                    if (App.getDayNightTheme() == R.style.SunAppTheme) {
+                        headCircleLeftView.setImageResource(R.drawable.hollow_circle_day);
+                        headCircleRightView.setImageResource(R.drawable.solid_circle_day);
+                    }else {
+                        headCircleLeftView.setImageResource(R.drawable.hollow_circle_night);
+                        headCircleRightView.setImageResource(R.drawable.solid_circle_night);
+                    }
                 }
             }
 
