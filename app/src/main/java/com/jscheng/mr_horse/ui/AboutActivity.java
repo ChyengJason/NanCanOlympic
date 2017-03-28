@@ -37,10 +37,10 @@ public class AboutActivity extends BaseActivity {
     @BindView(R.id.app_image)
     ImageView app_image;
 
-    private int time;
-    private static final int countTime= 5;
-    private static final int HIDE_MSG = 101;
-    private AboutHandler handler;
+//    private int time;
+//    private static final int countTime= 5;
+//    private static final int HIDE_MSG = 101;
+//    private AboutHandler handler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class AboutActivity extends BaseActivity {
     }
 
     private void init() {
-        handler = new AboutHandler(this);
-        time = 0;
+//        handler = new AboutHandler(this);
+//        time = 0;
         try{
             String pkName = this.getPackageName();
             String versionName = this.getPackageManager().getPackageInfo(pkName,0).versionName;
@@ -69,35 +69,35 @@ public class AboutActivity extends BaseActivity {
         finish();
     }
 
-    @OnClick(R.id.app_image)
-    public void onClickAppImage(){
-        time++;
-        time %= countTime;
-        if (time == (countTime-1)){
-            app_email.setVisibility(View.VISIBLE);
-            handler.sendEmptyMessageDelayed(HIDE_MSG,5000);
-        }
-    }
+//    @OnClick(R.id.app_image)
+//    public void onClickAppImage(){
+//        time++;
+//        time %= countTime;
+//        if (time == (countTime-1)){
+//            app_email.setVisibility(View.VISIBLE);
+//            handler.sendEmptyMessageDelayed(HIDE_MSG,5000);
+//        }
+//    }
 
     @OnClick(R.id.app_email)
     public void onClickEmail(){
         copyToBoard();
     }
 
-    private static class AboutHandler extends Handler{
-        WeakReference<Activity> reference;
-        public AboutHandler(Activity activity){
-            reference = new WeakReference<Activity>(activity);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            final Activity activity = reference.get();
-            if (msg.what == HIDE_MSG && activity!=null){
-                ((AboutActivity)activity).app_email.setVisibility(View.GONE);
-            }
-        }
-    }
+//    private static class AboutHandler extends Handler{
+//        WeakReference<Activity> reference;
+//        public AboutHandler(Activity activity){
+//            reference = new WeakReference<Activity>(activity);
+//        }
+//
+//        @Override
+//        public void handleMessage(Message msg) {
+//            final Activity activity = reference.get();
+//            if (msg.what == HIDE_MSG && activity!=null){
+//                ((AboutActivity)activity).app_email.setVisibility(View.GONE);
+//            }
+//        }
+//    }
 
     public void copyToBoard(){
         ClipboardManager cmb = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);

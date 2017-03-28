@@ -10,8 +10,8 @@
     <ImageView
         android:id="@+id/app_image"
         android:layout_marginTop="@dimen/big_margin"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_gravity="center_horizontal"
         android:scaleType="fitXY"
         android:clickable="true"
@@ -38,22 +38,21 @@
         <!--android:textSize="@dimen/big_font"-->
         <!--android:layout_centerVertical="true"/>-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/big_margin"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/person_egg"
-        android:textColor="?attr/text_color"
-        android:textSize="@dimen/small_font"
-        android:layout_centerVertical="true"/>
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="@dimen/big_margin"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:text="@string/person_egg"-->
+        <!--android:textColor="?attr/text_color"-->
+        <!--android:textSize="@dimen/small_font"-->
+        <!--android:layout_centerVertical="true"/>-->
 
     <TextView
         android:id="@+id/app_email"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginTop="@dimen/much_big_margin"
         android:layout_gravity="center_horizontal"
         android:text="@string/person_email"
         android:textColor="?attr/text_color"
