@@ -12,6 +12,9 @@ public class ShareDialog extends BottomDialog implements View.OnClickListener {
 
     private RelativeLayout mShareCircleLayout;
     private RelativeLayout mShareFriendLayout;
+    private RelativeLayout mCopyBoardLayout;
+
+    public final static int COPY_TO_BOARD = 100;
     public final static int CIRCLE = 101;
     public final static int WEIXIN =102;
 
@@ -25,6 +28,9 @@ public class ShareDialog extends BottomDialog implements View.OnClickListener {
                 break;
             case R.id.shareFriendLayout:
                 mOnShareSelectCallBack.onShareSelect(WEIXIN);
+                break;
+            case R.id.copyLayout:
+                mOnShareSelectCallBack.onShareSelect(COPY_TO_BOARD);
                 break;
             default:
                 break;
@@ -56,8 +62,10 @@ public class ShareDialog extends BottomDialog implements View.OnClickListener {
     public void bindView(View v) {
         mShareCircleLayout = (RelativeLayout) v.findViewById(R.id.shareCircleLayout);
         mShareFriendLayout = (RelativeLayout) v.findViewById(R.id.shareFriendLayout);
+        mCopyBoardLayout = (RelativeLayout) v.findViewById(R.id.copyLayout);
 
         mShareCircleLayout.setOnClickListener(this);
         mShareFriendLayout.setOnClickListener(this);
+        mCopyBoardLayout.setOnClickListener(this);
     }
 }

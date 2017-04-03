@@ -1,6 +1,8 @@
 package com.jscheng.mr_horse.wiget;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.view.Gravity;
@@ -42,11 +44,11 @@ public abstract class BottomDialog extends DialogFragment {
 
     public abstract void bindView(View v);
 
+    @NonNull
     @Override
-    public void onStart() {
-        super.onStart();
-
-        Window window = getDialog().getWindow();
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        Window window = dialog.getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
 
         params.dimAmount = getDimAmount();
@@ -57,8 +59,15 @@ public abstract class BottomDialog extends DialogFragment {
             params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         }
         params.gravity = Gravity.BOTTOM;
-
+        params.windowAnimations = R.style.BottomDialogAnim;
         window.setAttributes(params);
+        return dialog;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
     public int getHeight() {

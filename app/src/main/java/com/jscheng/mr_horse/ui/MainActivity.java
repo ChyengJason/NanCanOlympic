@@ -1,5 +1,7 @@
 package com.jscheng.mr_horse.ui;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jscheng.mr_horse.App;
 import com.jscheng.mr_horse.R;
@@ -211,6 +214,22 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
         mainPresenter.onClickSearchLayout();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mainPresenter.onActivityForResult();
+    }
+
+    public void startActivityForResult(Intent intent){
+        this.startActivityForResult(intent,1);
+    }
+
+    @Override
+    public void finish() {
+        mainPresenter.detachView(false);
+        super.finish();
+    }
+
     public void showShareDialog() {
         ShareDialog dialog = new ShareDialog();
         dialog.setOnShareSelectCallBack(this);
@@ -228,24 +247,15 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
                 ShareUtil.sendToWeiXin(wxApi,Constants.DOWNLOAD_URL, getString(R.string.app_name), getString(R.string.app_descripe),
                         BitmapFactory.decodeResource(getResources(), R.mipmap.icon_night));
                 break;
+            case ShareDialog.COPY_TO_BOARD:
+                ClipboardManager cmb = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                String content = "「 "+getString(R.string.app_name)+"」 " + getString(R.string.app_descripe) + " \n 下载地址：" + Constants.DOWNLOAD_URL;
+                ClipData data = ClipData.newPlainText("content", content);
+                cmb.setPrimaryClip(data);
+                Toast.makeText(this,R.string.copied_to_board, Toast.LENGTH_SHORT).show();
+                break;
             default:
                 break;
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        mainPresenter.onActivityForResult();
-    }
-
-    public void startActivityForResult(Intent intent){
-        this.startActivityForResult(intent,1);
-    }
-
-    @Override
-    public void finish() {
-        mainPresenter.detachView(false);
-        super.finish();
     }
 }

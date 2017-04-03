@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">头大的烦恼</string>
-    <string name="app_descripe">头大社科刷题APP</string>
+    <string name="app_descripe">社科刷题APP，欢迎使用！</string>
     <string name="dati_pattern">答题模式</string>
     <string name="beiti_pattern">看题模式</string>
     <string name="colloect">收藏</string>
@@ -32,4 +32,9 @@
     <string name="check_update">检查更新</string>
     <string name="click_more">查看更多</string>
     <string name="without_more">没有更多</string>
+    <string name="copied_to_board">已复制到剪切板</string>
+    <string name="share_to">分享至</string>
+    <string name="board">剪切板</string>
+    <string name="wechat_friend">微信好友</string>
+    <string name="friend_circle">朋友圈</string>
 </resources>

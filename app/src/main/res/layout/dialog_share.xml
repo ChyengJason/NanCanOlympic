@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="分享至"
+        android:text="@string/share_to"
         android:textColor="?attr/text_color"
         android:textSize="@dimen/middle_font"/>
 
@@ -19,6 +19,36 @@
         android:layout_marginBottom="24dp"
         android:layout_marginTop="8dp"
         android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/copyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:padding="@dimen/small_margin"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+                android:layout_above="@+id/copyText"
+                android:layout_margin="@dimen/small_margin"
+                android:layout_weight="0"
+                android:src="@mipmap/share_board"/>
+
+            <TextView
+                android:id="@+id/copyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/board"
+                android:textColor="?attr/text_color"
+                android:textSize="@dimen/middle_font"/>
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/shareFriendLayout"
@@ -46,7 +76,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="微信好友"
+                android:text="@string/wechat_friend"
                 android:textColor="?attr/text_color"
                 android:textSize="@dimen/middle_font"/>
         </RelativeLayout>
@@ -78,7 +108,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="朋友圈"
+                android:text="@string/friend_circle"
                 android:textColor="?attr/text_color"
                 android:textSize="@dimen/middle_font"/>
         </RelativeLayout>

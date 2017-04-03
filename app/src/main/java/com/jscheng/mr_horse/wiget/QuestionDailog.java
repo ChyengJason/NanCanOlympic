@@ -7,6 +7,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -25,6 +27,7 @@ import butterknife.ButterKnife;
  * Created by cheng on 17-1-10.
  */
 public class QuestionDailog extends Dialog implements View.OnClickListener {
+    private final static int Animation_Time = 550;
     private Context mContext;
     private List<QuestionModel> modelList;
     private DailogGirdviewAdapter girdviewAdapter;
@@ -82,12 +85,12 @@ public class QuestionDailog extends Dialog implements View.OnClickListener {
     @Override
     public void show() {
         super.show();
-        animationShow(600);
+        animationShow(Animation_Time);
     }
 
     @Override
     public void dismiss() {
-        animationHide(600);
+        animationHide(Animation_Time);
     }
 
     @Override
@@ -100,6 +103,7 @@ public class QuestionDailog extends Dialog implements View.OnClickListener {
         animatorSet.playTogether(
                 ObjectAnimator.ofFloat(dailogLayout, "translationY",1200, 0).setDuration(mDuration)
         );
+        animatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
         animatorSet.start();
     }
 

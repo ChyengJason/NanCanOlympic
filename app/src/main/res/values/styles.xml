@@ -154,4 +154,8 @@
 
     <style name="selectableItemBackground"></style>
 
+    <style name="BottomDialogAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@animator/bottom_dialog_in</item>
+        <item name="android:windowExitAnimation">@animator/bottom_dialog_out</item>
+    </style>
 </resources>

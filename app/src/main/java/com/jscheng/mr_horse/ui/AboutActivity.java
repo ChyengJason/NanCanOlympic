@@ -103,7 +103,7 @@ public class AboutActivity extends BaseActivity {
         ClipboardManager cmb = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData data = ClipData.newPlainText("email",getResources().getString(R.string.person_email));
         cmb.setPrimaryClip(data);
-        Toast.makeText(this,"已复制到剪切板", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,R.string.copied_to_board, Toast.LENGTH_SHORT).show();
     }
 
 }
