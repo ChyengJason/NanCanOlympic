@@ -58,7 +58,7 @@ public class AboutActivity extends BaseActivity {
             String versionName = this.getPackageManager().getPackageInfo(pkName,0).versionName;
             int versionCode = this.getPackageManager().getPackageInfo(pkName,0).versionCode;
             String appname = this.getResources().getString(R.string.app_name);
-            app_info.setText(appname+"  v"+versionName+"."+versionCode);
+            app_info.setText(appname + "  " + versionName);
         }catch (Exception e){
             Logger.e(e.toString());
         }

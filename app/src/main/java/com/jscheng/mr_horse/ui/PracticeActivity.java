@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,10 +54,6 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     ImageButton titleBack;
     @BindView(R.id.sun_night)
     ImageButton sunNight;
-    @BindView(R.id.questions_layout)
-    LinearLayout questionsLayout;
-    @BindView(R.id.collect_layout)
-    LinearLayout collectLayout;
     @BindView(R.id.collect_iv)
     ImageView collectIamgeView;
     @BindView(R.id.circle_loading_view)

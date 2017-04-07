@@ -15,16 +15,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_marginBottom="24dp"
+        android:layout_height="@dimen/dialog_share_hight"
         android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
         <RelativeLayout
             android:id="@+id/copyLayout"
+            style="@style/selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingBottom="@dimen/dialog_share_item_padding_bottom"
             android:layout_weight="1"
+            android:clickable="true"
             android:orientation="vertical">
 
             <ImageView
@@ -52,12 +54,12 @@
 
         <RelativeLayout
             android:id="@+id/shareFriendLayout"
+            style="@style/selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingBottom="@dimen/dialog_share_item_padding_bottom"
             android:layout_weight="1"
             android:orientation="vertical">
-
-
             <ImageView
                 android:padding="@dimen/small_margin"
                 android:layout_width="50dp"
@@ -84,12 +86,12 @@
 
         <RelativeLayout
             android:id="@+id/shareCircleLayout"
+            style="@style/selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingBottom="@dimen/dialog_share_item_padding_bottom"
             android:layout_weight="1"
             android:orientation="vertical">
-
-
             <ImageView
                 android:padding="@dimen/small_margin"
                 android:layout_width="50dp"

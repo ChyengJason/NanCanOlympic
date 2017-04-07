@@ -64,7 +64,7 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
             }
         }
 
-        int index = content.indexOf(searchWord,numString.length() + catagoryString.length());
+        int index = content.toString().toLowerCase().indexOf(searchWord.toLowerCase(),numString.length() + catagoryString.length());
         SpannableStringBuilder style = new SpannableStringBuilder(content);
 
         if ( index != -1){

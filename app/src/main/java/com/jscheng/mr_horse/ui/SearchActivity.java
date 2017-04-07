@@ -113,9 +113,9 @@ public class SearchActivity extends BaseActivity implements SearchView,SearchRec
 
     @Override
     public void beginProcess() {
+        if(progressWheel.getVisibility() == View.VISIBLE)
+            return;
         progressWheel.setVisibility(View.VISIBLE);
-        ValueAnimator progressFadeInAnim = ObjectAnimator.ofFloat(progressWheel, "alpha", 0, 1, 1);
-        progressFadeInAnim.start();
     }
 
     @Override
@@ -125,15 +125,15 @@ public class SearchActivity extends BaseActivity implements SearchView,SearchRec
 
     @Override
     public void failProcessing() {
-        ValueAnimator progressFadeInAnim = ObjectAnimator.ofFloat(progressWheel, "alpha", 1, 0, 0);
-        progressFadeInAnim.start();
+        if(progressWheel.getVisibility() == View.GONE)
+            return;
         progressWheel.setVisibility(View.GONE);
     }
 
     @Override
     public void sucessProcessing() {
-        ValueAnimator progressFadeInAnim = ObjectAnimator.ofFloat(progressWheel, "alpha", 1, 0, 0);
-        progressFadeInAnim.start();
+        if(progressWheel.getVisibility() == View.GONE)
+            return;
         progressWheel.setVisibility(View.GONE);
     }
 

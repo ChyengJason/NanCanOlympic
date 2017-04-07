@@ -10,30 +10,35 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?attr/bottom_divider_color"/>
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/collect_layout"
+        style="@style/selectableItemBackground"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:orientation="horizontal"
         android:clickable="true"
-        android:paddingLeft="@dimen/practise_bottombar_pattern_left_pading">
+        android:paddingLeft="@dimen/practise_bottombar_pattern_left_pading"
+        android:paddingRight="@dimen/practise_bottombar_pattern_left_pading">
         <ImageView
             android:id="@+id/collect_iv"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:layout_centerVertical="true"
             android:src="@mipmap/collect_icon_no"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/collect_iv"
             android:paddingLeft="@dimen/small_margin"
             android:paddingTop="2dp"
+            android:layout_centerVertical="true"
             android:text="@string/colloect"
             android:textColor="@color/bottom_gray"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/rubbish_layout"
+        style="@style/selectableItemBackground"
         android:layout_toRightOf="@+id/collect_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,24 +101,30 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        style="@style/selectableItemBackground"
         android:id="@+id/questions_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:paddingRight="@dimen/practise_bottombar_pattern_right_pading">
+        android:clickable="true"
+        android:paddingRight="@dimen/practise_bottombar_pattern_right_pading"
+        android:paddingLeft="@dimen/practise_bottombar_pattern_right_pading">
         <ImageView
+            android:id="@+id/practice_icon_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:layout_centerVertical="true"
             android:src="@mipmap/practice_icon_card_day"/>
         <TextView
             android:id="@+id/practice_page_num"
-            android:paddingLeft="@dimen/middle_margin"
+            android:layout_toRightOf="@+id/practice_icon_card"
+            android:layout_marginLeft="@dimen/middle_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="0"
             android:textColor="@color/bottom_gray"/>
-    </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

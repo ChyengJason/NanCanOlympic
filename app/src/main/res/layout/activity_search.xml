@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/without_more"
                         android:textSize="@dimen/middle_font"
-                        android:textColor="?attr/text_color"/>
+                        android:textColor="@color/bottom_gray_2"/>
                 </FrameLayout>
             </LinearLayout>
         </ScrollView>
@@ -64,7 +64,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="@dimen/big_margin"
-            android:alpha="0"
+            android:visibility="gone"
             android:layout_centerHorizontal="true"
             material:matProg_barColor="?attr/colorAccent"
             material:matProg_progressIndeterminate="true"/>
