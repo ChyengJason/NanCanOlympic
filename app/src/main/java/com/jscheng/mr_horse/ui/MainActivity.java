@@ -19,6 +19,8 @@ import com.jscheng.mr_horse.R;
 import com.jscheng.mr_horse.adapter.HeadViewPaperAdapter;
 import com.jscheng.mr_horse.presenter.MainPresenter;
 import com.jscheng.mr_horse.presenter.impl.MainPresenterImpl;
+import com.jscheng.mr_horse.utils.AppEvent;
+import com.jscheng.mr_horse.utils.AppEventAgent;
 import com.jscheng.mr_horse.utils.Configs;
 import com.jscheng.mr_horse.utils.Constants;
 import com.jscheng.mr_horse.utils.ShareUtil;
@@ -129,18 +131,23 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
         switch (v.getId()){
             case R.id.fljc_book:
                 mainPresenter.onClickFljc();
+                AppEventAgent.onEvent(this, AppEvent.MAIN_FLJC_BOOK);
                 break;
             case R.id.mkszy_book:
                 mainPresenter.onClickMkszy();
+                AppEventAgent.onEvent(this, AppEvent.MAIN_MKSZY_BOOK);
                 break;
             case R.id.mzdsx_book:
                 mainPresenter.onClickMzdsx();
+                AppEventAgent.onEvent(this, AppEvent.MAIN_MZDSX_BOOK);
                 break;
             case R.id.sxdd_book:
                 mainPresenter.onClickSxdd();
+                AppEventAgent.onEvent(this, AppEvent.MAIN_SXDD_BOOK);
                 break;
             case R.id.zgjds_book:
                 mainPresenter.onClickZgjds();
+                AppEventAgent.onEvent(this, AppEvent.MAIN_ZGJDS_BOOK);
                 break;
         }
     }
@@ -156,11 +163,13 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
     @Override
     public void changeToNightTheme() {
         recreate();
+        AppEventAgent.onEvent(this,AppEvent.MAIN_NIGHT_THEME);
     }
 
     @Override
     public void changeToSunTheme(){
         recreate();
+        AppEventAgent.onEvent(this,AppEvent.MAIN_DAY_THEME);
     }
 
     @OnClick(R.id.sun_night)
@@ -186,32 +195,38 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
 
     @OnClick(R.id.about_layout)
     public void onClickAboutLayout(){
-            mainPresenter.onClickAbout();
+        mainPresenter.onClickAbout();
+        AppEventAgent.onEvent(this,AppEvent.MAIN_ABOUOT);
     }
 
     @OnClick(R.id.setting_layout)
     public void onClickSettingLayout(){
         mainPresenter.onClickSetting();
+        AppEventAgent.onEvent(this,AppEvent.MAIN_SETTING);
     }
 
     @OnClick(R.id.collect_layout)
     public void onClickCollectLayout(){
-       mainPresenter.onClickCollect();
+        mainPresenter.onClickCollect();
+        AppEventAgent.onEvent(this,AppEvent.MAIN_COLLECT_PRACTICE);
     }
 
     @OnClick(R.id.cuoti_layout)
     public void onClickWrongLayout(){
         mainPresenter.onClickWrong();
+        AppEventAgent.onEvent(this,AppEvent.MAIN_WRONG_PRACTICE);
     }
 
     @OnClick(R.id.share_layout)
     public void onClickShareLayout(){
         mainPresenter.onClickShareLayout();
+        AppEventAgent.onEvent(this,AppEvent.MAIN_SHARING);
     }
 
     @OnClick(R.id.search_layout)
     public void onClickSearchLayout() {
         mainPresenter.onClickSearchLayout();
+        AppEventAgent.onEvent(this,AppEvent.MAIN_SEARCH);
     }
 
     @Override
@@ -242,10 +257,12 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
             case ShareDialog.CIRCLE:
                 ShareUtil.sendToCircle(wxApi,Constants.DOWNLOAD_URL, getString(R.string.app_name), getString(R.string.app_descripe),
                         BitmapFactory.decodeResource(getResources(), R.mipmap.icon_night));
+                AppEventAgent.onEvent(this,AppEvent.MAIN_SHARE_FRIEND_CIRCLE);
                 break;
             case ShareDialog.WEIXIN:
                 ShareUtil.sendToWeiXin(wxApi,Constants.DOWNLOAD_URL, getString(R.string.app_name), getString(R.string.app_descripe),
                         BitmapFactory.decodeResource(getResources(), R.mipmap.icon_night));
+                AppEventAgent.onEvent(this,AppEvent.MIAN_SHARE_FRIEND);
                 break;
             case ShareDialog.COPY_TO_BOARD:
                 ClipboardManager cmb = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
@@ -253,6 +270,7 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
                 ClipData data = ClipData.newPlainText("content", content);
                 cmb.setPrimaryClip(data);
                 Toast.makeText(this,R.string.copied_to_board, Toast.LENGTH_SHORT).show();
+                AppEventAgent.onEvent(this,AppEvent.MAIN_SHARE_CLIPBOARD);
                 break;
             default:
                 break;
