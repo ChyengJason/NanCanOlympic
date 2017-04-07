@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
  * Created by cheng on 17-1-10.
  */
 public class QuestionDailog extends Dialog implements View.OnClickListener {
-    private final static int Animation_Time = 550;
+    private final static int Animation_Time = 350;
     private Context mContext;
     private List<QuestionModel> modelList;
     private DailogGirdviewAdapter girdviewAdapter;

@@ -1,5 +1,7 @@
 package com.jscheng.mr_horse.utils;
 
+import retrofit2.http.PUT;
+
 /**
  * Created by cheng on 2017/4/7.
  * 统计事件
@@ -23,4 +25,11 @@ public class AppEvent {
     public final static String MAIN_SHARE_FRIEND_CIRCLE = "main_share_friend_circle";
     public final static String MAIN_SHARE_CLIPBOARD = "main_share_clipboard";
     public final static String MIAN_SHARE_FRIEND = "mian_share_friend";
+    //刷题
+    public final static String PRACTICE_DATI_PATTERN = "practice_dati_pattern";
+    public final static String PRACTICE_BEITI_PATTERN = "practice_beiti_pattern";
+    public final static String PRACTICE_THEME = "practice_theme";
+    public final static String PRACTICE_COLLECT = "practice_collect";
+    public final static String PRACTICE_QUESTION_LAYOUT = "practice_question_layout";
+    public final static String PRACTICE_RUBBISH = "practice_rubbish";
 }

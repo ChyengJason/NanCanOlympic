@@ -23,6 +23,8 @@ import com.jscheng.mr_horse.model.QuestionModel;
 import com.jscheng.mr_horse.model.PatternStatus;
 import com.jscheng.mr_horse.presenter.PracticePresenter;
 import com.jscheng.mr_horse.presenter.impl.PracticePresenterImpl;
+import com.jscheng.mr_horse.utils.AppEvent;
+import com.jscheng.mr_horse.utils.AppEventAgent;
 import com.jscheng.mr_horse.view.PracticeView;
 import com.jscheng.mr_horse.wiget.QuestionDailog;
 
@@ -156,11 +158,13 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     @OnClick(R.id.dati_pattern_view)
     public void onClickDatiPatternView(){
         practicePresenter.onClickDatiPattern();
+        AppEventAgent.onEvent(this,AppEvent.PRACTICE_DATI_PATTERN);
     }
 
     @OnClick(R.id.beiti_pattern_view)
     public void onClickBeitiPatternView(){
         practicePresenter.onClickBeitiPattern();
+        AppEventAgent.onEvent(this,AppEvent.PRACTICE_BEITI_PATTERN);
     }
 
     @Override
@@ -206,6 +210,7 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     @OnClick(R.id.sun_night)
     public void onClickSunNight() {
         practicePresenter.changeTheme();
+        AppEventAgent.onEvent(this,AppEvent.PRACTICE_THEME);
     }
 
     @Override
@@ -228,6 +233,7 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     @OnClick(R.id.questions_layout)
     public void onClickQuestionsLayout(){
         practicePresenter.onClickQuestionsLayout();
+        AppEventAgent.onEvent(this,AppEvent.PRACTICE_QUESTION_LAYOUT);
     }
 
     public void showQuestionDailog(List<QuestionModel> modelList,int currentPosition){
@@ -248,6 +254,7 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     @OnClick(R.id.collect_layout)
     public void onClickCollect(){
         practicePresenter.onClickCollect();
+        AppEventAgent.onEvent(this,AppEvent.PRACTICE_COLLECT);
     }
 
     @Override
@@ -269,6 +276,7 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     @OnClick(R.id.rubbish_layout)
     public void onClickRubbish_layout(){
         practicePresenter.onClickRubbishLayout();
+        AppEventAgent.onEvent(this,AppEvent.PRACTICE_RUBBISH);
     }
 
     private static class PracticeHandler extends Handler {
