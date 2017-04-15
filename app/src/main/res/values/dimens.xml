@@ -39,5 +39,5 @@
     <dimen name="answer_question_font">17sp</dimen>
     <dimen name="acitvity_main_today_font">13sp</dimen>
     <!-- search -->
-    <dimen name="more_view_height">50dp</dimen>
+    <dimen name="more_view_height">36dp</dimen>
 </resources>

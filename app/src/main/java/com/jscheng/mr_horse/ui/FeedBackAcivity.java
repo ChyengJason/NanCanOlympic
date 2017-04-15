@@ -32,7 +32,7 @@ public class FeedBackAcivity extends BaseActivity{
     TextView titleView;
     @BindView(R.id.feed_back_edit)
     EditText feedBackEdit;
-//    @BindView(R.id.feed_back_contact)
+    @BindView(R.id.feed_back_contact)
     EditText feedBackContact;
     @BindView(R.id.confirm)
     Button confirm;
@@ -47,7 +47,6 @@ public class FeedBackAcivity extends BaseActivity{
 
     private void initView() {
         titleView.setText(getString(R.string.feed_back));
-        feedBackContact = (EditText) findViewById(R.id.feed_back_contact);
         feedBackContact.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
     }
 
