@@ -40,13 +40,15 @@
         android:layout_marginBottom="36dp">
 
         <TextView
+            android:id="@+id/app_resource"
             android:layout_marginTop="@dimen/much_big_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/about_tips"
             android:textColor="?attr/secondary_text_color"
-            android:textSize="@dimen/middle_font"/>
+            android:textSize="@dimen/middle_font"
+            android:clickable="true"/>
 
         <TextView
             android:id="@+id/app_email"

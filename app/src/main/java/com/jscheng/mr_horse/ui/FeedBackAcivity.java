@@ -3,6 +3,7 @@ package com.jscheng.mr_horse.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -31,6 +32,8 @@ public class FeedBackAcivity extends BaseActivity{
     TextView titleView;
     @BindView(R.id.feed_back_edit)
     EditText feedBackEdit;
+//    @BindView(R.id.feed_back_contact)
+    EditText feedBackContact;
     @BindView(R.id.confirm)
     Button confirm;
 
@@ -44,6 +47,8 @@ public class FeedBackAcivity extends BaseActivity{
 
     private void initView() {
         titleView.setText(getString(R.string.feed_back));
+        feedBackContact = (EditText) findViewById(R.id.feed_back_contact);
+        feedBackContact.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
     }
 
     @OnClick(R.id.title_back)
@@ -54,21 +59,23 @@ public class FeedBackAcivity extends BaseActivity{
     @OnClick(R.id.confirm)
     public void onClickConfirm(){
         if(feedBackEdit.getText().toString().isEmpty() || feedBackEdit.getText().toString().equals("")){
-            Toast.makeText(this,getString(R.string.content_not_null),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getString(R.string.feed_back_content_not_null),Toast.LENGTH_SHORT).show();
             return;
         }
+        String contact = feedBackContact.getText().toString();
+        if (contact == null && contact.isEmpty())
+            contact = "";
         String content = feedBackEdit.getText().toString();
-        addFeedback(content);
+        addFeedback(contact,content);
     }
 
-    private void addFeedback(String content){
+    private void addFeedback(String contact , String content){
         Logger.w(content);
         try{
             String pkName = this.getPackageName();
             String versionName = this.getPackageManager().getPackageInfo(pkName,0).versionName;
             String versionCode = this.getPackageManager().getPackageInfo(pkName,0).versionCode+"";
-
-            FeedBackService.getFeedBackApi().addFeedBack(OSUtil.getMobileInfo(), content,
+            FeedBackService.getFeedBackApi().addFeedBack(OSUtil.getMobileInfo() + " " + contact , content,
                     Constants.FEEDBACK_KEY_ID, getString(R.string.app_name), versionName, versionCode)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -92,6 +99,7 @@ public class FeedBackAcivity extends BaseActivity{
                             Toast.makeText(FeedBackAcivity.this,getString(R.string.thanks_for_your_advise),Toast.LENGTH_SHORT).show();
                             confirm.setClickable(true);
                             feedBackEdit.setText("");
+                            feedBackContact.setText("");
                             View v = getCurrentFocus();
                             InputMethodManager imm = (InputMethodManager)
                                     getSystemService(Context.INPUT_METHOD_SERVICE);

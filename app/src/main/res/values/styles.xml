@@ -14,15 +14,15 @@
         <item name="choose_view_bg">@color/light_gray_2</item>
         <item name="text_color">@color/primary_text</item>
         <item name="secondary_text_color">@color/secondary_text</item>
-        <item name="confirm_btn_text_color">@color/white</item>
-        <item name="bottom_view_color">@color/white</item>
+        <item name="confirm_btn_text_color">@color/light_white</item>
+        <item name="bottom_view_color">@color/light_white</item>
         <item name="bottom_divider_color">@color/divider</item>
         <item name="theme_icon">@mipmap/practise_header_day</item>
         <item name="header_icon_back">@mipmap/header_icon_back_day</item>
-        <item name="pattern_text_color">@color/white</item>
+        <item name="pattern_text_color">@color/light_white</item>
         <item name="left_pattern_selector">@drawable/dati_pattern_selector_day</item>
         <item name="right_pattern_selector">@drawable/beiti_pattern_selector_day</item>
-        <item name="hollow_circle_color">@color/white</item>
+        <item name="hollow_circle_color">@color/light_white</item>
         <item name="pattern_selector_text_color">@drawable/pattern_selector_text_day</item>
         <item name="book_show_type">hide</item>
         <item name="wrong_item_backgroud">@color/white_gray_3</item>
@@ -37,6 +37,7 @@
         <item name="hollow_circle">@drawable/hollow_circle_day</item>
         <item name="right_ellipse">@drawable/right_ellipse_day</item>
         <item name="wrong_circle">@drawable/wrong_circle_day</item>
+        <item name="feed_back_edit_view">@color/white</item>
 
         <item name="practise_a_s">@mipmap/practise_a_s_day</item>
         <item name="practise_b_s">@mipmap/practise_b_s_day</item>
@@ -100,6 +101,7 @@
         <item name="hollow_circle">@drawable/hollow_circle_night</item>
         <item name="right_ellipse">@drawable/right_ellipse_night</item>
         <item name="wrong_circle">@drawable/wrong_circle_night</item>
+        <item name="feed_back_edit_view">@color/hint_gray_night</item>
 
         <item name="practise_a_s">@mipmap/practise_a_s_night</item>
         <item name="practise_b_s">@mipmap/practise_b_s_night</item>

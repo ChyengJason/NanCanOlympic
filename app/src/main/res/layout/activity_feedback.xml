@@ -3,30 +3,77 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/secondary_view_bg">
+    android:background="?attr/root_view_bg">
 
     <include layout="@layout/normal_toolbar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginLeft="@dimen/middle_margin"
+        android:layout_marginRight="@dimen/middle_margin"
+        android:text="@string/feed_back_content"
+        android:textColor="?attr/secondary_text_color"
+        android:textSize="@dimen/middle_font"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="@dimen/middle_margin"
+        android:layout_marginTop="@dimen/small_margin"
         android:background="@drawable/solid_edittext_day">
         <EditText
             android:id="@+id/feed_back_edit"
-            android:layout_margin="@dimen/middle_margin"
+            android:paddingTop="@dimen/middle_margin"
+            android:paddingBottom="@dimen/middle_margin"
+            android:paddingLeft="@dimen/small_margin"
+            android:paddingRight="@dimen/small_margin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="?attr/text_color"
-            android:textSize="@dimen/middle_font"
-            android:background="?attr/secondary_view_bg"
+            android:textSize="@dimen/big_font"
+            android:background="?attr/feed_back_edit_view"
+            android:gravity="top" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/much_big_margin"
+        android:layout_marginLeft="@dimen/middle_margin"
+        android:layout_marginRight="@dimen/middle_margin"
+        android:text="@string/feed_back_contact"
+        android:singleLine = "true"
+        android:textColor="?attr/secondary_text_color"
+        android:textSize="@dimen/middle_font"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:background="@drawable/solid_edittext_day">
+        <EditText
+            android:id="@+id/feed_back_contact"
+            android:paddingTop="@dimen/middle_margin"
+            android:paddingBottom="@dimen/middle_margin"
+            android:paddingLeft="@dimen/small_margin"
+            android:paddingRight="@dimen/small_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="?attr/text_color"
+            android:textSize="@dimen/big_font"
+            android:background="?attr/feed_back_edit_view"
+            android:hint="@string/feed_back_input_or_not"
             android:gravity="top" />
     </LinearLayout>
     <Button
         android:id="@+id/confirm"
-        android:layout_marginTop="@dimen/middle_margin"
+        android:layout_marginLeft="@dimen/big_margin"
+        android:layout_marginRight="@dimen/big_margin"
+        android:layout_marginTop="@dimen/much_big_margin"
         android:layout_gravity="center_horizontal"
-        android:layout_width="@dimen/practise_option_item_confirm_width"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/practise_option_item_confirm_height"
         android:layout_marginBottom="@dimen/practise_option_item_confirm_top_margin"
         android:background="?attr/corner_circle"

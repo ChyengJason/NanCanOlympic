@@ -26,9 +26,6 @@
     <string name="person_email">（邮箱地址 13jscheng@stu.edu.cn）</string>
     <string name="download_address">下载地址</string>
     <string name="auto_update">自动更新版本</string>
-    <string name="feed_back">意见反馈</string>
-    <string name="content_not_null">内容不为空</string>
-    <string name="thanks_for_your_advise">发送成功，谢谢您的反馈！</string>
     <string name="check_update">检查更新</string>
     <string name="click_more">查看更多</string>
     <string name="without_more">没有更多</string>
@@ -37,5 +34,13 @@
     <string name="board">剪切板</string>
     <string name="wechat_friend">微信好友</string>
     <string name="friend_circle">朋友圈</string>
-    <string name="about_tips">项目开源，若需要或意愿完善，请与我联系</string>
+    <string name="about_tips">项目开源，若有其他需求，请与我联系</string>
+    <string name="resource_address">https://github.com/ChyengJason/NanCanOlympic</string>\
+
+    <string name="feed_back">意见反馈</string>
+    <string name="thanks_for_your_advise">发送成功，谢谢您的反馈！</string>
+    <string name="feed_back_content_not_null">反馈内容不为空</string>
+    <string name="feed_back_contact">联系方式(QQ/邮箱)：</string>
+    <string name="feed_back_input_or_not">选填</string>
+    <string name="feed_back_content">反馈内容：</string>
 </resources>

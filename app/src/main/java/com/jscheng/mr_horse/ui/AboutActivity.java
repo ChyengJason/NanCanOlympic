@@ -3,6 +3,9 @@ package com.jscheng.mr_horse.ui;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Intent;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,17 +33,12 @@ public class AboutActivity extends BaseActivity {
     ImageButton title_text;
     @BindView(R.id.app_info)
     TextView app_info;
-//    @BindView(R.id.app_descripe)
-//    TextView app_descripe;
     @BindView(R.id.app_email)
     TextView app_email;
     @BindView(R.id.app_image)
     ImageView app_image;
-
-//    private int time;
-//    private static final int countTime= 5;
-//    private static final int HIDE_MSG = 101;
-//    private AboutHandler handler;
+    @BindView(R.id.app_resource)
+    TextView app_resource;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,8 +49,7 @@ public class AboutActivity extends BaseActivity {
     }
 
     private void init() {
-//        handler = new AboutHandler(this);
-//        time = 0;
+        app_resource.getPaint().setFlags(Paint. UNDERLINE_TEXT_FLAG );
         try{
             String pkName = this.getPackageName();
             String versionName = this.getPackageManager().getPackageInfo(pkName,0).versionName;
@@ -69,35 +66,10 @@ public class AboutActivity extends BaseActivity {
         finish();
     }
 
-//    @OnClick(R.id.app_image)
-//    public void onClickAppImage(){
-//        time++;
-//        time %= countTime;
-//        if (time == (countTime-1)){
-//            app_email.setVisibility(View.VISIBLE);
-//            handler.sendEmptyMessageDelayed(HIDE_MSG,5000);
-//        }
-//    }
-
     @OnClick(R.id.app_email)
     public void onClickEmail(){
         copyToBoard();
     }
-
-//    private static class AboutHandler extends Handler{
-//        WeakReference<Activity> reference;
-//        public AboutHandler(Activity activity){
-//            reference = new WeakReference<Activity>(activity);
-//        }
-//
-//        @Override
-//        public void handleMessage(Message msg) {
-//            final Activity activity = reference.get();
-//            if (msg.what == HIDE_MSG && activity!=null){
-//                ((AboutActivity)activity).app_email.setVisibility(View.GONE);
-//            }
-//        }
-//    }
 
     public void copyToBoard(){
         ClipboardManager cmb = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
@@ -106,4 +78,10 @@ public class AboutActivity extends BaseActivity {
         Toast.makeText(this,R.string.copied_to_board, Toast.LENGTH_SHORT).show();
     }
 
+    @OnClick(R.id.app_resource)
+    public void onClickResource(){
+        Uri uri = Uri.parse(getResources().getString(R.string.resource_address));
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
 }

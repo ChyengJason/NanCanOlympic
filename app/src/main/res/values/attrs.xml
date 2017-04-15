@@ -26,6 +26,7 @@
     <attr name="solid_circle" format="reference"/>
     <attr name="right_ellipse" format="reference"/>
     <attr name="wrong_circle" format="reference"/>
+    <attr name="feed_back_edit_view" format="reference"/>
 
     <attr name="practise_a_s" format="reference"/>
     <attr name="practise_b_s" format="reference"/>
