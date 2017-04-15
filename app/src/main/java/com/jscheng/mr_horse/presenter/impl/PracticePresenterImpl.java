@@ -51,7 +51,7 @@ public class PracticePresenterImpl implements PracticePresenter {
         this.mContext = context;
         this.patternStatus = PatternStatus.DATI_PATTERN;//默认是答题模式，测试使用背题模式
         this.questionModelList = new ArrayList();
-        this.pageNum = intent.getIntExtra(Constants.PAGE_NUM,-1);
+        this.pageNum = intent.getIntExtra(Constants.PAGE_NUM,0);
         this.catogory = intent.getStringExtra(Constants.CATOGORY);
 
         if(!catogory.equals(Constants.COLLECT) && !(catogory.equals(Constants.WRONG))){
@@ -174,6 +174,7 @@ public class PracticePresenterImpl implements PracticePresenter {
                             }
                         });
 
+                        SharedPreferencesUtil.setParam(mContext,catogory,true);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -220,9 +221,6 @@ public class PracticePresenterImpl implements PracticePresenter {
                 mPracticeView.showPageNumView(pageNum+1,questionModelList.size());
 
                 showCollect();
-
-                if(isStore==false)
-                    SharedPreferencesUtil.setParam(mContext,catogory,true);
 
                 mPracticeView.sucessProcessing();
                 loading = false;

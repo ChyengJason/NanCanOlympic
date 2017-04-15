@@ -3,7 +3,7 @@
     <string name="app_descripe">社科刷题APP，欢迎使用！</string>
     <string name="dati_pattern">答题模式</string>
     <string name="beiti_pattern">看题模式</string>
-    <string name="colloect">收藏</string>
+    <string name="collect">收藏</string>
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>
     <string name="today_done_num">今日刷题/道</string>
@@ -23,7 +23,7 @@
     <string name="remove">移除</string>
     <string name="person_app">个人开发应用</string>
     <string name="person_egg">(有彩蛋哦)</string>
-    <string name="person_email">联系邮箱: 13jscheng@stu.edu.cn</string>
+    <string name="person_email">（邮箱地址 13jscheng@stu.edu.cn）</string>
     <string name="download_address">下载地址</string>
     <string name="auto_update">自动更新版本</string>
     <string name="feed_back">意见反馈</string>
@@ -37,4 +37,5 @@
     <string name="board">剪切板</string>
     <string name="wechat_friend">微信好友</string>
     <string name="friend_circle">朋友圈</string>
+    <string name="about_tips">项目开源，若需要或意愿完善，请与我联系</string>
 </resources>

@@ -17,12 +17,12 @@
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:clickable="true"
-        android:paddingLeft="@dimen/practise_bottombar_pattern_left_pading"
-        android:paddingRight="@dimen/practise_bottombar_pattern_left_pading">
+        android:paddingLeft="@dimen/small_margin"
+        android:paddingRight="@dimen/small_margin">
         <ImageView
             android:id="@+id/collect_iv"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
             android:layout_centerVertical="true"
             android:src="@mipmap/collect_icon_no"/>
         <TextView
@@ -30,35 +30,38 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/collect_iv"
             android:paddingLeft="@dimen/small_margin"
-            android:paddingTop="2dp"
+            android:paddingTop="1dp"
             android:layout_centerVertical="true"
-            android:text="@string/colloect"
+            android:text="@string/collect"
             android:textColor="@color/bottom_gray"/>
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/rubbish_layout"
         style="@style/selectableItemBackground"
         android:layout_toRightOf="@+id/collect_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:orientation="horizontal"
         android:clickable="true"
-        android:paddingLeft="@dimen/practise_bottombar_pattern_left_pading">
+        android:paddingLeft="@dimen/small_margin"
+        android:paddingRight="@dimen/small_margin">
         <ImageView
             android:id="@+id/rubbish_iv"
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:src="@mipmap/remove_rubbish"
-            android:scaleType="fitXY"/>
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/remove_rubbish"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/small_margin"
+            android:layout_toRightOf="@id/rubbish_iv"
+            android:layout_centerVertical="true"
+            android:paddingTop="1dp"
             android:text="@string/remove"
             android:textColor="@color/bottom_gray"/>
-    </LinearLayout>
+    </RelativeLayout>>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -72,12 +75,13 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="3dp"
                 android:src="@mipmap/practice_icon_true_day"/>
             <TextView
                 android:id="@+id/practice_right_num_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:paddingLeft="@dimen/small_margin"
                 android:text="0"
                 android:textColor="@color/bottom_gray"/>
@@ -89,12 +93,13 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="3dp"
                 android:src="@mipmap/practice_icon_false_day"/>
             <TextView
                 android:id="@+id/practice_wrong_num_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
                 android:paddingLeft="@dimen/small_margin"
                 android:text="0"
                 android:textColor="@color/bottom_gray"/>

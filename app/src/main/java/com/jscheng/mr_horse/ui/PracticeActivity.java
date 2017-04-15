@@ -59,7 +59,7 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     @BindView(R.id.circle_loading_view)
     AnimatedCircleLoadingView loadingView;
     @BindView(R.id.rubbish_layout)
-    LinearLayout rubbish_layout;
+    RelativeLayout rubbish_layout;
 
     private PracticeHandler changeViewHandler;
     private PracticeHandler progressViewHandler;
