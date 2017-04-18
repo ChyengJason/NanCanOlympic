@@ -26,6 +26,7 @@ import com.jscheng.mr_horse.presenter.PracticePresenter;
 import com.jscheng.mr_horse.presenter.impl.PracticePresenterImpl;
 import com.jscheng.mr_horse.utils.AppEvent;
 import com.jscheng.mr_horse.utils.AppEventAgent;
+import com.jscheng.mr_horse.utils.Constants;
 import com.jscheng.mr_horse.view.PracticeView;
 import com.jscheng.mr_horse.wiget.QuestionDailog;
 
@@ -66,6 +67,8 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     private PracticePresenter practicePresenter;
     private AnswerViewPaperAdapter answerViewPaperAdapter;
 
+    public static final String EXTRA_VIEW_PAGER_INDEX  = "ViewPagerIndex";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +108,8 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
         answerViewPager.setAdapter(answerViewPaperAdapter);
         answerViewPager.addOnPageChangeListener(answerViewPaperAdapter.new AnswerViewPaperListener());
         answerViewPaperAdapter.addAnswerPageListener(practicePresenter);
+        int currentViewPagerIndex = getIntent().getIntExtra(EXTRA_VIEW_PAGER_INDEX, 0);
+        answerViewPager.setCurrentItem(currentViewPagerIndex);
     }
 
     @Override
@@ -197,11 +202,21 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
 
     @Override
     public void changeToNightTheme() {
-        recreate();
+        restartActivity();
     }
 
     public void changeToSunTheme(){
-        recreate();
+        restartActivity();
+    }
+
+    private void restartActivity(){
+        Intent intent = new Intent(this, PracticeActivity.class);
+        intent.putExtra(EXTRA_VIEW_PAGER_INDEX, answerViewPager.getCurrentItem());
+        intent.putExtra(Constants.FILENAME, getIntent().getStringExtra(Constants.FILENAME));
+        intent.putExtra(Constants.CATOGORY,getIntent().getStringExtra(Constants.CATOGORY));
+        startActivity(intent);
+        super.finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @OnClick(R.id.sun_night)
