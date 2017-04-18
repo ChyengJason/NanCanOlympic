@@ -59,6 +59,8 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
     private MainPresenter mainPresenter;
     private IWXAPI wxApi;
 
+    public static final String EXTRA_VIEW_PAGER_INDEX  = "ViewPagerIndex";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +95,8 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
         (headview_1.findViewById(R.id.mzdsx_book)).setOnClickListener(this);
         (headview_2.findViewById(R.id.sxdd_book)).setOnClickListener(this);
         (headview_2.findViewById(R.id.zgjds_book)).setOnClickListener(this);
+        int currentViewPagerIndex = getIntent().getIntExtra(EXTRA_VIEW_PAGER_INDEX, 0);
+        headViewPager.setCurrentItem(currentViewPagerIndex);
     }
 
     private void setHeadViewPagerListener() {
@@ -162,14 +166,22 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
 
     @Override
     public void changeToNightTheme() {
-        recreate();
+        restartActivity();
         AppEventAgent.onEvent(this,AppEvent.MAIN_NIGHT_THEME);
     }
 
     @Override
     public void changeToSunTheme(){
-        recreate();
+        restartActivity();
         AppEventAgent.onEvent(this,AppEvent.MAIN_DAY_THEME);
+    }
+
+    private void restartActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(EXTRA_VIEW_PAGER_INDEX, headViewPager.getCurrentItem());
+        startActivity(intent);
+        super.finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @OnClick(R.id.sun_night)
