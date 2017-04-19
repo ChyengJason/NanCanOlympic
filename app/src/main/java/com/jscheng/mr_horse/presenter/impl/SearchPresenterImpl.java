@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.jscheng.mr_horse.model.QuestionJsonModel;
 import com.jscheng.mr_horse.model.QuestionModel;
-import com.jscheng.mr_horse.model.QuestionModelLoad;
+import com.jscheng.mr_horse.model.QuestionModelLoadUtil;
 import com.jscheng.mr_horse.presenter.SearchPresenter;
 import com.jscheng.mr_horse.ui.PracticeActivity;
 import com.jscheng.mr_horse.utils.AppHandler;
@@ -113,9 +113,9 @@ public class SearchPresenterImpl implements SearchPresenter {
     @Override
     public void onClickItem(int postion, QuestionModel model) {
         Intent intent = new Intent(mContext, PracticeActivity.class);
-        intent.putExtra(Constants.FILENAME,QuestionCatagoryUtil.getJsonFileName(model.getCatogory()));
         intent.putExtra(Constants.CATOGORY,model.getCatogory());
         intent.putExtra(Constants.PAGE_NUM,model.getQuestionNum()-1);
+        intent.putExtra(Constants.PRACTICE_TYPE,Constants.SEARCH_PRACTICE);
         mContext.startActivity(intent);
     }
 
@@ -153,10 +153,10 @@ public class SearchPresenterImpl implements SearchPresenter {
                             }
                         });
                         final List<QuestionModel> questionModelList = new ArrayList<QuestionModel>();
-                        for (QuestionJsonModel questionJsonModel : QuestionModelLoad.getQuestionJsonModels(mContext, loadMap.get(catogory))) {
+                        for (QuestionJsonModel questionJsonModel : QuestionModelLoadUtil.getQuestionJsonModels(mContext, loadMap.get(catogory))) {
                             questionModelList.add(questionJsonModel.toQuestionModel(catogory));
                         }
-                        QuestionModelLoad.saveQuestionModelToDB(mContext, questionModelList);
+                        QuestionModelLoadUtil.saveQuestionModelToDB(mContext, questionModelList);
                         Logger.e(questionModelList.size() + "");
                         Logger.e(catogory + "");
                         SharedPreferencesUtil.setParam(mContext, catogory,true);
@@ -175,7 +175,7 @@ public class SearchPresenterImpl implements SearchPresenter {
             @Override
             public void call(Subscriber<? super List<QuestionModel>> subscriber) {
                 isSearching = true;
-                List<QuestionModel> results = QuestionModelLoad.searchQuestionModelsfromDB(mContext,searchText,PageMaxLine,pageNum * PageMaxLine);
+                List<QuestionModel> results = QuestionModelLoadUtil.searchQuestionModelsfromDB(mContext,searchText,PageMaxLine,pageNum * PageMaxLine);
                 pageNum++;
                 if (results.size() < PageMaxLine)
                     isLastPage = true;
@@ -192,7 +192,7 @@ public class SearchPresenterImpl implements SearchPresenter {
                     return;
 //                mSearchView.beginProcess();
                 if (isStoring)
-                    mSearchView.showInfo("首次加载会消耗较长时间,只是第一次哦");
+                    mSearchView.showInfo("搜索功能需全部题目资源，首次初始化需本地加载，无耗用网络流量");
             }
 
             @Override

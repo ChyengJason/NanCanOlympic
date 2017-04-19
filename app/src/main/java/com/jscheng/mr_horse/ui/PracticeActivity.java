@@ -12,7 +12,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +22,10 @@ import com.jscheng.mr_horse.adapter.AnswerViewPaperAdapter;
 import com.jscheng.mr_horse.model.QuestionModel;
 import com.jscheng.mr_horse.model.PatternStatus;
 import com.jscheng.mr_horse.presenter.PracticePresenter;
-import com.jscheng.mr_horse.presenter.impl.PracticePresenterImpl;
+import com.jscheng.mr_horse.presenter.impl.CollectPracticePresenterImpl;
+import com.jscheng.mr_horse.presenter.impl.MainPracticePresenterImpl;
+import com.jscheng.mr_horse.presenter.impl.SearchPracticePresenterImpl;
+import com.jscheng.mr_horse.presenter.impl.WrongPracticePresenterImpl;
 import com.jscheng.mr_horse.utils.AppEvent;
 import com.jscheng.mr_horse.utils.AppEventAgent;
 import com.jscheng.mr_horse.utils.Constants;
@@ -67,15 +69,42 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     private PracticePresenter practicePresenter;
     private AnswerViewPaperAdapter answerViewPaperAdapter;
 
-    public static final String EXTRA_VIEW_PAGER_INDEX  = "ViewPagerIndex";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice);
         ButterKnife.bind(this);
-        practicePresenter = new PracticePresenterImpl(this,getIntent());
+        initPresenter();
+        initHandler();
+    }
+
+    private void initPresenter() {
+        Intent intent = getIntent();
+        String type = intent.getStringExtra(Constants.PRACTICE_TYPE);
+        if (type.equals(Constants.MAIN_PRACTICE))
+            practicePresenter = new MainPracticePresenterImpl(this,intent);
+        else if (type.equals(Constants.COLLECT_PRACTICE))
+            practicePresenter = new CollectPracticePresenterImpl(this,intent);
+        else if (type.equals(Constants.WRONG_PRACTICE))
+            practicePresenter = new WrongPracticePresenterImpl(this,intent);
+        else if (type.equals(Constants.SEARCH_PRACTICE))
+            practicePresenter = new SearchPracticePresenterImpl(this,intent);
+
         practicePresenter.attachView(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(practicePresenter !=null) {
+            practicePresenter.detachView(false);
+            if(answerViewPaperAdapter!=null){
+                answerViewPaperAdapter.removeAnswerPageListener(practicePresenter);
+            }
+        }
+    }
+
+    private void initHandler() {
         changeViewHandler = new PracticeHandler(this, new PracticeHandler.PracticeCallback() {
             @Override
             public void handleMessge(Message msg) {
@@ -92,24 +121,11 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(practicePresenter !=null) {
-            practicePresenter.detachView(false);
-            if(answerViewPaperAdapter!=null){
-                answerViewPaperAdapter.removeAnswerPageListener(practicePresenter);
-            }
-        }
-    }
-
-    @Override
-    public void initPaperAdapter(List<QuestionModel> questionModelList, PatternStatus status) {
+    public void initPaperAdapter(List<QuestionModel> questionModelList, int status) {
         answerViewPaperAdapter = new AnswerViewPaperAdapter(this, questionModelList,status);
         answerViewPager.setAdapter(answerViewPaperAdapter);
         answerViewPager.addOnPageChangeListener(answerViewPaperAdapter.new AnswerViewPaperListener());
         answerViewPaperAdapter.addAnswerPageListener(practicePresenter);
-        int currentViewPagerIndex = getIntent().getIntExtra(EXTRA_VIEW_PAGER_INDEX, 0);
-        answerViewPager.setCurrentItem(currentViewPagerIndex);
     }
 
     @Override
@@ -170,7 +186,7 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     }
 
     @Override
-    public void changeAdapterPattern(PatternStatus status){
+    public void changeAdapterPattern(int status){
         if(answerViewPaperAdapter!=null)
             answerViewPaperAdapter.changePatternStatus(status);
     }
@@ -201,19 +217,15 @@ public class PracticeActivity extends BaseActivity implements PracticeView {
     }
 
     @Override
-    public void changeToNightTheme() {
-        restartActivity();
+    public void changeToNightTheme(Intent intent) {
+        restartActivity(intent);
     }
 
-    public void changeToSunTheme(){
-        restartActivity();
+    public void changeToSunTheme(Intent intent){
+        restartActivity(intent);
     }
 
-    private void restartActivity(){
-        Intent intent = new Intent(this, PracticeActivity.class);
-        intent.putExtra(EXTRA_VIEW_PAGER_INDEX, answerViewPager.getCurrentItem());
-        intent.putExtra(Constants.FILENAME, getIntent().getStringExtra(Constants.FILENAME));
-        intent.putExtra(Constants.CATOGORY,getIntent().getStringExtra(Constants.CATOGORY));
+    private void restartActivity(Intent intent){
         startActivity(intent);
         super.finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

@@ -64,6 +64,7 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context, PracticeActivity.class);
         intent.putExtra(Constants.FILENAME, Constants.FLJC_JSON_NAME);
         intent.putExtra(Constants.CATOGORY,Constants.FLJC);
+        intent.putExtra(Constants.PRACTICE_TYPE,Constants.MAIN_PRACTICE);
         mainView.startActivityForResult(intent);
     }
 
@@ -72,6 +73,7 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context, PracticeActivity.class);
         intent.putExtra(Constants.FILENAME, Constants.MKSZY_JSON_NAME);
         intent.putExtra(Constants.CATOGORY,Constants.MKSZY);
+        intent.putExtra(Constants.PRACTICE_TYPE,Constants.MAIN_PRACTICE);
         mainView.startActivityForResult(intent);
     }
 
@@ -80,6 +82,7 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context, PracticeActivity.class);
         intent.putExtra(Constants.FILENAME, Constants.MZDSX_JSON_NAME);
         intent.putExtra(Constants.CATOGORY,Constants.MZDSX);
+        intent.putExtra(Constants.PRACTICE_TYPE,Constants.MAIN_PRACTICE);
         mainView.startActivityForResult(intent);
 
     }
@@ -89,6 +92,7 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context, PracticeActivity.class);
         intent.putExtra(Constants.FILENAME, Constants.SXDD_JSON_NAME);
         intent.putExtra(Constants.CATOGORY,Constants.SXDD);
+        intent.putExtra(Constants.PRACTICE_TYPE,Constants.MAIN_PRACTICE);
         mainView.startActivityForResult(intent);
     }
 
@@ -97,6 +101,7 @@ public class MainPresenterImpl implements MainPresenter {
         Intent intent = new Intent(context, PracticeActivity.class);
         intent.putExtra(Constants.FILENAME, Constants.ZGJDS_JSON_NAME);
         intent.putExtra(Constants.CATOGORY,Constants.ZGJDS);
+        intent.putExtra(Constants.PRACTICE_TYPE,Constants.MAIN_PRACTICE);
         mainView.startActivityForResult(intent);
     }
     @Override

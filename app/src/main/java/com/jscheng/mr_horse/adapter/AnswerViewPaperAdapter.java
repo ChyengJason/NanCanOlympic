@@ -28,14 +28,14 @@ import java.util.List;
  * Created by cheng on 17-1-7.
  */
 public class AnswerViewPaperAdapter extends PagerAdapter {
-    private static PatternStatus patternStatus;//看题模式，做题模式
+    private static int patternStatus;//看题模式，做题模式
     private Context mContext;
     private List<QuestionModel> mData;
     private LinkedList<View> mViewCache = null;
     private LayoutInflater mLayoutInflater = null;
     private List<AnswerPageChangeListener> listenerList = null;
 
-    public AnswerViewPaperAdapter(Context context,List data,PatternStatus patternStatus){
+    public AnswerViewPaperAdapter(Context context,List data,int patternStatus){
         this.mContext = context;
         this.mData = data;
         this.mViewCache = new LinkedList<>();
@@ -260,7 +260,7 @@ public class AnswerViewPaperAdapter extends PagerAdapter {
         notifyDataSetChanged();
     }
 
-    public void changePatternStatus(PatternStatus status){
+    public void changePatternStatus(int status){
         patternStatus = status;
         this.notifyDataSetChanged();
     }

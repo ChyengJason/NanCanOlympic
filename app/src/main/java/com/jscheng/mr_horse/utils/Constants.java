@@ -100,10 +100,8 @@ public class Constants {
      */
     public static final String FILENAME = "filename";
     /**
-     * classification
+     * page_num
      */
-    public static final String CLASSIFICATION = "classification";
-
     public static final String PAGE_NUM = "page_num";
     /**
      * dowloadUrl
@@ -121,5 +119,16 @@ public class Constants {
      * 是否自动更新
      */
     public static final String AUTO_CHECK_UPGRADE = "autoCheckUpgrade";
-
+    /**
+     * Practice种类
+     */
+    public static final String PRACTICE_TYPE = "practice_type";
+    public static final String MAIN_PRACTICE = "main_practice";
+    public static final String WRONG_PRACTICE = "wrong_practice";
+    public static final String COLLECT_PRACTICE = "collect_practice";
+    public static final String SEARCH_PRACTICE = "search_practice";
+    /**
+     * 答题或者背题模式
+     */
+    public static final String PATTERN_STATUS = "pattern_status";
 }

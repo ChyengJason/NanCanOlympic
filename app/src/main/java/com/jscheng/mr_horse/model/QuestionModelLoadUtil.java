@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by cheng on 17-1-9.
  */
-public class QuestionModelLoad {
+public class QuestionModelLoadUtil {
 
     public static List<QuestionJsonModel> getQuestionJsonModels(Context mContext,String filename)throws IOException {
         InputStream inputstream = mContext.getClass().getClassLoader().getResourceAsStream("assets/" + filename);
@@ -27,16 +27,37 @@ public class QuestionModelLoad {
         return jsonModelList;
     }
 
-    public static int getQuestionDoneNum(Context mContext,String catogory){
-        String key = catogory+"_done_num";
+    public static int getQuestionDoneId(Context mContext, String catogory){
+        String key = catogory+"_done_id";
         int num = (Integer) SharedPreferencesUtil.getParam(mContext,key,0);
-//        Logger.e(num+"");
         return num;
     }
 
-    public static void saveQuestionDoneNum(Context mContext,String catogory,Integer num){
-        String key = catogory+"_done_num";
-        SharedPreferencesUtil.setParam(mContext,key,num);
+    public static void saveQuestionDoneId(Context mContext, String catogory, Integer id){
+        String key = catogory+"_done_id";
+        SharedPreferencesUtil.setParam(mContext,key,id);
+    }
+
+    public static int getQuestionWrongDoneId(Context mContext, String catogory){
+        String key = catogory+"_wrong_done_id";
+        int num = (Integer) SharedPreferencesUtil.getParam(mContext,key,0);
+        return num;
+    }
+
+    public static void saveQuetionWrongDoneId(Context mContext, String catogory, Integer id){
+        String key = catogory+"_wrong_done_id";
+        SharedPreferencesUtil.setParam(mContext,key,id);
+    }
+
+    public static int getQuestionCollectDoneId(Context mContext, String catogory){
+        String key = catogory+"_collect_done_id";
+        int num = (Integer) SharedPreferencesUtil.getParam(mContext,key,0);
+        return num;
+    }
+
+    public static void saveQuetionCollectDoneId(Context mContext, String catogory, Integer id){
+        String key = catogory+"_collect_done_id";
+        SharedPreferencesUtil.setParam(mContext,key,id);
     }
 
     public static void saveQuestionModelToDB(Context mContext, List<QuestionModel> modelList, QuestionDbUtil.DbProgressListener listener) {
@@ -95,7 +116,7 @@ public class QuestionModelLoad {
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             questionDbUtil.update(questionModel);
 
-            String key = questionModel.getCatogory()+"_collect_num";
+            String key = questionModel.getCatogory()+"_collect_count";
             int num = (int)SharedPreferencesUtil.getParam(mContext,key,0);
             SharedPreferencesUtil.setParam(mContext,key,num+1);
         }catch (Exception e){
@@ -109,7 +130,7 @@ public class QuestionModelLoad {
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             questionDbUtil.update(questionModel);
 
-            String key = questionModel.getCatogory()+"_collect_num";
+            String key = questionModel.getCatogory()+"_collect_count";
             int num = (int)SharedPreferencesUtil.getParam(mContext,key,1);
             SharedPreferencesUtil.setParam(mContext,key,num-1);
         }catch (Exception e){
@@ -123,7 +144,7 @@ public class QuestionModelLoad {
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             questionDbUtil.update(questionModel);
 
-            String key = questionModel.getCatogory()+"_wrong_num";
+            String key = questionModel.getCatogory()+"_wrong_count";
             int num = (int)SharedPreferencesUtil.getParam(mContext,key,0);
             SharedPreferencesUtil.setParam(mContext,key,num+1);
         }catch (Exception e){
@@ -137,7 +158,7 @@ public class QuestionModelLoad {
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             questionDbUtil.update(questionModel);
 
-            String key = questionModel.getCatogory()+"_wrong_num";
+            String key = questionModel.getCatogory()+"_wrong_count";
             int num = (int)SharedPreferencesUtil.getParam(mContext,key,1);
             SharedPreferencesUtil.setParam(mContext,key,num-1);
         }catch (Exception e){
@@ -165,14 +186,14 @@ public class QuestionModelLoad {
         return new ArrayList<>();
     }
 
-    public static Integer getWrongQuestionModelNum(Context mContext,String catogory){
-        String key = catogory+"_wrong_num";
+    public static Integer getWrongQuestionModelCount(Context mContext, String catogory){
+        String key = catogory+"_wrong_count";
         int num = (int)SharedPreferencesUtil.getParam(mContext,key,0);
         return num;
     }
 
-    public static Integer getCollectQuestionModelNum(Context mContext,String catogory){
-        String key = catogory+"_collect_num";
+    public static Integer getCollectQuestionModelCount(Context mContext, String catogory){
+        String key = catogory+"_collect_count";
         int num = (int)SharedPreferencesUtil.getParam(mContext,key,0);
         return num;
     }
@@ -182,7 +203,7 @@ public class QuestionModelLoad {
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             questionDbUtil.removeWrongQuestion(catogory);
 
-            String key = catogory+"_wrong_num";
+            String key = catogory+"_wrong_count";
             SharedPreferencesUtil.setParam(mContext,key,0);
         }catch (Exception e){
             Logger.e(e);
@@ -194,7 +215,7 @@ public class QuestionModelLoad {
             QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
             questionDbUtil.removeCollectQuestion(catogory);
 
-            String key = catogory+"_collect_num";
+            String key = catogory+"_collect_count";
             SharedPreferencesUtil.setParam(mContext,key,0);
         }catch (Exception e){
             Logger.e(e);
