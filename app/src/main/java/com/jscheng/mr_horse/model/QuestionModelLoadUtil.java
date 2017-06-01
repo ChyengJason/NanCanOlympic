@@ -100,6 +100,21 @@ public class QuestionModelLoadUtil {
         return new ArrayList<>();
     }
 
+    public static List<QuestionModel> searchQuestionModelsfromDBWithCatagory(Context mContext,String catagory,String searchText,int limitNum, int offsetNum) {
+        List<QuestionModel> results = new ArrayList();
+        try {
+            QuestionDbUtil questionDbUtil = new QuestionDbUtil(mContext);
+            for (QuestionModel model : questionDbUtil.getSearchData(searchText,limitNum, offsetNum)){
+                if (model.getCatogory().equals(catagory)){
+                    results.add(model);
+                }
+            }
+            return results;
+        }catch (Exception e){
+            Logger.e(e);
+        }
+        return results;
+    }
 
     public static void setQuestionModelDone(Context mContext,QuestionModel questionModel){
         try{

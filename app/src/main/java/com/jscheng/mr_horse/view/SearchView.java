@@ -21,4 +21,6 @@ public interface SearchView extends MvpView {
     void showMorePageView();
     void addSearchResults(List<QuestionModel> results);
     void clearSearchResult();
+    void showChoose(String choose);
+    String getSearchText();
 }

@@ -123,7 +123,8 @@ public class MainPracticePresenterImpl implements PracticePresenter {
         questionModelList.get(postion).setDone(QuestionDoneType.DONE_WRONG);
         QuestionModelLoadUtil.setQuestionModelDone(mContext, questionModelList.get(postion));
         //加入错题集
-        QuestionModelLoadUtil.setQuestionModelToWrong(mContext, questionModelList.get(postion));
+        if (!questionModelList.get(postion).isWrong())
+            QuestionModelLoadUtil.setQuestionModelToWrong(mContext, questionModelList.get(postion));
     }
 
     @Override

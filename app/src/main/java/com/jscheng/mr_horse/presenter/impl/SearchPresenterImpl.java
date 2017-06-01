@@ -43,12 +43,14 @@ public class SearchPresenterImpl implements SearchPresenter {
     private boolean isStoring;
     private int pageNum;
     private boolean isLastPage;
+    private String choose;
 
     public SearchPresenterImpl(Context mContext){
         this.mContext = mContext;
         this.isSearching = false;
         this.isStoring = false;
         this.pageNum = 0;
+        this.choose = Constants.DEFAULT_CHOOSE;
     }
 
     @Override
@@ -73,6 +75,17 @@ public class SearchPresenterImpl implements SearchPresenter {
         if (mSearchView != null)  mSearchView.beginProcess();
         Map<String,String> loadMap = checkData();
         storeAndLoadData(loadMap,searchText);
+    }
+
+    private Map<String,String> checkData() {
+        if (choose.equals(Constants.DEFAULT_CHOOSE))
+            return checkDefaultData();
+        Map loadMap = new HashMap();
+        String jsonName = QuestionCatagoryUtil.getJsonFileName(choose);
+        if ( !(boolean)SharedPreferencesUtil.getParam(mContext, choose,false) ){
+            loadMap.put(choose,jsonName);
+        }
+        return loadMap;
     }
 
     @Override
@@ -119,7 +132,17 @@ public class SearchPresenterImpl implements SearchPresenter {
         mContext.startActivity(intent);
     }
 
-    private Map<String,String> checkData() {
+    @Override
+    public void onClickChooseLayout(String choose) {
+        this.choose = choose;
+        if (choose.equals(Constants.DEFAULT_CHOOSE))
+            mSearchView.showChoose(Constants.DEFAULT_CHOOSE);
+        else
+            mSearchView.showChoose(QuestionCatagoryUtil.getName(choose));
+        onClickSearch(mSearchView.getSearchText());
+    }
+
+    private Map<String,String> checkDefaultData() {
         Map loadMap = new HashMap();
         if ( !(boolean)SharedPreferencesUtil.getParam(mContext, Constants.FLJC,false) ){
             loadMap.put(Constants.FLJC,Constants.FLJC_JSON_NAME);
@@ -175,7 +198,11 @@ public class SearchPresenterImpl implements SearchPresenter {
             @Override
             public void call(Subscriber<? super List<QuestionModel>> subscriber) {
                 isSearching = true;
-                List<QuestionModel> results = QuestionModelLoadUtil.searchQuestionModelsfromDB(mContext,searchText,PageMaxLine,pageNum * PageMaxLine);
+                List<QuestionModel> results;
+                if (choose.equals(Constants.DEFAULT_CHOOSE))
+                    results = QuestionModelLoadUtil.searchQuestionModelsfromDB(mContext,searchText,PageMaxLine,pageNum * PageMaxLine);
+                else
+                    results = QuestionModelLoadUtil.searchQuestionModelsfromDBWithCatagory(mContext,choose,searchText,PageMaxLine,pageNum * PageMaxLine);
                 pageNum++;
                 if (results.size() < PageMaxLine)
                     isLastPage = true;

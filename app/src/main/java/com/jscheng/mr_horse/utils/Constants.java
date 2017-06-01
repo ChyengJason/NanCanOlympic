@@ -131,4 +131,9 @@ public class Constants {
      * 答题或者背题模式
      */
     public static final String PATTERN_STATUS = "pattern_status";
+
+    /**
+     * 搜索
+     */
+    public static final String DEFAULT_CHOOSE = "全部";
 }

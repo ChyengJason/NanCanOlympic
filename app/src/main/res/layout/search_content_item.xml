@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/selectableItemBackground"
     android:id="@+id/search_content_item_layout"
     android:orientation="vertical"
     android:clickable="true"
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/big_margin"
         android:paddingRight="@dimen/big_margin"
-        android:paddingTop="@dimen/middle_margin"
+        android:paddingTop="@dimen/big_margin"
         android:paddingBottom="@dimen/middle_margin"
         android:lineSpacingExtra="@dimen/small_spacing"
         android:text="无"
@@ -20,9 +21,8 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginBottom="@dimen/small_margin"
         android:layout_marginLeft="@dimen/big_margin"
         android:layout_marginRight="@dimen/big_margin"
         android:background="?attr/search_divider_color"/>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/search_popupview_bg">
+
+    <RelativeLayout
+        style="@style/SearchPopupViewLayout"
+        android:id="@+id/search_popup_default">
+        <TextView
+            style="@style/SearchPopupViewTextView"
+            android:text="@string/default_choose"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/SearchPopupViewLayout"
+        android:id="@+id/search_popup_mzdsx">
+        <TextView
+            style="@style/SearchPopupViewTextView"
+            android:text="@string/mzdsx"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/SearchPopupViewLayout"
+        android:id="@+id/search_popup_sxdd">
+        <TextView
+            style="@style/SearchPopupViewTextView"
+            android:text="@string/sxdd"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/SearchPopupViewLayout"
+        android:id="@+id/search_popup_fljc">
+        <TextView
+            style="@style/SearchPopupViewTextView"
+            android:text="@string/fljc"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/SearchPopupViewLayout"
+        android:id="@+id/search_popup_mkszy">
+        <TextView
+            style="@style/SearchPopupViewTextView"
+            android:text="@string/mkszy"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/SearchPopupViewLayout"
+        android:id="@+id/search_popup_zgjds">
+        <TextView
+            style="@style/SearchPopupViewTextView"
+            android:text="@string/zgjds"/>
+    </RelativeLayout>
+</LinearLayout>

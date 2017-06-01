@@ -9,4 +9,5 @@ public interface SearchPresenter extends MvpPresenter {
     void onClickSearch(String searchText);
     void onClickMoreLayout();
     void onClickItem(int postion, QuestionModel model);
+    void onClickChooseLayout(String choose);
 }

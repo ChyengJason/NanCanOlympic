@@ -38,6 +38,7 @@
         <item name="right_ellipse">@drawable/right_ellipse_day</item>
         <item name="wrong_circle">@drawable/wrong_circle_day</item>
         <item name="feed_back_edit_view">@color/white</item>
+        <item name="search_choose_bg">@drawable/search_choose_corner_day</item>
 
         <item name="practise_a_s">@mipmap/practise_a_s_day</item>
         <item name="practise_b_s">@mipmap/practise_b_s_day</item>
@@ -102,6 +103,7 @@
         <item name="right_ellipse">@drawable/right_ellipse_night</item>
         <item name="wrong_circle">@drawable/wrong_circle_night</item>
         <item name="feed_back_edit_view">@color/hint_gray_night</item>
+        <item name="search_choose_bg">@drawable/search_choose_corner_night</item>
 
         <item name="practise_a_s">@mipmap/practise_a_s_night</item>
         <item name="practise_b_s">@mipmap/practise_b_s_night</item>
@@ -159,5 +161,19 @@
     <style name="BottomDialogAnim" mce_bogus="1" parent="android:Animation">
         <item name="android:windowEnterAnimation">@animator/bottom_dialog_in</item>
         <item name="android:windowExitAnimation">@animator/bottom_dialog_out</item>
+    </style>
+
+    <style name="SearchPopupViewLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginLeft">@dimen/big_margin</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="SearchPopupViewTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textSize">14sp</item>
     </style>
 </resources>

@@ -11,7 +11,7 @@ public class QuestionCatagoryUtil {
             case Constants.MKSZY:
                 return Constants.MKSZY_SHORT_NAME;
             case Constants.MZDSX:
-                return Constants.MKSZY_SHORT_NAME;
+                return Constants.MZDSX_SHORT_NAME;
             case Constants.SXDD:
                 return Constants.SXDD_SHORT_NAME;
             case Constants.ZGJDS:
@@ -27,7 +27,7 @@ public class QuestionCatagoryUtil {
             case Constants.MKSZY:
                 return Constants.MKSZY_NAME;
             case Constants.MZDSX:
-                return Constants.MKSZY_NAME;
+                return Constants.MZDSX_NAME;
             case Constants.SXDD:
                 return Constants.SXDD_NAME;
             case Constants.ZGJDS:
@@ -43,7 +43,7 @@ public class QuestionCatagoryUtil {
             case Constants.MKSZY:
                 return Constants.MKSZY_JSON_NAME;
             case Constants.MZDSX:
-                return Constants.MKSZY_JSON_NAME;
+                return Constants.MZDSX_JSON_NAME;
             case Constants.SXDD:
                 return Constants.SXDD_JSON_NAME;
             case Constants.ZGJDS:

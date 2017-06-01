@@ -1,7 +1,5 @@
 package com.jscheng.mr_horse.ui;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,9 +20,8 @@ import com.jscheng.mr_horse.adapter.SearchRecyclerAdapter;
 import com.jscheng.mr_horse.model.QuestionModel;
 import com.jscheng.mr_horse.presenter.SearchPresenter;
 import com.jscheng.mr_horse.presenter.impl.SearchPresenterImpl;
-import com.jscheng.mr_horse.view.MvpView;
 import com.jscheng.mr_horse.view.SearchView;
-import com.jscheng.mr_horse.wiget.RecyclerViewDivider;
+import com.jscheng.mr_horse.wiget.SearchPopupView;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.List;
@@ -48,9 +45,14 @@ public class SearchActivity extends BaseActivity implements SearchView,SearchRec
     FrameLayout moreLayout;
     @BindView(R.id.out_content_layout)
     FrameLayout outLayout;
+    @BindView(R.id.choose)
+    LinearLayout chooseLayout;
+    @BindView(R.id.choose_textview)
+    TextView chooseTextView;
 
     private SearchRecyclerAdapter adapter = null;
     private SearchPresenter presenter = null;
+    private SearchPopupView searchPopupView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,8 +61,13 @@ public class SearchActivity extends BaseActivity implements SearchView,SearchRec
         ButterKnife.bind(this);
         presenter = new SearchPresenterImpl(this);
         presenter.attachView(this);
+        initPopupView();
         initSearchEditText();
         initRecycleView();
+    }
+
+    private void initPopupView() {
+        this.searchPopupView = new SearchPopupView(this,presenter);
     }
 
     private void initRecycleView() {
@@ -74,9 +81,6 @@ public class SearchActivity extends BaseActivity implements SearchView,SearchRec
         recyclerView.setLayoutManager(layoutManager);
         adapter = new SearchRecyclerAdapter();
         recyclerView.setAdapter(adapter);
-//        RecyclerViewDivider dividerItemDecoration = new RecyclerViewDivider(this, RecyclerViewDivider.VERTICAL_LIST);
-//        dividerItemDecoration.setDivider(R.drawable.item_divider);
-//        recyclerView.addItemDecoration(dividerItemDecoration);
         adapter.setClickItemListener(this);
     }
 
@@ -178,4 +182,21 @@ public class SearchActivity extends BaseActivity implements SearchView,SearchRec
     public void onClickItem(int postion,QuestionModel model) {
         presenter.onClickItem(postion,model);
     }
+
+    @OnClick(R.id.choose)
+    public void clickChooseLayout(){
+        searchPopupView.showAsDropDown(chooseLayout);
+    }
+
+    @Override
+    public void showChoose(String choose) {
+        chooseTextView.setText(choose);
+    }
+
+    @Override
+    public String getSearchText() {
+        String searchText = searchEditText.getText().toString();;
+        return searchText;
+    }
+
 }
