@@ -36,7 +36,7 @@
     <dimen name="small_font">12sp</dimen>
     <dimen name="middle_font">16sp</dimen>
     <dimen name="big_font">18sp</dimen>
-    <dimen name="answer_question_font">17sp</dimen>
+    <dimen name="answer_question_font">19sp</dimen>
     <dimen name="acitvity_main_today_font">13sp</dimen>
     <!-- search -->
     <dimen name="more_view_height">45dp</dimen>

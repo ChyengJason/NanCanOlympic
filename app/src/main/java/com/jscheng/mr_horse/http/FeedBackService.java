@@ -75,12 +75,15 @@ public class FeedBackService {
                     public Response intercept(Chain chain) throws IOException {
                         final Request.Builder builder = chain.request().newBuilder();
                         builder .addHeader("user-Agent","Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0")
-                                .addHeader("accept'","application/json")
-                                .addHeader("Accept-Language", "en-US,en;q=0.8")
+                                .addHeader("accept'","application/json, text/javascript, */*; q=0.01")
+                                .addHeader("Accept-Language", "zh-CN,zh;q=0.9")
                                 .addHeader("Accept-Encoding", "gzip, deflate")
-                                .addHeader("HOST", "pre.im")
+                                .addHeader("HOST", Constants.FEEDBACK_HOST)
+                                .addHeader("Origin", Constants.FEEDBACK_ORIGIN)
                                 .addHeader("content-type", "application/x-www-form-urlencoded")
-                                .addHeader("content-length","124")
+                                .addHeader("content-length","167")
+                                .addHeader("Referer", Constants.FEEDBACK_REFERER)
+                                .addHeader("X-Requested-With", "XMLHttpRequest")
                                 .addHeader("cookie",cookieBuffer.toString())
                                 .build();
                         return chain.proceed(builder.build());

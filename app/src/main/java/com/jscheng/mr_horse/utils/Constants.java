@@ -106,15 +106,30 @@ public class Constants {
     /**
      * dowloadUrl
      */
-    public static final String DOWNLOAD_URL = "http://pre.im/naocan";
+    public static final String DOWNLOAD_URL = "http://demo.pre.im/naocan";
+
+    public static final String BACKUP_DOWNLOAD_URL = " https://beta.bugly.qq.com/naocan";
+
     /**
      * feedbackUrl
      */
-    public static final String FEEDBACK_URL = "http://pre.im/aps/";
+    public static final String FEEDBACK_URL = "http://demo.pre.im/aps/";
     /**
      * feedbackKeyId
      */
     public static final String FEEDBACK_KEY_ID = "7625f978a991dcf9b680b5d997d085e1";
+    /**
+     * feedbackHost
+     */
+    public static final String FEEDBACK_HOST = "demo.pre.im";
+    /**
+     * feedbackOrigin
+     */
+    public static final String FEEDBACK_ORIGIN = "http://demo.pre.im";
+    /**
+     * feedbackReferer
+     */
+    public static final String FEEDBACK_REFERER = "http://demo.pre.im/naocan";
     /**
      * 是否自动更新
      */

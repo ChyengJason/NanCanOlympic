@@ -198,5 +198,4 @@ public class SearchActivity extends BaseActivity implements SearchView,SearchRec
         String searchText = searchEditText.getText().toString();;
         return searchText;
     }
-
 }

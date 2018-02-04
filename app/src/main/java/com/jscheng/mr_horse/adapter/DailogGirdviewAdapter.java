@@ -25,6 +25,7 @@ public class DailogGirdviewAdapter extends BaseAdapter {
     private List<QuestionModel> modelList;
     private Context mContext;
     private int currentPosition;
+    private int TYPE_ITEM = 1;
 
     public DailogGirdviewAdapter(Context mContext,List<QuestionModel> modelList,int currentPosition){
         this.modelList = modelList;
@@ -43,14 +44,19 @@ public class DailogGirdviewAdapter extends BaseAdapter {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return TYPE_ITEM;
+    }
+
+    @Override
     public long getItemId(int position) {
         return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = null;
-        if (convertView == null) {
+        ViewHolder viewHolder;
+        if (convertView == null || convertView.getTag() == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.question_dailog_item, null);
             viewHolder.idview = (TextView) convertView.findViewById(R.id.question_id_text);
@@ -58,7 +64,7 @@ public class DailogGirdviewAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        String text = new String((position+1)+"");
+        String text = new String((position+1) + "");
         viewHolder.idview.setText(text);
         if(position==currentPosition){
             viewHolder.idview.setBackgroundResource(R.drawable.gray_solid_circle);

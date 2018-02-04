@@ -5,8 +5,8 @@
     <TextView
         android:id="@+id/question_id_text"
         android:layout_margin="5dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:textColor="?attr/text_color"
         android:textSize="@dimen/middle_font"
         android:layout_gravity="center"

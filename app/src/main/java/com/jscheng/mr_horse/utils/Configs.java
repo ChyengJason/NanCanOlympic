@@ -9,7 +9,7 @@ public class Configs {
      */
     public final static String YOU_MENG_APP_KEY = "5873336ce88bad7ea6000f2c";
 
-    public final static String CHANNEL_ID="pre.im";
+    public final static String CHANNEL_ID="demo.pre.im";
 
     /**
      * bugly统计

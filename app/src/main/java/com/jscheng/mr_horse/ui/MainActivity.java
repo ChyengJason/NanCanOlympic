@@ -278,7 +278,9 @@ public class MainActivity extends BaseActivity implements MainView,View.OnClickL
                 break;
             case ShareDialog.COPY_TO_BOARD:
                 ClipboardManager cmb = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                String content = "「 "+getString(R.string.app_name)+"」 " + getString(R.string.app_descripe) + " \n 下载地址：" + Constants.DOWNLOAD_URL;
+                String content = "「 "+getString(R.string.app_name)+"」 " + getString(R.string.app_descripe) +
+                                 " \n 下载地址：" + Constants.DOWNLOAD_URL +
+                                 " \n 备份下载地址: " + Constants.BACKUP_DOWNLOAD_URL;
                 ClipData data = ClipData.newPlainText("content", content);
                 cmb.setPrimaryClip(data);
                 Toast.makeText(this,R.string.copied_to_board, Toast.LENGTH_SHORT).show();
